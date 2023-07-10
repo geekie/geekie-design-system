@@ -2,12 +2,7 @@ const StyleDictionary = require("style-dictionary");
 
 // these are the tokens we have in our stylesheet
 const DESIGN_TOKEN_TYPES = [
-  "color",
-  "form",
-  "animation",
-  "font",
-  "text",
-  "breakpoint",
+  "color"
 ];
 
 // just get the token name from it, like: color
