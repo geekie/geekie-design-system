@@ -1,21 +1,21 @@
 const StyleDictionary = require("style-dictionary");
 
 // these are the tokens we have in our stylesheet
-const DESIGN_TOKEN_TYPES = [
-  "color"
-];
+const DESIGN_TOKEN_NAMES_BY_TYPE = {
+  color: { presenterName: "Color", categoryName: "Colors" },
+  "font-family": { presenterName: "FontFamily", categoryName: "Font families" },
+  "font-weight": { presenterName: "FontWeight", categoryName: "Font weights" },
+  "font-size": { presenterName: "FontSize", categoryName: "Font sizes" },
+  "line-height": { presenterName: "LineHeight", categoryName: "Line heights" },
+};
 
 // just get the token name from it, like: color
 const extractTokenNameFromDictionaryName = (variable) => {
   if (variable) {
-    const [, name] = variable.match(/([^-]+)/);
-    return name;
+    return Object.keys(DESIGN_TOKEN_NAMES_BY_TYPE).find((type) =>
+      variable.startsWith(type)
+    );
   }
-};
-
-// Capitalize first letter to respect the addon parser for finding the right Presenter
-const sanitizeString = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 // Register your own format
@@ -25,19 +25,22 @@ StyleDictionary.registerFormat({
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
       ":root {\n" +
-      DESIGN_TOKEN_TYPES.map(
-        (item) =>
-          `\n/**
-* @tokens ${sanitizeString(item)}s
-* @presenter ${sanitizeString(item)}
+      Object.entries(DESIGN_TOKEN_NAMES_BY_TYPE)
+        .map(
+          ([type, names]) =>
+            `\n/**
+* @tokens ${names.categoryName}
+* @presenter ${names.presenterName}
 */\n` +
-          dictionary.allTokens
-            .filter(
-              (token) => item === extractTokenNameFromDictionaryName(token.name)
-            )
-            .map((token) => `--${token.name}: ${token.value};`)
-            .join("\n")
-      ).join("\n") +
+            dictionary.allTokens
+              .filter(
+                (token) =>
+                  type === extractTokenNameFromDictionaryName(token.name)
+              )
+              .map((token) => `--${token.name}: ${token.value};`)
+              .join("\n")
+        )
+        .join("\n") +
       "}\n"
     );
   },
