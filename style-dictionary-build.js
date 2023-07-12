@@ -4,7 +4,12 @@ const StyleDictionary = require("style-dictionary");
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
 // https://github.com/amzn/style-dictionary/issues/344#issuecomment-1200826141.
 const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
-  color: { categoryName: "Colors", presenterName: "Color" },
+  "color-brand": { categoryName: "Brand Colors", presenterName: "Color" },
+  "color-button": { categoryName: "Button Colors", presenterName: "Color" },
+  "color-neutral": { categoryName: "Neutral Colors", presenterName: "Color" },
+  "color-feedback": { categoryName: "Feedback Colors", presenterName: "Color" },
+  "color-materias": { categoryName: "Materias Colors", presenterName: "Color" },
+  "color-highlights": { categoryName: "Highlights Colors", presenterName: "Color" }
 };
 
 const extractTokenCategoryPrefix = (variable) => {
