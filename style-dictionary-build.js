@@ -1,44 +1,41 @@
 const StyleDictionary = require("style-dictionary");
 
-// these are the tokens we have in our stylesheet
-const DESIGN_TOKEN_TYPES = [
-  "color"
-];
+// The storybook-design-token plugin expects the tokens to be split in categories separated by
+// headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
+// https://github.com/amzn/style-dictionary/issues/344#issuecomment-1200826141.
+const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
+  color: { categoryName: "Colors", presenterName: "Color" },
+};
 
-// just get the token name from it, like: color
-const extractTokenNameFromDictionaryName = (variable) => {
+const extractTokenCategoryPrefix = (variable) => {
   if (variable) {
-    const [, name] = variable.match(/([^-]+)/);
-    return name;
+    return Object.keys(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).find((prefix) =>
+      variable.startsWith(prefix)
+    );
   }
 };
 
-// Capitalize first letter to respect the addon parser for finding the right Presenter
-const sanitizeString = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
+const formatCategory = ({ dictionary }) =>
+  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(
+    ([prefix, names]) =>
+      `\n/**
+* @tokens ${names.categoryName}
+* @presenter ${names.presenterName}
+*/\n` +
+      dictionary.allTokens
+        .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
+        .map((token) => `  --${token.name}: ${token.value};`)
+        .join("\n")
+  );
 
-// Register your own format
 StyleDictionary.registerFormat({
   name: `scss/variables-with-headers`,
   formatter: function ({ dictionary, file }) {
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
-      ":root {\n" +
-      DESIGN_TOKEN_TYPES.map(
-        (item) =>
-          `\n/**
-* @tokens ${sanitizeString(item)}s
-* @presenter ${sanitizeString(item)}
-*/\n` +
-          dictionary.allTokens
-            .filter(
-              (token) => item === extractTokenNameFromDictionaryName(token.name)
-            )
-            .map((token) => `--${token.name}: ${token.value};`)
-            .join("\n")
-      ).join("\n") +
-      "}\n"
+      ":root {" +
+      formatCategory({ dictionary }).join("\n") +
+      "\n}\n"
     );
   },
 });
