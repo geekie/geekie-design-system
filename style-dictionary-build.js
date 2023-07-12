@@ -9,10 +9,7 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
   "color-neutral": { presenterName: "Color", categoryName: "Colors neutral" },
   "color-feedback": { presenterName: "Color", categoryName: "Colors feedback" },
   "color-materias": { presenterName: "Color", categoryName: "Colors materias" },
-  "color-highlights": {
-    presenterName: "Color",
-    categoryName: "Colors highlights",
-  },
+  "color-highlights": { presenterName: "Color", categoryName: "Colors highlights" }
 };
 
 const extractTokenCategoryPrefix = (variable) => {
