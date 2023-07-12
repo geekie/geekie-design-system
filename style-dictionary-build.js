@@ -1,52 +1,41 @@
 const StyleDictionary = require("style-dictionary");
 
-// these are the tokens we have in our stylesheet
-const DESIGN_TOKEN_NAMES_BY_TYPE = {
-  "color-brand": { presenterName: "Color", categoryName: "Brand Colors" },
-  "color-button": { presenterName: "Color", categoryName: "Button Colors" },
-  "color-neutral": { presenterName: "Color", categoryName: "Neutral Colors" },
-  "color-feedback": { presenterName: "Color", categoryName: "Feedback Colors" },
-  "color-materias": { presenterName: "Color", categoryName: "Materias Colors" },
-  "color-highlights": { presenterName: "Color", categoryName: "Highlights Colors" },
-  "font-family": { presenterName: "FontFamily", categoryName: "Font families" },
-  "font-weight": { presenterName: "FontWeight", categoryName: "Font weights" },
-  "font-size": { presenterName: "FontSize", categoryName: "Font sizes" },
-  "line-height": { presenterName: "LineHeight", categoryName: "Line heights" },
+// The storybook-design-token plugin expects the tokens to be split in categories separated by
+// headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
+// https://github.com/amzn/style-dictionary/issues/344#issuecomment-1200826141.
+const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
+  color: { categoryName: "Colors", presenterName: "Color" },
 };
 
-// just get the token name from it, like: color
-const extractTokenNameFromDictionaryName = (variable) => {
+const extractTokenCategoryPrefix = (variable) => {
   if (variable) {
-    return Object.keys(DESIGN_TOKEN_NAMES_BY_TYPE).find((type) =>
-      variable.startsWith(type)
+    return Object.keys(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).find((prefix) =>
+      variable.startsWith(prefix)
     );
   }
 };
 
-// Register your own format
+const formatCategory = ({ dictionary }) =>
+  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(
+    ([prefix, names]) =>
+      `\n/**
+* @tokens ${names.categoryName}
+* @presenter ${names.presenterName}
+*/\n` +
+      dictionary.allTokens
+        .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
+        .map((token) => `  --${token.name}: ${token.value};`)
+        .join("\n")
+  );
+
 StyleDictionary.registerFormat({
   name: `scss/variables-with-headers`,
   formatter: function ({ dictionary, file }) {
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
-      ":root {\n" +
-      Object.entries(DESIGN_TOKEN_NAMES_BY_TYPE)
-        .map(
-          ([type, names]) =>
-            `\n/**
-* @tokens ${names.categoryName}
-* @presenter ${names.presenterName}
-*/\n` +
-            dictionary.allTokens
-              .filter(
-                (token) =>
-                  type === extractTokenNameFromDictionaryName(token.name)
-              )
-              .map((token) => `--${token.name}: ${token.value};`)
-              .join("\n")
-        )
-        .join("\n") +
-      "}\n"
+      ":root {" +
+      formatCategory({ dictionary }).join("\n") +
+      "\n}\n"
     );
   },
 });
