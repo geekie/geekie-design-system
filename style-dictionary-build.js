@@ -9,7 +9,11 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
   "color-neutral": { categoryName: "Neutral Colors", presenterName: "Color" },
   "color-feedback": { categoryName: "Feedback Colors", presenterName: "Color" },
   "color-materias": { categoryName: "Materias Colors", presenterName: "Color" },
-  "color-highlights": { categoryName: "Highlights Colors", presenterName: "Color" }
+  "color-highlights": { categoryName: "Highlights Colors", presenterName: "Color" },
+  "font-family": { categoryName: "Font families", presenterName: "FontFamily" },
+  "font-size": { categoryName: "Font sizes", presenterName: "FontSize" },
+  "font-weight": { categoryName: "Font weights", presenterName: "FontWeight" },
+  "line-height": { categoryName: "Line heights", presenterName: "LineHeight" },
 };
 
 const extractTokenCategoryPrefix = (variable) => {
@@ -29,7 +33,11 @@ const formatCategory = ({ dictionary }) =>
 */\n` +
       dictionary.allTokens
         .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
-        .map((token) => `  --${token.name}: ${token.value};`)
+        .map((token) => {
+          const tokenCategory = extractTokenCategoryPrefix(token.name);
+          const unit = tokenCategory == "font-size" ? "px" : "";
+          return `--${token.name}: ${token.value}${unit};`;
+        })
         .join("\n")
   );
 
