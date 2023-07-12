@@ -2,12 +2,12 @@ const StyleDictionary = require("style-dictionary");
 
 // these are the tokens we have in our stylesheet
 const DESIGN_TOKEN_NAMES_BY_TYPE = {
-  "color-brand": { presenterName: "Color", categoryName: "Colors brand" },
-  "color-button": { presenterName: "Color", categoryName: "Colors button" },
-  "color-neutral": { presenterName: "Color", categoryName: "Colors neutral" },
-  "color-feedback": { presenterName: "Color", categoryName: "Colors feedback" },
-  "color-materias": { presenterName: "Color", categoryName: "Colors materias" },
-  "color-highlights": { presenterName: "Color", categoryName: "Colors highlights" },
+  "color-brand": { presenterName: "Color", categoryName: "Brand Colors" },
+  "color-button": { presenterName: "Color", categoryName: "Button Colors" },
+  "color-neutral": { presenterName: "Color", categoryName: "Neutral Colors" },
+  "color-feedback": { presenterName: "Color", categoryName: "Feedback Colors" },
+  "color-materias": { presenterName: "Color", categoryName: "Materias Colors" },
+  "color-highlights": { presenterName: "Color", categoryName: "Highlights Colors" },
   "font-family": { presenterName: "FontFamily", categoryName: "Font families" },
   "font-weight": { presenterName: "FontWeight", categoryName: "Font weights" },
   "font-size": { presenterName: "FontSize", categoryName: "Font sizes" },
