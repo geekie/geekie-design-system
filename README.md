@@ -8,8 +8,6 @@ Nesse repositório estão escritos, e documentados, as definições do nosso des
 
 > 🎯 Simplificar o processo de design e engenharia, com comunicação fluída e facilidade na construção de produtos acessíveis, reduzindo o tempo de desenvolvimento, permitindo escalabilidade e experimentação de novas formas de organização.
 
-<br />
-
 ## Antes de começar
 
 Vale definir as resposabilidades das ferramentas em cada um dos processos.
@@ -20,9 +18,9 @@ Atualmente usamos:
 
 ## Como rodar
 
-Primeiro garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/build`_
+Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/build`_.
 
-Depois, para inicializar o storybook, rode o script: `yarn storybook`
+Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 
 <br />
 
