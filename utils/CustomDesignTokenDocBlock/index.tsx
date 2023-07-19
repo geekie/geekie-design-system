@@ -43,24 +43,29 @@ const CustomDesignTokenDocBlock = (props: CustomDesignTokenDocBlockProps) => {
                         <tr>
                           <td>
                             <span>
-                              <span className="css-1y5ujk1">{token.name}</span>
-                              {/* <div className="css-c3junj">
-                        <span>
-                          <button className="css-1d27gy0">
-                            <svg
-                              viewBox="0 0 14 14"
-                              width="14px"
-                              height="14px"
-                              className="css-149xqrd"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M11.75.07A.5.5 0 0 0 11.5 0h-6a.5.5 0 0 0-.5.5V3H.5a.5.5 0 0 0-.5.5v10c0 .28.22.5.5.5h8a.5.5 0 0 0 .5-.5V11h4.5a.5.5 0 0 0 .5-.5V2.51a.5.5 0 0 0-.15-.36l-2-2a.5.5 0 0 0-.1-.08ZM9 10h4V3h-1.5a.5.5 0 0 1-.5-.5V1H6v2h.5a.5.5 0 0 1 .36.15l1.99 2c.1.09.15.21.15.35v4.51ZM1 4v9h7V6H6.5a.5.5 0 0 1-.5-.5V4H1Z"
-                              ></path>
-                            </svg>
-                          </button>
-                        </span>
-                      </div> */}
+                              <span className="">{token.name}</span>
+                              <div className="copy-icon-container">
+                                <span>
+                                  <button
+                                    className="copy-icon"
+                                    onClick={() =>
+                                      navigator.clipboard.writeText(token.name)
+                                    }
+                                  >
+                                    <svg
+                                      viewBox="0 0 14 14"
+                                      width="14px"
+                                      height="14px"
+                                      className="css-149xqrd"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M11.75.07A.5.5 0 0 0 11.5 0h-6a.5.5 0 0 0-.5.5V3H.5a.5.5 0 0 0-.5.5v10c0 .28.22.5.5.5h8a.5.5 0 0 0 .5-.5V11h4.5a.5.5 0 0 0 .5-.5V2.51a.5.5 0 0 0-.15-.36l-2-2a.5.5 0 0 0-.1-.08ZM9 10h4V3h-1.5a.5.5 0 0 1-.5-.5V1H6v2h.5a.5.5 0 0 1 .36.15l1.99 2c.1.09.15.21.15.35v4.51ZM1 4v9h7V6H6.5a.5.5 0 0 1-.5-.5V4H1Z"
+                                      ></path>
+                                    </svg>
+                                  </button>
+                                </span>
+                              </div>
                             </span>
                           </td>
                           <td>
