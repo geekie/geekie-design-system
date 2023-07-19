@@ -5,7 +5,7 @@ type FontStyle = "normal" | "italic" | "oblique";
 
 type Token = {
   name: string;
-  value: string | number | FontStyle;
+  value: FontStyle;
 };
 
 type CustomDesignTokenDocBlockProps = {
@@ -76,7 +76,9 @@ const CustomDesignTokenDocBlock = (props: CustomDesignTokenDocBlockProps) => {
                             </div>
                           </td>
                           <td>
-                            <div style={previewStyle}>Lorem ipsum</div>
+                            <div style={previewStyle}>
+                              {previewType === "text" ? "Lorem ipsum" : null}
+                            </div>
                           </td>
                         </tr>
                       );
