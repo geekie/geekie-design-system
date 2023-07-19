@@ -13,6 +13,7 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
   "font-family": { categoryName: "Font families", presenterName: "FontFamily" },
   "font-size": { categoryName: "Font sizes", presenterName: "FontSize" },
   "font-weight": { categoryName: "Font weights", presenterName: "FontWeight" },
+  "font-style": { categoryName: "Font styles", presenterName: "FontWeight" },
   "line-height": { categoryName: "Line heights", presenterName: "LineHeight" },
 };
 
