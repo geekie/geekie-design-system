@@ -120,7 +120,7 @@ Os presentes, no _script de build_, são escritos no formato:
 ```javascript
 const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
 ...
-  FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
+  DSA_FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
 ...
 };
 ```

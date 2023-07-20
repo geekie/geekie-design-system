@@ -4,6 +4,7 @@
     "scss": {
       "transformGroup": "custom/scss",
       "buildPath": "build/scss/",
+      "prefix": "dsa",
       "files": [
         {
           "destination": "_variables.scss",

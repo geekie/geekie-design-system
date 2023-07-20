@@ -4,19 +4,19 @@ const StyleDictionary = require("style-dictionary");
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
 // https://github.com/amzn/style-dictionary/issues/344#issuecomment-1200826141.
 const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
-  COLOR_BRAND: { categoryName: "Brand Colors", presenterName: "Color" },
-  COLOR_BUTTON: { categoryName: "Button Colors", presenterName: "Color" },
-  COLOR_NEUTRAL: { categoryName: "Neutral Colors", presenterName: "Color" },
-  COLOR_FEEDBACK: { categoryName: "Feedback Colors", presenterName: "Color" },
-  COLOR_MATERIAIS: { categoryName: "Materias Colors", presenterName: "Color" },
-  COLOR_HIGHLIGHTS: {
+  DSA_COLOR_BRAND: { categoryName: "Brand Colors", presenterName: "Color" },
+  DSA_COLOR_BUTTON: { categoryName: "Button Colors", presenterName: "Color" },
+  DSA_COLOR_NEUTRAL: { categoryName: "Neutral Colors", presenterName: "Color" },
+  DSA_COLOR_FEEDBACK: { categoryName: "Feedback Colors", presenterName: "Color" },
+  DSA_COLOR_MATERIAIS: { categoryName: "Materias Colors", presenterName: "Color" },
+  DSA_COLOR_HIGHLIGHTS: {
     categoryName: "Highlights Colors",
     presenterName: "Color",
   },
-  FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
-  FONT_SIZE: { categoryName: "Font sizes", presenterName: "FontSize" },
-  FONT_WEIGHT: { categoryName: "Font weights", presenterName: "FontWeight" },
-  LINE_HEIGHT: { categoryName: "Line heights", presenterName: "LineHeight" },
+  DSA_FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
+  DSA_FONT_SIZE: { categoryName: "Font sizes", presenterName: "FontSize" },
+  DSA_FONT_WEIGHT: { categoryName: "Font weights", presenterName: "FontWeight" },
+  DSA_LINE_HEIGHT: { categoryName: "Line heights", presenterName: "LineHeight" },
 };
 
 const extractTokenCategoryPrefix = (variable) => {
