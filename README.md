@@ -145,3 +145,39 @@ import { DesignTokenDocBlock } from 'storybook-design-token';
 ```
 
 Verifique se o token foi documentado rodando o script e inicalização do storybook: `yarn storybook`.
+
+### Para documentar um token que não tem presenter suportado no addon
+
+Criamos um componente que replica o funcionamento e visualização do `DesignTokenDocBlock`, que é chamado `CustomDesignTokenDocBlock`. Então, verifique os presenters suportados pelo nosso componente - para garantir que o estilo esperado já esteja implementado.
+
+**Para documentar:**
+
+Importe e use o componente do bloco de documentação customizado, seguindo o exeplo:
+
+```javascript
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import CustomDesignTokenDocBlock from '../utils/CustomDesignTokenDocBlock';
+
+import typograpyTokens from "../tokens/typography.json";
+
+<Meta title="Design Tokens/Tipografia" />
+
+# Tipografia
+
+## Font style
+
+<CustomDesignTokenDocBlock
+    blockType="table"
+    previewType="text"
+    presenter="font-style"
+    tokens={[
+      {
+        name: "--font-style-italic",
+        value: typograpyTokens.font.style.italic.value,
+      }
+    ]}
+/>
+```
+**Lembre-se, também, de importar o json dos tokens referenciados**
+
+Se precisar, extenda o suporte desse bloco para adicionar novos presenters e seus respectivos estilos. O componente está em: `/utils/CustomDesignTokenDocBlock`.
