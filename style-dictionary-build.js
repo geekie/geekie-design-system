@@ -38,7 +38,7 @@ const formatCategory = ({ dictionary }) =>
         .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
         .map((token) => {
           const tokenCategory = extractTokenCategoryPrefix(token.name);
-          const unit = tokenCategory == "FONT_SIZE" ? "px" : "";
+          const unit = tokenCategory == "DSA_FONT_SIZE" ? "px" : "";
           return `$${token.name}: ${token.value}${unit};`;
         })
         .join("\n")
