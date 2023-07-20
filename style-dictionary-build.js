@@ -4,19 +4,19 @@ const StyleDictionary = require("style-dictionary");
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
 // https://github.com/amzn/style-dictionary/issues/344#issuecomment-1200826141.
 const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
-  "color-brand": { categoryName: "Brand Colors", presenterName: "Color" },
-  "color-button": { categoryName: "Button Colors", presenterName: "Color" },
-  "color-neutral": { categoryName: "Neutral Colors", presenterName: "Color" },
-  "color-feedback": { categoryName: "Feedback Colors", presenterName: "Color" },
-  "color-materias": { categoryName: "Materias Colors", presenterName: "Color" },
-  "color-highlights": {
+  COLOR_BRAND: { categoryName: "Brand Colors", presenterName: "Color" },
+  COLOR_BUTTON: { categoryName: "Button Colors", presenterName: "Color" },
+  COLOR_NEUTRAL: { categoryName: "Neutral Colors", presenterName: "Color" },
+  COLOR_FEEDBACK: { categoryName: "Feedback Colors", presenterName: "Color" },
+  COLOR_MATERIAIS: { categoryName: "Materias Colors", presenterName: "Color" },
+  COLOR_HIGHLIGHTS: {
     categoryName: "Highlights Colors",
     presenterName: "Color",
   },
-  "font-family": { categoryName: "Font families", presenterName: "FontFamily" },
-  "font-size": { categoryName: "Font sizes", presenterName: "FontSize" },
-  "font-weight": { categoryName: "Font weights", presenterName: "FontWeight" },
-  "line-height": { categoryName: "Line heights", presenterName: "LineHeight" },
+  FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
+  FONT_SIZE: { categoryName: "Font sizes", presenterName: "FontSize" },
+  FONT_WEIGHT: { categoryName: "Font weights", presenterName: "FontWeight" },
+  LINE_HEIGHT: { categoryName: "Line heights", presenterName: "LineHeight" },
 };
 
 const extractTokenCategoryPrefix = (variable) => {
@@ -38,8 +38,8 @@ const formatCategory = ({ dictionary }) =>
         .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
         .map((token) => {
           const tokenCategory = extractTokenCategoryPrefix(token.name);
-          const unit = tokenCategory == "font-size" ? "px" : "";
-          return `--${token.name}: ${token.value}${unit};`;
+          const unit = tokenCategory == "FONT_SIZE" ? "px" : "";
+          return `$${token.name}: ${token.value}${unit};`;
         })
         .join("\n")
   );
@@ -61,6 +61,13 @@ StyleDictionary.registerTransformGroup({
   transforms: StyleDictionary.transformGroup["js"]
     .filter((transform) => transform !== "color/hex")
     .concat(["color/css", "name/cti/constant"]),
+});
+
+StyleDictionary.registerTransformGroup({
+  name: "custom/scss",
+  transforms: StyleDictionary.transformGroup["scss"].concat([
+    "name/cti/constant",
+  ]),
 });
 
 // APPLY THE CONFIGURATION

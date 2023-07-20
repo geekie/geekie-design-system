@@ -33,7 +33,7 @@ Eles são escritos na pasta `/tokens`, em arquivos `.json`, seguindo o padrão e
 
 Crie, ou altere, o arquivo `.json` na pasta `/tokens`, adequando o formato:
 
-`$element-category-variant-state-property`
+`$ELEMENT_CATEGORY_VARIANT_STATE_PROPERTY`
 
 Ou, em `JSON`:
 
@@ -53,7 +53,7 @@ Ou, em `JSON`:
 
 ### Exemplo
 
-Para criar o token de cor: `$color-brand-cereja`, de valor `#F03246`, criaremos, na pasta `/tokens`, um arquivo `color.json` no formato:
+Para criar o token de cor: `$COLOR_BRAND_CEREJA`, de valor `#F03246`, criaremos, na pasta `/tokens`, um arquivo `color.json` no formato:
 
 ```json
 "color": {
@@ -120,7 +120,7 @@ Os presentes, no _script de build_, são escritos no formato:
 ```javascript
 const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
 ...
-  "font-family": { categoryName: "Font families", presenterName: "FontFamily" },
+  FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
 ...
 };
 ```
@@ -172,7 +172,7 @@ import typograpyTokens from "../tokens/typography.json";
     presenter="font-style"
     tokens={[
       {
-        name: "--font-style-italic",
+        name: "$DSA_FONT_STYLE_ITALIC",
         value: typograpyTokens.font.style.italic.value,
       }
     ]}

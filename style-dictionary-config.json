@@ -2,7 +2,7 @@
   "source": ["tokens/**/*.json"],
   "platforms": {
     "scss": {
-      "transformGroup": "scss",
+      "transformGroup": "custom/scss",
       "buildPath": "build/scss/",
       "files": [
         {
