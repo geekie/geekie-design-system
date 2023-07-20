@@ -9,7 +9,10 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
   "color-neutral": { categoryName: "Neutral Colors", presenterName: "Color" },
   "color-feedback": { categoryName: "Feedback Colors", presenterName: "Color" },
   "color-materias": { categoryName: "Materias Colors", presenterName: "Color" },
-  "color-highlights": { categoryName: "Highlights Colors", presenterName: "Color" },
+  "color-highlights": {
+    categoryName: "Highlights Colors",
+    presenterName: "Color",
+  },
   "font-family": { categoryName: "Font families", presenterName: "FontFamily" },
   "font-size": { categoryName: "Font sizes", presenterName: "FontSize" },
   "font-weight": { categoryName: "Font weights", presenterName: "FontWeight" },
@@ -51,6 +54,13 @@ StyleDictionary.registerFormat({
       "\n}\n"
     );
   },
+});
+
+StyleDictionary.registerTransformGroup({
+  name: "custom/js",
+  transforms: StyleDictionary.transformGroup["js"]
+    .filter((transform) => transform !== "color/hex")
+    .concat(["color/css", "name/cti/constant"]),
 });
 
 // APPLY THE CONFIGURATION
