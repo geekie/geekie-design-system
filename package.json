@@ -31,6 +31,6 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-tokens": "node ./style-dictionary-build.js"
+    "build-tokens": "node ./tokens/config/style-dictionary-build.js"
   }
 }

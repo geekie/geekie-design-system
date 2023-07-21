@@ -1,9 +1,9 @@
 {
-  "source": ["tokens/**/*.json"],
+  "source": ["tokens/src/**/*.json"],
   "platforms": {
     "scss": {
       "transformGroup": "custom/scss",
-      "buildPath": "build/scss/",
+      "buildPath": "build/tokens/scss/",
       "prefix": "dsa",
       "files": [
         {
@@ -18,7 +18,7 @@
     },
     "ts": {
       "transformGroup": "custom/js",
-      "buildPath": "build/ts/",
+      "buildPath": "build/tokens/ts/",
       "prefix": "dsa",
       "files": [
         {
