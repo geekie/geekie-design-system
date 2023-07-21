@@ -18,7 +18,7 @@ Atualmente usamos:
 
 ## Como rodar
 
-Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/build`_.
+Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/build/tokens`_.
 
 Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 
@@ -27,11 +27,11 @@ Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 # Tokens
 
 Usamos o [style-dictionary](https://github.com/amzn/style-dictionary) para escrever e construir nossos design tokens.
-Eles são escritos na pasta `/tokens`, em arquivos `.json`, seguindo o padrão esperado pela ferramenta.
+Eles são escritos na pasta `/tokens/src`, em arquivos `.json`, seguindo o padrão esperado pela ferramenta.
 
 ## Como escrever um token
 
-Crie, ou altere, o arquivo `.json` na pasta `/tokens`, adequando o formato:
+Crie, ou altere, o arquivo `.json` na pasta `/tokens/src`, adequando o formato:
 
 `$ELEMENT_CATEGORY_VARIANT_STATE_PROPERTY`
 
@@ -53,7 +53,7 @@ Ou, em `JSON`:
 
 ### Exemplo
 
-Para criar o token de cor: `$COLOR_BRAND_CEREJA`, de valor `#F03246`, criaremos, na pasta `/tokens`, um arquivo `color.json` no formato:
+Para criar o token de cor: `$COLOR_BRAND_CEREJA`, de valor `#F03246`, criaremos, na pasta `/tokens/src`, um arquivo `color.json` no formato:
 
 ```json
 "color": {
@@ -73,7 +73,7 @@ A **resposta rápida** é: rode o script
 
 `yarn build-tokens`
 
-E os tokens serão construídos na pasta `/build`.
+E os tokens serão construídos na pasta `/build/tokens`.
 
 Usamos um script customizado, para garantir que exportamos um arquivo correto para documentar os tokens no storybook. Detalharemos esse assunto um pouco mais à frente.
 
@@ -81,9 +81,9 @@ Usamos um script customizado, para garantir que exportamos um arquivo correto pa
 
 Os arquivos envolvidos nesse processo são:
 
-`style-dictionary-build.js` - Para simplificar, vamos chamar esse arquivo de **script de build**
+`/tokens/config/style-dictionary-build.js` - Para simplificar, vamos chamar esse arquivo de **script de build**
 e
-`style-dictionary-config.json` - Que vamos chamar de **arquivo de configuração**.
+`/tokens/config/style-dictionary-config.json` - Que vamos chamar de **arquivo de configuração**.
 
 No _arquivo de configuração_, estão definidas as [plataformas](https://amzn.github.io/style-dictionary/#/architecture?id=_4-iterate-over-the-platforms) e os [transform-groups](https://amzn.github.io/style-dictionary/#/transform_groups) - que definem os tipos de arquivos de saída.
 
@@ -93,7 +93,7 @@ As platforms são definidas no formato:
   "platforms": {
     "scss": {
       "transformGroup": "scss",
-      "buildPath": "build/scss/",
+      "buildPath": "build/tokens/scss/",
       "files": [
         {
           "destination": "_variables.scss",
@@ -111,7 +111,7 @@ Já no _script de build_ temos definidos um [custom-transform](https://amzn.gith
 Como já comentado anteriormente, criamos um processo um pouco mais automatizado para criar os tokens e documentá-los no storybook.
 
 Nesse processo, usamos um addon para o storybook - [storybook-design-token](https://github.com/UX-and-I/storybook-design-token) - que consegue documentar e gerar previews dos tokens.
-Esse addon precisa de um arquivo, em um formato específico, chamado de [presenters](https://github.com/UX-and-I/storybook-design-token/tree/v3#available-presenters) pelo addon, que é criado na construição dos tokens - através do style-dictionary - encontrado na pasta `/build/scss/_variables_with_headers.scss`. Esse formato é definido no _script de build_, em `DESIGN_TOKEN_CATEGORIES_BY_PREFIX`.
+Esse addon precisa de um arquivo, em um formato específico, chamado de [presenters](https://github.com/UX-and-I/storybook-design-token/tree/v3#available-presenters) pelo addon, que é criado na construição dos tokens - através do style-dictionary - encontrado na pasta `/build/tokens/scss/_variables_with_headers.scss`. Esse formato é definido no _script de build_, em `DESIGN_TOKEN_CATEGORIES_BY_PREFIX`.
 
 Então, para **documentar um token**, após terminar o processo descrito anteriormente, vale conferir se o _script de build_ já tem a categoria necessária - se não, criá-la de acordo com os [presenters](https://github.com/UX-and-I/storybook-design-token/tree/v3#available-presenters) suportados pelo addon.
 
@@ -125,7 +125,7 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
 };
 ```
 
-Depois, é preciso criar um [story](https://storybook.js.org/docs/web-components/get-started/whats-a-story) para exibir a documentação no storybook. Os stories, atualmente, são criados na pasta `/stories`, e escritos no formato `storyName.stories.mdx`.
+Depois, é preciso criar um [story](https://storybook.js.org/docs/web-components/get-started/whats-a-story) para exibir a documentação no storybook. Os stories de tokens, atualmente, são criados na pasta `/stories/tokens`, e escritos no formato `storyName.stories.mdx`.
 
 Por fim, no arquivo, definimos os blocos de documentação, de acordo com as categorias que descrevemos no _script de build_:
 
@@ -156,9 +156,9 @@ Importe e use o componente do bloco de documentação customizado, seguindo o ex
 
 ```javascript
 import { Meta, Story, Canvas } from '@storybook/addon-docs';
-import CustomDesignTokenDocBlock from '../utils/CustomDesignTokenDocBlock';
+import CustomDesignTokenDocBlock from '../../utils/CustomDesignTokenDocBlock';
 
-import typograpyTokens from "../tokens/typography.json";
+import typograpyTokens from "../../tokens/src/typography.json";
 
 <Meta title="Design Tokens/Tipografia" />
 
