@@ -8,7 +8,7 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
   DSA_COLOR_BUTTON: { categoryName: "Button Colors", presenterName: "Color" },
   DSA_COLOR_NEUTRAL: { categoryName: "Neutral Colors", presenterName: "Color" },
   DSA_COLOR_FEEDBACK: { categoryName: "Feedback Colors", presenterName: "Color" },
-  DSA_COLOR_MATERIAIS: { categoryName: "Materias Colors", presenterName: "Color" },
+  DSA_COLOR_MATERIAS: { categoryName: "Materias Colors", presenterName: "Color" },
   DSA_COLOR_HIGHLIGHTS: {
     categoryName: "Highlights Colors",
     presenterName: "Color",
