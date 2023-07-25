@@ -7,16 +7,31 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
   DSA_COLOR_BRAND: { categoryName: "Brand Colors", presenterName: "Color" },
   DSA_COLOR_BUTTON: { categoryName: "Button Colors", presenterName: "Color" },
   DSA_COLOR_NEUTRAL: { categoryName: "Neutral Colors", presenterName: "Color" },
-  DSA_COLOR_FEEDBACK: { categoryName: "Feedback Colors", presenterName: "Color" },
-  DSA_COLOR_MATERIAS: { categoryName: "Materias Colors", presenterName: "Color" },
+  DSA_COLOR_FEEDBACK: {
+    categoryName: "Feedback Colors",
+    presenterName: "Color",
+  },
+  DSA_COLOR_MATERIAS: {
+    categoryName: "Materias Colors",
+    presenterName: "Color",
+  },
   DSA_COLOR_HIGHLIGHTS: {
     categoryName: "Highlights Colors",
     presenterName: "Color",
   },
-  DSA_FONT_FAMILY: { categoryName: "Font families", presenterName: "FontFamily" },
+  DSA_FONT_FAMILY: {
+    categoryName: "Font families",
+    presenterName: "FontFamily",
+  },
   DSA_FONT_SIZE: { categoryName: "Font sizes", presenterName: "FontSize" },
-  DSA_FONT_WEIGHT: { categoryName: "Font weights", presenterName: "FontWeight" },
-  DSA_LINE_HEIGHT: { categoryName: "Line heights", presenterName: "LineHeight" },
+  DSA_FONT_WEIGHT: {
+    categoryName: "Font weights",
+    presenterName: "FontWeight",
+  },
+  DSA_LINE_HEIGHT: {
+    categoryName: "Line heights",
+    presenterName: "LineHeight",
+  },
 };
 
 const extractTokenCategoryPrefix = (variable) => {

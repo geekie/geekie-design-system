@@ -1,221 +1,221 @@
 {
-    "color": {
-        "brand": {
-            "cereja": {
-                "value": "#F03246",
-                "comment": "Cor primária"
-            },
-            "laranja": {
-                "value": "#FF8219",
-                "comment": "Cor secundária"
-            },
-            "amarelo": {
-                "value": "#FFC300",
-                "comment": "Cor secundária"
-            },
-            "verde": {
-                "value": "#32CD91",
-                "comment": "Cor secundária"
-            },
-            "azul": {
-                "value": "#0FC3E6",
-                "comment": "Cor secundária"
-            },
-            "roxo": {
-                "value": "#6146F1",
-                "comment": "Cor secundária"
-            }
+  "color": {
+    "brand": {
+      "cereja": {
+        "value": "#F03246",
+        "comment": "Cor primária"
+      },
+      "laranja": {
+        "value": "#FF8219",
+        "comment": "Cor secundária"
+      },
+      "amarelo": {
+        "value": "#FFC300",
+        "comment": "Cor secundária"
+      },
+      "verde": {
+        "value": "#32CD91",
+        "comment": "Cor secundária"
+      },
+      "azul": {
+        "value": "#0FC3E6",
+        "comment": "Cor secundária"
+      },
+      "roxo": {
+        "value": "#6146F1",
+        "comment": "Cor secundária"
+      }
+    },
+    "button": {
+      "lightest": {
+        "value": "#E7ECF9"
+      },
+      "light": {
+        "value": "#81A3EF"
+      },
+      "medium": {
+        "value": "#0B43BF"
+      },
+      "dark": {
+        "value": "#0A38A1"
+      },
+      "darkest": {
+        "value": "#002066"
+      }
+    },
+    "neutral": {
+      "lightest": {
+        "value": "#FFFFFF"
+      },
+      "xxlight": {
+        "value": "#F5F7FA"
+      },
+      "xlight": {
+        "value": "#EBEEF2"
+      },
+      "light": {
+        "value": "#D3D7DE"
+      },
+      "medium": {
+        "value": "#BEC3CC"
+      },
+      "dark": {
+        "value": "#99A0AC"
+      },
+      "xdark": {
+        "value": "#626975"
+      },
+      "xxdark": {
+        "value": "#35373B"
+      },
+      "darkest": {
+        "value": "#111112"
+      }
+    },
+    "feedback": {
+      "positive": {
+        "lightest": {
+          "value": "#E8FBF3"
         },
-        "button": {
-            "lightest": {
-                "value": "#E7ECF9"
-            },
-            "light": {
-                "value": "#81A3EF"
-            },
-            "medium": {
-                "value": "#0B43BF"
-            },
-            "dark": {
-                "value": "#0A38A1"
-            },
-            "darkest": {
-                "value": "#002066"
-            }
+        "light": {
+          "value": "#A1E5C9"
         },
-        "neutral": {
-            "lightest": {
-                "value": "#FFFFFF"
-            },
-            "xxlight": {
-                "value": "#F5F7FA"
-            },
-            "xlight": {
-                "value": "#EBEEF2"
-            },
-            "light": {
-                "value": "#D3D7DE"
-            },
-            "medium": {
-                "value": "#BEC3CC"
-            },
-            "dark": {
-                "value": "#99A0AC"
-            },
-            "xdark": {
-                "value": "#626975"
-            },
-            "xxdark": {
-                "value": "#35373B"
-            },
-            "darkest": {
-                "value": "#111112"
-            }
+        "medium": {
+          "value": "#1FAD73"
         },
-        "feedback": {
-            "positive": {
-                "lightest": {
-                    "value": "#E8FBF3"
-                },
-                "light": {
-                    "value": "#A1E5C9"
-                },
-                "medium": {
-                    "value": "#1FAD73"
-                },
-                "dark": {
-                    "value": "#208058"
-                },
-                "darkest": {
-                    "value": "#196344"
-                }
-            },
-            "attention": {
-                "lightest": {
-                    "value": "#FEF5D5"
-                },
-                "light": {
-                    "value": "#FDE7AA"
-                },
-                "medium": {
-                    "value": "#FBD876"
-                },
-                "dark": {
-                    "value": "#F7BD2C"
-                },
-                "darkest": {
-                    "value": "#F4A425"
-                }
-            },
-            "negative": {
-                "lightest": {
-                    "value": "#FBE4E7"
-                },
-                "light": {
-                    "value": "#EA908C"
-                },
-                "medium": {
-                    "value": "#D93734"
-                },
-                "dark": {
-                    "value": "#B5241D"
-                },
-                "darkest": {
-                    "value": "#940F09"
-                }
-            },
-            "information": {
-                "lightest": {
-                    "value": "#E7F4FF"
-                },
-                "light": {
-                    "value": "#8FCDFF"
-                },
-                "medium": {
-                    "value": "#3FA2F2"
-                },
-                "dark": {
-                    "value": "#1179CF"
-                },
-                "darkest": {
-                    "value": "#085899"
-                }
-            }
+        "dark": {
+          "value": "#208058"
         },
-        "materias": {
-            "fund2emedio": {
-                "artes": {
-                    "value": "#6A1B9A"
-                },
-                "matematica": {
-                    "value": "#9656D6"
-                },
-                "fisica": {
-                    "value": "#6767E6"
-                },
-                "sociologia": {
-                    "value": "#3272D9"
-                },
-                "gramatica": {
-                    "value": "#008099"
-                },
-                "biologia": {
-                    "value": "#14857A"
-                },
-                "quimica": {
-                    "value": "#007957"
-                },
-                "filosofia": {
-                    "value": "#d6239A"
-                },
-                "ingleseespanhol": {
-                    "value": "#E11B5D"
-                },
-                "geografia": {
-                    "value": "#DE2828"
-                },
-                "historia": {
-                    "value": "#D14600"
-                }
-            },
-            "eletivas": {
-                "empreendedorismosocial": {
-                    "value": "#B95B04"
-                },
-                "smart": {
-                    "value": "#C505B1"
-                },
-                "criatividadeeinovacao": {
-                    "value": "#982364"
-                },
-                "projetodevida": {
-                    "value": "#178282"
-                },
-                "educacaodigital": {
-                    "value": "#2A47BE"
-                },
-                "cidadaniadigital": {
-                    "value": "#011F6A"
-                }
-            }
-        },
-        "highlights": {
-            "orange": {
-                "value": "rgba(255, 165, 0, 0.80)",
-                "comment": "#FFA500, 80%"
-            },
-            "yellow": {
-                "value": "rgba(255, 255, 0, 0.80)",
-                "comment": "#FFFF00, 80%"
-            },
-            "green": {
-                "value": "rgba(50, 205, 50, 0.80)",
-                "comment": "#32CD32, 80%"
-            },
-            "blue": {
-                "value": "rgba(93, 168, 218, 0.80)",
-                "comment": "#5DA8DA, 80%"
-            }
+        "darkest": {
+          "value": "#196344"
         }
+      },
+      "attention": {
+        "lightest": {
+          "value": "#FEF5D5"
+        },
+        "light": {
+          "value": "#FDE7AA"
+        },
+        "medium": {
+          "value": "#FBD876"
+        },
+        "dark": {
+          "value": "#F7BD2C"
+        },
+        "darkest": {
+          "value": "#F4A425"
+        }
+      },
+      "negative": {
+        "lightest": {
+          "value": "#FBE4E7"
+        },
+        "light": {
+          "value": "#EA908C"
+        },
+        "medium": {
+          "value": "#D93734"
+        },
+        "dark": {
+          "value": "#B5241D"
+        },
+        "darkest": {
+          "value": "#940F09"
+        }
+      },
+      "information": {
+        "lightest": {
+          "value": "#E7F4FF"
+        },
+        "light": {
+          "value": "#8FCDFF"
+        },
+        "medium": {
+          "value": "#3FA2F2"
+        },
+        "dark": {
+          "value": "#1179CF"
+        },
+        "darkest": {
+          "value": "#085899"
+        }
+      }
+    },
+    "materias": {
+      "fund2emedio": {
+        "artes": {
+          "value": "#6A1B9A"
+        },
+        "matematica": {
+          "value": "#9656D6"
+        },
+        "fisica": {
+          "value": "#6767E6"
+        },
+        "sociologia": {
+          "value": "#3272D9"
+        },
+        "gramatica": {
+          "value": "#008099"
+        },
+        "biologia": {
+          "value": "#14857A"
+        },
+        "quimica": {
+          "value": "#007957"
+        },
+        "filosofia": {
+          "value": "#d6239A"
+        },
+        "ingleseespanhol": {
+          "value": "#E11B5D"
+        },
+        "geografia": {
+          "value": "#DE2828"
+        },
+        "historia": {
+          "value": "#D14600"
+        }
+      },
+      "eletivas": {
+        "empreendedorismosocial": {
+          "value": "#B95B04"
+        },
+        "smart": {
+          "value": "#C505B1"
+        },
+        "criatividadeeinovacao": {
+          "value": "#982364"
+        },
+        "projetodevida": {
+          "value": "#178282"
+        },
+        "educacaodigital": {
+          "value": "#2A47BE"
+        },
+        "cidadaniadigital": {
+          "value": "#011F6A"
+        }
+      }
+    },
+    "highlights": {
+      "orange": {
+        "value": "rgba(255, 165, 0, 0.80)",
+        "comment": "#FFA500, 80%"
+      },
+      "yellow": {
+        "value": "rgba(255, 255, 0, 0.80)",
+        "comment": "#FFFF00, 80%"
+      },
+      "green": {
+        "value": "rgba(50, 205, 50, 0.80)",
+        "comment": "#32CD32, 80%"
+      },
+      "blue": {
+        "value": "rgba(93, 168, 218, 0.80)",
+        "comment": "#5DA8DA, 80%"
+      }
     }
+  }
 }

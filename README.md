@@ -178,6 +178,7 @@ import typograpyTokens from "../../tokens/src/typography.json";
     ]}
 />
 ```
+
 **Lembre-se, também, de importar o json dos tokens referenciados**
 
 Se precisar, extenda o suporte desse bloco para adicionar novos presenters e seus respectivos estilos. O componente está em: `/utils/CustomDesignTokenDocBlock`.
