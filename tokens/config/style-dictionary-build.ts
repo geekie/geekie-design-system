@@ -1,4 +1,6 @@
-const StyleDictionary = require("style-dictionary");
+import path from "path";
+import StyleDictionary from "style-dictionary";
+import type { Dictionary } from "style-dictionary/types/Dictionary";
 
 // The storybook-design-token plugin expects the tokens to be split in categories separated by
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
@@ -33,16 +35,17 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
     presenterName: "LineHeight",
   },
 };
+type TokenCategoryPrefix = keyof typeof DESIGN_TOKEN_CATEGORIES_BY_PREFIX;
 
-const extractTokenCategoryPrefix = (variable) => {
-  if (variable) {
-    return Object.keys(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).find((prefix) =>
-      variable.startsWith(prefix)
-    );
-  }
+const extractTokenCategoryPrefix = (
+  variable: string
+): TokenCategoryPrefix | undefined => {
+  return (
+    Object.keys(DESIGN_TOKEN_CATEGORIES_BY_PREFIX) as TokenCategoryPrefix[]
+  ).find((prefix) => variable.startsWith(prefix));
 };
 
-const formatCategory = ({ dictionary }) =>
+const formatCategory = ({ dictionary }: { dictionary: Dictionary }): string[] =>
   Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(
     ([prefix, names]) =>
       `\n/**
@@ -53,8 +56,8 @@ const formatCategory = ({ dictionary }) =>
         .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
         .map((token) => {
           const tokenCategory = extractTokenCategoryPrefix(token.name);
-          const unit = tokenCategory == "DSA_FONT_SIZE" ? "px" : "";
-          return `$${token.name}: ${token.value}${unit};`;
+          const unit = tokenCategory === "DSA_FONT_SIZE" ? "px" : "";
+          return `$${token.name}: ${token.value as number}${unit};`;
         })
         .join("\n")
   );
@@ -73,23 +76,21 @@ StyleDictionary.registerFormat({
 
 StyleDictionary.registerTransformGroup({
   name: "custom/js",
-  transforms: StyleDictionary.transformGroup["js"]
+  transforms: StyleDictionary.transformGroup.js
     .filter((transform) => transform !== "color/hex")
     .concat(["color/css", "name/cti/constant"]),
 });
 
 StyleDictionary.registerTransformGroup({
   name: "custom/scss",
-  transforms: StyleDictionary.transformGroup["scss"].concat([
-    "name/cti/constant",
-  ]),
+  transforms: StyleDictionary.transformGroup.scss.concat(["name/cti/constant"]),
 });
 
 // APPLY THE CONFIGURATION
 // IMPORTANT: the registration of custom transforms
 // needs to be done _before_ applying the configuration
 const StyleDictionaryExtended = StyleDictionary.extend(
-  __dirname + "/style-dictionary-config.json"
+  path.join(__dirname, "/style-dictionary-config.json")
 );
 
 // FINALLY, BUILD ALL THE PLATFORMS
