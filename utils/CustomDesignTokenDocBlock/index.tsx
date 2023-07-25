@@ -3,19 +3,20 @@ import "./styles.css";
 
 type FontStyle = "normal" | "italic" | "oblique";
 
-type Token = {
+interface Token {
   name: string;
   value: FontStyle;
-};
-
-type CustomDesignTokenDocBlockProps = {
+}
+interface CustomDesignTokenDocBlockProps {
   blockType: "table";
   presenter: "font-style";
   previewType: "text";
-  tokens: Array<Token>;
-};
+  tokens: Token[];
+}
 
-const CustomDesignTokenDocBlock = (props: CustomDesignTokenDocBlockProps) => {
+const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
+  props
+) => {
   const { blockType, presenter, previewType, tokens } = props;
 
   return (
@@ -32,58 +33,58 @@ const CustomDesignTokenDocBlock = (props: CustomDesignTokenDocBlockProps) => {
                 </tr>
               </thead>
               <tbody>
-                {tokens
-                  ? tokens.map((token) => {
-                      const previewStyle =
-                        presenter === "font-style"
-                          ? { fontStyle: token.value as FontStyle }
-                          : {};
+                {tokens.map((token) => {
+                  const previewStyle =
+                    presenter === "font-style"
+                      ? { fontStyle: token.value }
+                      : {};
 
-                      return (
-                        <tr>
-                          <td>
+                  return (
+                    <tr key={token.name}>
+                      <td>
+                        <span>
+                          <span className="">{token.name}</span>
+                          <div className="copy-icon-container">
                             <span>
-                              <span className="">{token.name}</span>
-                              <div className="copy-icon-container">
-                                <span>
-                                  <button
-                                    className="copy-icon"
-                                    onClick={() =>
-                                      navigator.clipboard.writeText(token.name)
-                                    }
-                                  >
-                                    <svg
-                                      viewBox="0 0 14 14"
-                                      width="14px"
-                                      height="14px"
-                                      className="css-149xqrd"
-                                    >
-                                      <path
-                                        fill-rule="evenodd"
-                                        d="M11.75.07A.5.5 0 0 0 11.5 0h-6a.5.5 0 0 0-.5.5V3H.5a.5.5 0 0 0-.5.5v10c0 .28.22.5.5.5h8a.5.5 0 0 0 .5-.5V11h4.5a.5.5 0 0 0 .5-.5V2.51a.5.5 0 0 0-.15-.36l-2-2a.5.5 0 0 0-.1-.08ZM9 10h4V3h-1.5a.5.5 0 0 1-.5-.5V1H6v2h.5a.5.5 0 0 1 .36.15l1.99 2c.1.09.15.21.15.35v4.51ZM1 4v9h7V6H6.5a.5.5 0 0 1-.5-.5V4H1Z"
-                                      ></path>
-                                    </svg>
-                                  </button>
-                                </span>
-                              </div>
+                              <button
+                                className="copy-icon"
+                                onClick={() => {
+                                  void navigator.clipboard.writeText(
+                                    token.name
+                                  );
+                                }}
+                              >
+                                <svg
+                                  viewBox="0 0 14 14"
+                                  width="14px"
+                                  height="14px"
+                                  className="css-149xqrd"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M11.75.07A.5.5 0 0 0 11.5 0h-6a.5.5 0 0 0-.5.5V3H.5a.5.5 0 0 0-.5.5v10c0 .28.22.5.5.5h8a.5.5 0 0 0 .5-.5V11h4.5a.5.5 0 0 0 .5-.5V2.51a.5.5 0 0 0-.15-.36l-2-2a.5.5 0 0 0-.1-.08ZM9 10h4V3h-1.5a.5.5 0 0 1-.5-.5V1H6v2h.5a.5.5 0 0 1 .36.15l1.99 2c.1.09.15.21.15.35v4.51ZM1 4v9h7V6H6.5a.5.5 0 0 1-.5-.5V4H1Z"
+                                  ></path>
+                                </svg>
+                              </button>
                             </span>
-                          </td>
-                          <td>
-                            <div className="css-79elbk">
-                              <span title="32px" className="css-16nf6wl">
-                                {token.value}
-                              </span>
-                            </div>
-                          </td>
-                          <td>
-                            <div style={previewStyle}>
-                              {previewType === "text" ? "Lorem ipsum" : null}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  : null}
+                          </div>
+                        </span>
+                      </td>
+                      <td>
+                        <div className="css-79elbk">
+                          <span title="32px" className="css-16nf6wl">
+                            {token.value}
+                          </span>
+                        </div>
+                      </td>
+                      <td>
+                        <div style={previewStyle}>
+                          {previewType === "text" ? "Lorem ipsum" : null}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           ) : null}
