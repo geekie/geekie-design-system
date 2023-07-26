@@ -1,16 +1,16 @@
-import React from "react";
-import "./styles.css";
+import React from 'react';
+import './styles.css';
 
-type FontStyle = "normal" | "italic" | "oblique";
+type FontStyle = 'normal' | 'italic' | 'oblique';
 
 interface Token {
   name: string;
   value: FontStyle;
 }
 interface CustomDesignTokenDocBlockProps {
-  blockType: "table";
-  presenter: "font-style";
-  previewType: "text";
+  blockType: 'table';
+  presenter: 'font-style';
+  previewType: 'text';
   tokens: Token[];
 }
 
@@ -23,7 +23,7 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
     <div className="design-token-container">
       <div className="design-token-card">
         <div className="block-type-container">
-          {blockType === "table" ? (
+          {blockType === 'table' ? (
             <table className="block-type-table">
               <thead className="docblock-argstable-head">
                 <tr>
@@ -35,7 +35,7 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
               <tbody>
                 {tokens.map((token) => {
                   const previewStyle =
-                    presenter === "font-style"
+                    presenter === 'font-style'
                       ? { fontStyle: token.value }
                       : {};
 
@@ -79,7 +79,7 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
                       </td>
                       <td>
                         <div style={previewStyle}>
-                          {previewType === "text" ? "Lorem ipsum" : null}
+                          {previewType === 'text' ? 'Lorem ipsum' : null}
                         </div>
                       </td>
                     </tr>
