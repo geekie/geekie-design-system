@@ -5,7 +5,7 @@ lint:
 		yarn tsc
 
 .PHONY: lint-no-fix
-lint:
+lint-no-fix:
 		yarn prettier --check .
 		yarn eslint . --ext js,jsx,ts,tsx
 		yarn tsc
