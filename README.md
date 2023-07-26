@@ -22,7 +22,9 @@ Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `y
 
 Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 
-<br />
+## Lint
+
+É possível rodar o linter e formatter com `make lint`.
 
 # Tokens
 
@@ -178,6 +180,7 @@ import typograpyTokens from "../../tokens/src/typography.json";
     ]}
 />
 ```
+
 **Lembre-se, também, de importar o json dos tokens referenciados**
 
 Se precisar, extenda o suporte desse bloco para adicionar novos presenters e seus respectivos estilos. O componente está em: `/utils/CustomDesignTokenDocBlock`.
