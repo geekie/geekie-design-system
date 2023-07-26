@@ -21,6 +21,7 @@ Atualmente usamos:
 Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/build/tokens`_.
 
 Depois, para inicializar o storybook, rode o script: `yarn storybook`.
+
 ## Lint
 
 É possível rodar o linter e formatter com `make lint`.
@@ -183,4 +184,3 @@ import typograpyTokens from "../../tokens/src/typography.json";
 **Lembre-se, também, de importar o json dos tokens referenciados**
 
 Se precisar, extenda o suporte desse bloco para adicionar novos presenters e seus respectivos estilos. O componente está em: `/utils/CustomDesignTokenDocBlock`.
-

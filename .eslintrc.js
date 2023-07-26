@@ -3,18 +3,18 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["standard-with-typescript", "plugin:react/recommended", "prettier"],
-  ignorePatterns: [".eslintrc.js"],
+  extends: ['standard-with-typescript', 'plugin:react/recommended', 'prettier'],
+  ignorePatterns: ['.eslintrc.js'],
   parserOptions: {
-    ecmaVersion: "latest",
-    project: ["tsconfig.json"],
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    project: ['tsconfig.json'],
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {},
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
   },
 };
