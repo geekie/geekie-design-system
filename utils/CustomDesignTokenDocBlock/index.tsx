@@ -19,7 +19,8 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
 ) => {
   const { blockType, presenter, previewType, tokens } = props;
 
-  tokens.aaaa;
+  const x = tokens.aaaa;
+  console.log(x);
 
   return (
     <div className="design-token-container">
