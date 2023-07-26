@@ -24,7 +24,9 @@ Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 
 ## Lint
 
-É possível rodar o linter e formatter com `make lint`.
+## Processo de revisão
+
+O processo de revisão de código é feito por PRs do GitHub. É possível abrir um PR rodando por exemplo `gh pr create`. É uma boa prática rodar localmente o lint com o comando `make lint` antes de enviar o código para revisão, mas as verificações de lint acontecerão também no CI do GitHub de todo modo.
 
 # Tokens
 
