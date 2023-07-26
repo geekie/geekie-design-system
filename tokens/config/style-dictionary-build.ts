@@ -38,11 +38,11 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
 type TokenCategoryPrefix = keyof typeof DESIGN_TOKEN_CATEGORIES_BY_PREFIX;
 
 const extractTokenCategoryPrefix = (
-  variable: string
+  tokenName: string
 ): TokenCategoryPrefix | undefined => {
   return (
     Object.keys(DESIGN_TOKEN_CATEGORIES_BY_PREFIX) as TokenCategoryPrefix[]
-  ).find((prefix) => variable.startsWith(prefix));
+  ).find((prefix) => tokenName.startsWith(prefix));
 };
 
 const formatCategory = ({ dictionary }: { dictionary: Dictionary }): string[] =>
