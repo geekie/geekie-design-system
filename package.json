@@ -17,6 +17,7 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/react": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "chromatic": "^6.20.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^37.0.0",
@@ -42,7 +43,7 @@
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "yarn build-tokens && storybook build",
     "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts"
   }
 }
