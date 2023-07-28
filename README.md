@@ -31,6 +31,7 @@ O processo de revisão de código é feito por PRs do GitHub. É possível abrir
 O fluxo de deploy é feito no [Chromatic](https://www.chromatic.com). Para deployar, é preciso ter a variável de ambiente `CHROMATIC_PROJECT_TOKEN` definida. O valor do token pode ser encontrado na [página de configurações do projeto no Chromatic](https://www.chromatic.com/manage?appId=64c2ae277bc565bc4c2176de&view=configure) (faça login com a conta do GitHub).
 
 O deploy em si é feito com o comando:
+
 ```
 yarn chromatic
 ```
