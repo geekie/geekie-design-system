@@ -44,6 +44,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "yarn build-tokens && storybook build",
-    "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts"
+    "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts",
+    "chromatic": "npx chromatic"
   }
 }
