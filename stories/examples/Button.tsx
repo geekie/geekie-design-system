@@ -25,7 +25,7 @@ interface ButtonProps {
 }
 
 /**
- * Primary UI component for user interaction
+ * Componente de exemplo que veio com o Storybook. Não faz parte do design system da Geekie.
  */
 export const Button = ({
   primary = false,
@@ -44,7 +44,7 @@ export const Button = ({
       style={{ backgroundColor }}
       {...props}
     >
-      Teste: {label}
+      {label}
     </button>
   );
 };
