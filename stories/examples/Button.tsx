@@ -27,14 +27,16 @@ interface ButtonProps {
 /**
  * Componente de exemplo que veio com o Storybook. Não faz parte do design system da Geekie.
  */
-export const Button = ({
+export const Button: React.FC<ButtonProps> = ({
   primary = false,
   size = 'medium',
   backgroundColor,
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary
+    ? 'storybook-button--primary'
+    : 'storybook-button--secondary';
   return (
     <button
       type="button"
