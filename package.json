@@ -45,7 +45,7 @@
     "react-dom": "^18.1.0"
   },
   "scripts": {
-    "prepare": "ts-node ./tokens/config/style-dictionary-build.ts",
+    "prepare": "yarn build-tokens",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "yarn build-tokens && storybook build",
     "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts",
