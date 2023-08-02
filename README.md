@@ -196,3 +196,11 @@ import typograpyTokens from "../../tokens/src/typography.json";
 **Lembre-se, também, de importar o json dos tokens referenciados**
 
 Se precisar, extenda o suporte desse bloco para adicionar novos presenters e seus respectivos estilos. O componente está em: `/utils/CustomDesignTokenDocBlock`.
+
+## Uso como biblioteca externa
+
+Para consumir os tokens do design system em outro repositório, é preciso adicionar o DS como dependência no `package.json` e depois importar os tokens desejados como no seguinte exemplo:
+
+```javascript
+import { DSA_COLOR_BRAND_CEREJA } from 'geekie-design-system/tokens';
+```
