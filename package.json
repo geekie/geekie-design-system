@@ -2,7 +2,6 @@
   "name": "geekie-design-system",
   "version": "0.1.0",
   "description": "Geekie's design system",
-  "main": "index.js",
   "author": "Geekie",
   "devDependencies": {
     "@babel/preset-env": "^7.22.7",
@@ -35,13 +34,18 @@
     "typescript": "^5.1.6"
   },
   "engines": {
-    "node": "^18.17.0"
+    "node": ">=16.17.1"
   },
+  "files": [
+    "tokens.ts",
+    "build/**"
+  ],
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
   "scripts": {
+    "prepare": "yarn build-tokens",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "yarn build-tokens && storybook build",
     "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts",
