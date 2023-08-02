@@ -28,3 +28,4 @@ build/
 
 # Storybook
 storybook-static
+build-storybook.log

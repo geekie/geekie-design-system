@@ -22,11 +22,21 @@ Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `y
 
 Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 
-## Lint
-
 ## Processo de revisão
 
 O processo de revisão de código é feito por PRs do GitHub. É possível abrir um PR rodando por exemplo `gh pr create`. É uma boa prática rodar localmente o lint com o comando `make lint` antes de enviar o código para revisão, mas as verificações de lint acontecerão também no CI do GitHub de todo modo.
+
+## Deploy
+
+O fluxo de deploy é feito no [Chromatic](https://www.chromatic.com). Para deployar, é preciso ter a variável de ambiente `CHROMATIC_PROJECT_TOKEN` definida. O valor do token pode ser encontrado na [página de configurações do projeto no Chromatic](https://www.chromatic.com/manage?appId=64c2ae277bc565bc4c2176de&view=configure) (faça login com a conta do GitHub).
+
+O deploy em si é feito com o comando:
+
+```
+yarn chromatic
+```
+
+Após a execução, a build vai estar disponível numa URL específica fornecida no output do comando acima, e também em `https://<branch>--64c2ae277bc565bc4c2176de.chromatic.com`. Dessa forma, para fazer um deploy em produção é preciso estar na branch `master`, e a build resultante estará disponível em https://master--64c2ae277bc565bc4c2176de.chromatic.com.
 
 # Tokens
 
