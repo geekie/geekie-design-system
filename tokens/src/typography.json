@@ -6,8 +6,8 @@
       "reading": { "value": "DroidSerif" }
     },
     "weight": {
-      "regular": { "value": "Regular" },
-      "bold": { "value": "Bold" }
+      "normal": { "value": "normal" },
+      "bold": { "value": "bold" }
     },
     "style": {
       "italic": { "value": "Italic" }
