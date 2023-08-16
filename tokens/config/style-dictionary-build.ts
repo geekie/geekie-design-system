@@ -34,6 +34,10 @@ const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
     categoryName: 'Line heights',
     presenterName: 'LineHeight',
   },
+  DSA_LETTER_SPACING: {
+    categoryName: 'Letter spacings',
+    presenterName: 'LetterSpacing',
+  },
 };
 type TokenCategoryPrefix = keyof typeof DESIGN_TOKEN_CATEGORIES_BY_PREFIX;
 
@@ -56,7 +60,11 @@ const formatCategory = ({ dictionary }: { dictionary: Dictionary }): string[] =>
         .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
         .map((token) => {
           const tokenCategory = extractTokenCategoryPrefix(token.name);
-          const unit = tokenCategory === 'DSA_FONT_SIZE' ? 'px' : '';
+          const unit =
+            tokenCategory === 'DSA_FONT_SIZE' ||
+            tokenCategory === 'DSA_LETTER_SPACING'
+              ? 'px'
+              : '';
           return `$${token.name}: ${token.value as number}${unit};`;
         })
         .join('\n')
