@@ -28,5 +28,9 @@
     "restrained": { "value": "130%" },
     "moderate": { "value": "140%" },
     "adequate": { "value": "150%" }
+  },
+  "letter-spacing": {
+    "normal": { "value": 0.2 },
+    "wide": { "value": 0.4 }
   }
 }
