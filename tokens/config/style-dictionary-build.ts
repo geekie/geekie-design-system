@@ -62,6 +62,7 @@ const formatCategory = ({ dictionary }: { dictionary: Dictionary }): string[] =>
           const tokenCategory = extractTokenCategoryPrefix(token.name);
           const unit =
             tokenCategory === 'DSA_FONT_SIZE' ||
+            tokenCategory === 'DSA_LINE_HEIGHT' ||
             tokenCategory === 'DSA_LETTER_SPACING'
               ? 'px'
               : '';
