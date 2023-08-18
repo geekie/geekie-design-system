@@ -19,7 +19,7 @@ export const DSA_READING_BODY_L_NORMAL_STYLE = {
   fontWeight: DSA_FONT_WEIGHT_NORMAL,
   letterSpacing: DSA_LETTER_SPACING_NORMAL,
   lineHeight: DSA_LINE_HEIGHT_M,
-} as const;
+};
 
 export const DSA_READING_BODY_L_BOLD_STYLE = {
   fontFamily: DSA_FONT_FAMILY_READING,
