@@ -27,7 +27,7 @@ export const DSA_BASIC_HEADING_H1_STYLE = {
   fontWeight: DSA_FONT_WEIGHT_BOLD,
   letterSpacing: DSA_LETTER_SPACING_WIDE,
   lineHeight: DSA_LINE_HEIGHT_XL,
-};
+} as const;
 
 export const DSA_BASIC_HEADING_H2_STYLE = {
   fontFamily: DSA_FONT_FAMILY_BASIC,
