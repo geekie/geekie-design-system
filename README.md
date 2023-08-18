@@ -204,3 +204,11 @@ Para consumir os tokens do design system em outro repositório, é preciso adici
 ```javascript
 import { DSA_COLOR_BRAND_CEREJA } from 'geekie-design-system/tokens';
 ```
+
+Também existem pré-definições de tokens de tipografia, que são objetos com estilos a serem usados conjuntamente. Um exemplo de uso:
+
+```javascript
+import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system/token-presets';
+```
+
+(Os valores existentes, tanto de tokens isolados como de pré-definições, podem ser conferidos no [Storybook](https://master--64c2ae277bc565bc4c2176de.chromatic.com).)
