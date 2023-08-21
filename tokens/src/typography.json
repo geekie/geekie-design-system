@@ -24,10 +24,11 @@
     }
   },
   "line-height": {
-    "tight": { "value": "120%" },
-    "restrained": { "value": "130%" },
-    "moderate": { "value": "140%" },
-    "adequate": { "value": "150%" }
+    "xl": { "value": 38 },
+    "l": { "value": 32 },
+    "m": { "value": 26 },
+    "s": { "value": 20 },
+    "xs": { "value": 12 }
   },
   "letter-spacing": {
     "normal": { "value": 0.2 },
