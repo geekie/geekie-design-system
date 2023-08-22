@@ -38,6 +38,7 @@
   },
   "files": [
     "build/**",
+    "helpers/**",
     "token-presets/**",
     "tokens.ts"
   ],
