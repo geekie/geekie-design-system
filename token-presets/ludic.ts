@@ -18,7 +18,7 @@ import {
   DSA_LINE_HEIGHT_S,
   DSA_LINE_HEIGHT_XL,
   DSA_LINE_HEIGHT_XS,
-} from '../build/tokens/ts/tokens';
+} from '../built-tokens/js/tokens';
 
 /* Headings */
 export const DSA_LUDIC_HEADING_H1_STYLE = {

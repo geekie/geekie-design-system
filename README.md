@@ -18,7 +18,7 @@ Atualmente usamos:
 
 ## Como rodar
 
-Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/build/tokens`_.
+Primeiro, garanta que os tokens foram gerados corretamente, rodando o script: `yarn build-tokens` - _Você pode conferir os tokens gerados na pasta `/built-tokens`_.
 
 Depois, para inicializar o storybook, rode o script: `yarn storybook`.
 
@@ -87,7 +87,7 @@ A **resposta rápida** é: rode o script
 
 `yarn build-tokens`
 
-E os tokens serão construídos na pasta `/build/tokens`.
+E os tokens serão construídos na pasta `/built-tokens`.
 
 Usamos um script customizado, para garantir que exportamos um arquivo correto para documentar os tokens no storybook. Detalharemos esse assunto um pouco mais à frente.
 
@@ -107,7 +107,7 @@ As platforms são definidas no formato:
   "platforms": {
     "scss": {
       "transformGroup": "scss",
-      "buildPath": "build/tokens/scss/",
+      "buildPath": "built-tokens/scss/",
       "files": [
         {
           "destination": "_variables.scss",
@@ -125,7 +125,7 @@ Já no _script de build_ temos definidos um [custom-transform](https://amzn.gith
 Como já comentado anteriormente, criamos um processo um pouco mais automatizado para criar os tokens e documentá-los no storybook.
 
 Nesse processo, usamos um addon para o storybook - [storybook-design-token](https://github.com/UX-and-I/storybook-design-token) - que consegue documentar e gerar previews dos tokens.
-Esse addon precisa de um arquivo, em um formato específico, chamado de [presenters](https://github.com/UX-and-I/storybook-design-token/tree/v3#available-presenters) pelo addon, que é criado na construição dos tokens - através do style-dictionary - encontrado na pasta `/build/tokens/scss/_variables_with_headers.scss`. Esse formato é definido no _script de build_, em `DESIGN_TOKEN_CATEGORIES_BY_PREFIX`.
+Esse addon precisa de um arquivo, em um formato específico, chamado de [presenters](https://github.com/UX-and-I/storybook-design-token/tree/v3#available-presenters) pelo addon, que é criado na construição dos tokens - através do style-dictionary - encontrado na pasta `/built-tokens/scss/_variables_with_headers.scss`. Esse formato é definido no _script de build_, em `DESIGN_TOKEN_CATEGORIES_BY_PREFIX`.
 
 Então, para **documentar um token**, após terminar o processo descrito anteriormente, vale conferir se o _script de build_ já tem a categoria necessária - se não, criá-la de acordo com os [presenters](https://github.com/UX-and-I/storybook-design-token/tree/v3#available-presenters) suportados pelo addon.
 

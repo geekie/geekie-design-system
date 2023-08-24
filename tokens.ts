@@ -1,2 +1,2 @@
-export * from './build/tokens/ts/tokens';
+export * from './built-tokens/js/tokens';
 export * from './helpers/webOnlyHelpers';

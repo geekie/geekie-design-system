@@ -10,7 +10,7 @@ import {
   DSA_LETTER_SPACING_NORMAL,
   DSA_LINE_HEIGHT_M,
   DSA_LINE_HEIGHT_S,
-} from '../build/tokens/ts/tokens';
+} from '../built-tokens/js/tokens';
 
 /* Body (large) */
 export const DSA_READING_BODY_L_NORMAL_STYLE = {
