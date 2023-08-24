@@ -4,13 +4,15 @@
     "module": "commonjs",
     "lib": ["es6", "dom", "esnext", "dom.iterable"],
     "allowJs": true,
-    "noEmit": true,
+    // "noEmit": true,
     "jsx": "react-native",
 
     "strict": true,
 
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "dist"
   }
 }
