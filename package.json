@@ -37,10 +37,10 @@
     "node": ">=16.17.1"
   },
   "files": [
-    "built-tokens/**",
-    "helpers/**",
-    "token-presets/**",
-    "tokens.ts"
+    "build/built-tokens/**",
+    "build/helpers/**",
+    "build/token-presets/**",
+    "build/tokens.ts"
   ],
   "peerDependencies": {
     "react": "^18.1.0",
