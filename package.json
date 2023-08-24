@@ -40,8 +40,9 @@
     "build/built-tokens/**",
     "build/helpers/**",
     "build/token-presets/**",
-    "build/tokens.ts"
+    "build/tokens.*"
   ],
+  "main": "build/index.js",
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
