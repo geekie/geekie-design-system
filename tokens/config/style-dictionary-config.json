@@ -3,7 +3,7 @@
   "platforms": {
     "scss": {
       "transformGroup": "custom/scss",
-      "buildPath": "build/tokens/scss/",
+      "buildPath": "built-tokens/scss/",
       "prefix": "dsa",
       "files": [
         {
@@ -18,7 +18,7 @@
     },
     "ts": {
       "transformGroup": "custom/js",
-      "buildPath": "build/tokens/ts/",
+      "buildPath": "built-tokens/js/",
       "prefix": "dsa",
       "files": [
         {
