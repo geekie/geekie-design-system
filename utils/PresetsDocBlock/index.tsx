@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import * as tokens from '../../build/tokens/ts/tokens';
+import * as tokens from '../../built-tokens/js/tokens';
 import * as presets from '../../token-presets';
 
 import { toWebPreset } from '../../helpers/webOnlyHelpers';
