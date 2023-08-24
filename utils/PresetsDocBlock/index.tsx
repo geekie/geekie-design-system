@@ -5,9 +5,17 @@ import * as presets from '../../token-presets';
 
 import { toWebPreset } from '../../helpers/webOnlyHelpers';
 
+interface Preset {
+  fontFamily: string;
+  fontSize: number;
+  fontWeight: string;
+  letterSpacing: number;
+  lineHeight: number;
+}
+
 interface PresetsDocBlockProps {
   name: string;
-  preset: any;
+  preset: Preset;
 }
 
 const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
@@ -27,8 +35,7 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
       <div className="tokens">
         {Object.keys(preset).map((key) => {
           return (
-            // eslint-disable-next-line react/jsx-key
-            <div className="token">
+            <div className="token" key={key}>
               <div className="key">{key}:</div>
               <div className="value">
                 {Object.keys(tokens).map((tokenKey) => {
