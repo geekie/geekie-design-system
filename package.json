@@ -42,7 +42,10 @@
     "build/token-presets/**",
     "build/tokens.*"
   ],
-  "main": "build/index.js",
+  "exports": {
+    "./tokens": "./build/tokens",
+    "./token-presets": "./build/token-presets"
+  },
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
