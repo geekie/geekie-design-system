@@ -4,14 +4,13 @@ import * as tokens from '../../built-tokens/js/tokens';
 import * as presets from '../../token-presets';
 
 import { toWebPreset } from '../../helpers/webOnlyHelpers';
+import { type Preset } from '../../token-presets';
 
-interface Preset {
-  fontFamily: string;
-  fontSize: number;
-  fontWeight: string;
-  letterSpacing: number;
-  lineHeight: number;
-}
+const allPresets = { ...presets };
+const allTokens = { ...tokens };
+
+type PresetKeys = keyof typeof allPresets;
+type TokensKeys = keyof typeof allTokens;
 
 interface PresetsDocBlockProps {
   name: string;
@@ -26,8 +25,8 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
       <div className="name">
         {name}
         <div className="token-name">
-          {Object.keys(presets).map((key) => {
-            if (presets[key] === preset) return key;
+          {(Object.keys(allPresets) as PresetKeys[]).map((key) => {
+            if (allPresets[key] === preset) return key;
             return null;
           })}
         </div>
@@ -38,9 +37,9 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
             <div className="token" key={key}>
               <div className="key">{key}:</div>
               <div className="value">
-                {Object.keys(tokens).map((tokenKey) => {
+                {(Object.keys(tokens) as TokensKeys[]).map((tokenKey) => {
                   if (
-                    tokens[tokenKey] === preset[key] &&
+                    tokens[tokenKey] === preset[key as keyof typeof preset] &&
                     tokenKey
                       .toLowerCase()
                       .replace(/_/g, '')

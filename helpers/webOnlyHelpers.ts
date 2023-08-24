@@ -1,4 +1,6 @@
-const toPx = (value: number): string => {
+import { type Preset } from '../token-presets';
+
+const toPx = (value: number | string): string => {
   return `${value}px`;
 };
 
@@ -8,10 +10,10 @@ export const toWebToken = (token: number): string => {
 };
 
 // Essa função foi criada para resolver o uso dos presets em casos web-only
-export const toWebPreset = (preset: any): any => {
-  const webPreset = {};
+export const toWebPreset = (preset: Preset): Preset => {
+  const webPreset = { ...preset };
 
-  Object.keys(preset).map((style) => {
+  (Object.keys(preset) as Array<keyof Preset>).map((style) => {
     if (
       style === 'fontSize' ||
       style === 'lineHeight' ||
