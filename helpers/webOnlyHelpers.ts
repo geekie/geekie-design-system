@@ -14,14 +14,10 @@ export const toWebPreset = (preset: Preset): Preset => {
   const webPreset = { ...preset };
 
   (Object.keys(preset) as Array<keyof Preset>).map((style) => {
-    if (
-      style === 'fontSize' ||
-      style === 'lineHeight' ||
-      style === 'letterSpacing'
-    ) {
+    if (style === 'lineHeight') {
       return (webPreset[style] = toPx(preset[style]));
     } else {
-      return (webPreset[style] = preset[style]);
+      return (webPreset[style] = preset[style] as string);
     }
   });
 
