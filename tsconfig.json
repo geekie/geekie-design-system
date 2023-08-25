@@ -4,7 +4,6 @@
     "module": "commonjs",
     "lib": ["es6", "dom", "esnext", "dom.iterable"],
     "allowJs": true,
-    // "noEmit": true,
     "jsx": "react-native",
 
     "strict": true,
