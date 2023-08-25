@@ -11,15 +11,5 @@ export const toWebToken = (token: number): string => {
 
 // Essa função foi criada para resolver o uso dos presets em casos web-only
 export const toWebPreset = (preset: Preset): Preset => {
-  const webPreset = { ...preset };
-
-  (Object.keys(preset) as Array<keyof Preset>).map((style) => {
-    if (style === 'lineHeight') {
-      return (webPreset[style] = toPx(preset[style]));
-    } else {
-      return (webPreset[style] = preset[style] as string);
-    }
-  });
-
-  return webPreset;
+  return { ...preset, lineHeight: toPx(preset.lineHeight) };
 };

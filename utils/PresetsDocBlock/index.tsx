@@ -7,10 +7,8 @@ import { toWebPreset } from '../../helpers/webOnlyHelpers';
 import { type Preset } from '../../token-presets';
 
 const allPresets = { ...presets };
-const allTokens = { ...tokens };
 
-type PresetKeys = keyof typeof allPresets;
-type TokensKeys = keyof typeof allTokens;
+type PresetNames = keyof typeof allPresets;
 
 interface PresetsDocBlockProps {
   name: string;
@@ -25,21 +23,21 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
       <div className="name">
         {name}
         <div className="token-name">
-          {(Object.keys(allPresets) as PresetKeys[]).map((key) => {
+          {(Object.keys(allPresets) as PresetNames[]).map((key) => {
             if (allPresets[key] === preset) return key;
             return null;
           })}
         </div>
       </div>
       <div className="tokens">
-        {Object.keys(preset).map((key) => {
+        {(Object.keys(preset) as PresetNames[]).map((key) => {
           return (
             <div className="token" key={key}>
               <div className="key">{key}:</div>
               <div className="value">
-                {(Object.keys(tokens) as TokensKeys[]).map((tokenKey) => {
+                {(Object.keys(tokens)).map((tokenKey) => {
                   if (
-                    tokens[tokenKey] === preset[key as keyof typeof preset] &&
+                    tokens[tokenKey as keyof typeof tokens] === preset[key as keyof typeof preset] &&
                     tokenKey
                       .toLowerCase()
                       .replace(/_/g, '')
