@@ -1,4 +1,4 @@
-const toPx = (value: number | string): string => {
+const toPx = (value: number): string => {
   return `${value}px`;
 };
 

@@ -7,7 +7,7 @@ import { toWebPreset } from '../../helpers/webOnlyHelpers';
 
 const allPresets = { ...presets };
 
-type PresetNames = keyof typeof allPresets;
+type PresetName = keyof typeof allPresets;
 
 interface Preset {
   fontFamily: string;
@@ -30,7 +30,7 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
       <div className="name">
         {name}
         <div className="token-name">
-          {(Object.keys(allPresets) as PresetNames[]).map((presetName) => {
+          {(Object.keys(allPresets) as PresetName[]).map((presetName) => {
             if (allPresets[presetName] === preset) return presetName;
             return null;
           })}
