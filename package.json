@@ -39,13 +39,11 @@
   "files": [
     "build/built-tokens/**",
     "build/helpers/**",
+    "build/index.*",
     "build/token-presets/**",
     "build/tokens.*"
   ],
-  "exports": {
-    "./tokens": "./build/tokens",
-    "./token-presets": "./build/token-presets"
-  },
+  "main": "build/index.js",
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
