@@ -35,9 +35,10 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
             <div className="token" key={key}>
               <div className="key">{key}:</div>
               <div className="value">
-                {(Object.keys(tokens)).map((tokenKey) => {
+                {Object.keys(tokens).map((tokenKey) => {
                   if (
-                    tokens[tokenKey as keyof typeof tokens] === preset[key as keyof typeof preset] &&
+                    tokens[tokenKey as keyof typeof tokens] ===
+                      preset[key as keyof typeof preset] &&
                     tokenKey
                       .toLowerCase()
                       .replace(/_/g, '')
