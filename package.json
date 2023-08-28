@@ -37,17 +37,19 @@
     "node": ">=16.17.1"
   },
   "files": [
-    "built-tokens/**",
-    "helpers/**",
-    "token-presets/**",
-    "tokens.ts"
+    "build/built-tokens/**",
+    "build/helpers/**",
+    "build/index.*",
+    "build/token-presets/**",
+    "build/tokens.*"
   ],
+  "main": "build/index.js",
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
   "scripts": {
-    "prepare": "yarn build-tokens",
+    "prepare": "yarn build-tokens && yarn tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "yarn build-tokens && storybook build",
     "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts",
