@@ -52,7 +52,7 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
                           .replace(/_/g, '')
                           .includes(presetStyle.toLowerCase())
                       ) {
-                        return tokenName;
+                        return `$${tokenName}`;
                       }
                       return null;
                     }
