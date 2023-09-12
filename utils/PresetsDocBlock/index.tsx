@@ -47,14 +47,12 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
                     (tokenName) => {
                       if (
                         tokens[tokenName] === preset[presetStyle] &&
-                        Boolean(
-                          (tokenName as string)
-                            .toLowerCase()
-                            .replace(/_/g, '')
-                            .includes(presetStyle.toLowerCase())
-                        )
+                        tokenName
+                          .toLowerCase()
+                          .replace(/_/g, '')
+                          .includes(presetStyle.toLowerCase())
                       ) {
-                        return `$${String(tokenName)}`;
+                        return tokenName;
                       }
                       return null;
                     }
