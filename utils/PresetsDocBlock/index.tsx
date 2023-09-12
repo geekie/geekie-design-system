@@ -31,7 +31,7 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
         {name}
         <div className="token-name">
           {(Object.keys(allPresets) as PresetName[]).map((presetName) => {
-            if (allPresets[presetName] === preset) return presetName;
+            if (allPresets[presetName] === preset) return `$${presetName}`;
             return null;
           })}
         </div>
@@ -52,7 +52,7 @@ const PresetsDocBlock: React.FC<PresetsDocBlockProps> = (props) => {
                           .replace(/_/g, '')
                           .includes(presetStyle.toLowerCase())
                       ) {
-                        return tokenName;
+                        return `$${tokenName}`;
                       }
                       return null;
                     }
