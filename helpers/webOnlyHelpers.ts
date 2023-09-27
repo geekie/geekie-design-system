@@ -1,4 +1,4 @@
-import {  type WebPreset, type Preset } from '../token-presets';
+import { type WebPreset, type Preset } from '../token-presets';
 
 const toPx = (value: number): string => {
   return `${value}px`;
