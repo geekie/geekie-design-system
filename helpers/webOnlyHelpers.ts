@@ -10,6 +10,6 @@ export const toWebToken = (token: number): string => {
 // Essa função foi criada para resolver o uso dos presets em casos web-only
 export const toWebPreset = <Preset extends { lineHeight: number }>(
   preset: Preset
-): Preset & { lineHeight: string } => {
+): Omit<Preset, 'lineHeight'> & { lineHeight: string } => {
   return { ...preset, lineHeight: toPx(preset.lineHeight) };
 };
