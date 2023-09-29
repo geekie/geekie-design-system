@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta } from '@storybook/addon-docs/blocks';
 import SpecFigmaCompleta from '../../../public/images/spec-figma-completa.png';
 import SpecFigmaAbaDev from '../../../public/images/spec-figma-aba-dev.png';
 import SpecFigmaCor from '../../../public/images/spec-figma-cor.png';
@@ -19,39 +19,46 @@ import SpecFigmaNovaCapa from '../../../public/images/spec-figma-nova-capa.png';
 
 > Os **presets** agrupam um conjunto de tokens de tipografia, que definem um estilo específico de texto.
 
-
 ## Entendendo a spec do figma
+
 Nossas interfaces serão desenvolvidas com tokens e presets padronizados entre design e engenharia.
 Ou seja, para começar a aplicação dos tokens, basta inspecionar o que foi usado no figma.
 
 Inicialmente, usando o figma em modo desenvolvedor, vemos a seguinte tela:
+
 <img src={SpecFigmaCompleta} />
 
 O **modo desenvolvedor** pode ser habilitado nesse toggle de cima, ao lado do botão "Share". Focaremos aqui na **aba "Inspect"**:
 
-<div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-    <img src={SpecFigmaAbaDev} />
-    <div style={{marginLeft: 60, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-        <div>
-            Aqui encontramos a **definição dos presets**, que está padronizada de acordo com nossos tokens.
-            
-            O preset de tipografia é **`$DSA_BASIC_HEADING_H2_STYLE`**:
-            <img src={SpecFigmaPreset} />
-            Que é encontrado assim, aqui na documentação:
-            <img src={PresetH2} />
-        </div>
-        <br />
-        <br />
-        <div>
-            Aqui encontramos a **definição de cores**, que está padronizada de acordo com nossos tokens.
-            
-            O token de cor é **`$DSA_COLOR_NEUTRAL_XXDARK`**:
-            <img src={SpecFigmaCor} />
-            Que é encontrado assim, aqui na documentação:
-            <img src={TokenCorNeutralXXDark} />
-        </div>
-        
+<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+  <img src={SpecFigmaAbaDev} />
+  <div
+    style={{
+      marginLeft: 60,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
+    <div>
+      Aqui encontramos a **definição dos presets**, que está padronizada de
+      acordo com nossos tokens. O preset de tipografia é
+      **`$DSA_BASIC_HEADING_H2_STYLE`**:
+      <img src={SpecFigmaPreset} />
+      Que é encontrado assim, aqui na documentação:
+      <img src={PresetH2} />
     </div>
+    <br />
+    <br />
+    <div>
+      Aqui encontramos a **definição de cores**, que está padronizada de acordo
+      com nossos tokens. O token de cor é **`$DSA_COLOR_NEUTRAL_XXDARK`**:
+      <img src={SpecFigmaCor} />
+      Que é encontrado assim, aqui na documentação:
+      <img src={TokenCorNeutralXXDark} />
+    </div>
+  </div>
 </div>
 
 ## Como consumir a biblioteca no código
@@ -69,6 +76,7 @@ import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
 ```
 
 &nbsp;
+
 # Casos de uso
 
 ## Substituição dos tokens de cores
@@ -80,12 +88,12 @@ Ao encontrar um token de cor que **mantém a nomenclatura**, deve-se **substitui
 
 > O token **`Colors.NEUTRAL_XDARK`** deverá ser substituído por **`$DSA_COLOR_NEUTRAL_XDARK`**.
 
-
 Existem outros tokens que **serão substuídos ou depreciados**, e que foram separados nessa tabela:
+
 #### Antes disso, recomendamos **consultar a pessoa designer** do time, para confirmar as substituições
 
 | Nome Atual              | Hex     | Renomear para                                                 |
-|-------------------------|---------|---------------------------------------------------------------|
+| ----------------------- | ------- | ------------------------------------------------------------- |
 | LIST_BLUE_LIGHT         | #618DF2 | Substituir por BUTTON_BLUE_LIGHTEST                           |
 | KAHOOT_BACKGROUND       | #48118C | Fica fora do DS                                               |
 | BLUE                    | #2196F3 | Fica fora do DS                                               |
@@ -110,21 +118,23 @@ Existem outros tokens que **serão substuídos ou depreciados**, e que foram sep
 | GREEN                   | #00A863 |                                                               |
 | NEW_GREEN               | #058847 |                                                               |
 
-
 Sendo assim, temos os exemplos:
-> O token **`Colors.BLUE_TWO`**  deve ser substituído por **`$DSA_COLOR_BUTTON_BLUE_MEDIUM`**.
 
-> O token **`Colors.KAHOOT_BACKGROUND`**  não deve ser substituído.
+> O token **`Colors.BLUE_TWO`** deve ser substituído por **`$DSA_COLOR_BUTTON_BLUE_MEDIUM`**.
 
-> Será necessário decidir, com a pessoa designer do time, se o token **`Colors.PALE_NEW_GREEN`**  deverá ser substituído - e qual é a substituição correta.
+> O token **`Colors.KAHOOT_BACKGROUND`** não deve ser substituído.
+
+> Será necessário decidir, com a pessoa designer do time, se o token **`Colors.PALE_NEW_GREEN`** deverá ser substituído - e qual é a substituição correta.
 
 &nbsp;
 
 ## Substituição dos estilos de tipografia por Presets
+
 **Trataremos aqui sobre casos symlinkados ou mobile-only**
 
 Os presets ainda não são aplicados no Geekie One, o que torna o proceso de substituição dos estilos um pouco diferente dos tokens de cores.<br />
 Eles são escritos como um objeto de estilos css, seguindo o formato:
+
 ```javascript
 DSA_BASIC_HEADING_H1_STYLE = {
   fontFamily: DSA_FONT_FAMILY_BASIC,
@@ -132,30 +142,35 @@ DSA_BASIC_HEADING_H1_STYLE = {
   fontWeight: DSA_FONT_WEIGHT_BOLD,
   letterSpacing: DSA_LETTER_SPACING_WIDE,
   lineHeight: DSA_LINE_HEIGHT_XL,
-}
+};
 ```
 
 Para explicar as substituições possíveis, usaremos o exemplo da nova capa de atividades
+
 <img src={SpecFigmaNovaCapa} />
 
 O texto **"Pesquisa"**, está definido como o preset **`$DSA_LUDIC_HEADING_H1_STYLE`**.<br />
 E, no código, de forma simplificada, escrito como:
+
 ```jsx
  customHeaderText: {
     fontWeight: 'bold',
     fontSize: 32,
  }
 ```
+
 Isso faz com que a substituição seja simples:
+
 ```jsx
  import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
 [...]
- 
+
 customHeaderText: DSA_LUDIC_HEADING_H1_STYLE
 ```
 
 Outro exemplo, nessa mesma tela, é o **título da atividade** - aqui escrito como **"[Título que a professora deu]"**.<br />
 Esse texto está estilizado pelo preset **`$DSA_BASIC_HEADING_H2_STYLE`**.
+
 <br />E, no código, estilizado da seguinte forma:
 ```jsx
 title: {
@@ -177,8 +192,6 @@ title: {
 },
 ```
 
-
-
 ## Uso de tokens e presets em telas web-only
 
 Na web, em casos web-only, o valor do line-height pode ser tanto um valor absoluto, quanto um valor em pixels - `lineHeight: 26` e `lineHeight: 26px`, por exemplo - que resultam em formatações diferentes. O valor absoluto, de acordo com o mdn, na web, é multiplicado pelo tamanho da fonte.
@@ -192,18 +205,20 @@ Seguindo a mesma lógica, também é necessário usar um helper para aplciar os 
 ```jsx
  import { toWebPreset, DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
 [...]
- 
+
 customHeaderText: toWebPreset(DSA_LUDIC_HEADING_H1_STYLE)
 ```
+
 Ou:
+
 ```jsx
- import { 
+ import {
     toWebPreset,
     DSA_BASIC_HEADING_H2_STYLE,
     DSA_COLOR_NEUTRAL_XXDARK
  } from 'geekie-design-system';
 [...]
- 
+
 title: {
     ...toWebPreset(DSA_BASIC_HEADING_H2_STYLE),
     marginBottom: 8,
@@ -214,5 +229,6 @@ title: {
 ## Exemplos no codebase
 
 Para testar os casos de uso aqui descritos, criamos dois diffs - que aplicam os conceitos que descrevemos:
-  - [[DS] Adiciona tokens e presets na nova capa de atividades](https://phabricator.geekie.com.br/D26469)
-  - [[DS] Adiciona tokens e presets na tela inicial de coordenação](https://phabricator.geekie.com.br/D26515)
+
+- [[DS] Adiciona tokens e presets na nova capa de atividades](https://phabricator.geekie.com.br/D26469)
+- [[DS] Adiciona tokens e presets na tela inicial de coordenação](https://phabricator.geekie.com.br/D26515)
