@@ -54,5 +54,8 @@
     "build-storybook": "yarn build-tokens && storybook build",
     "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts",
     "chromatic": "npx chromatic"
+  },
+  "dependencies": {
+    "@storybook/addon-mdx-gfm": "^7.4.5"
   }
 }
