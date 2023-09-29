@@ -82,7 +82,7 @@ import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
 ## Substituição dos tokens de cores
 
 Atualmente, já usamos no Geekie One o conceito de tokens de cores.
-São as encontradas no arquivo `Colors.ts`. Essas duas definições coexistirão, por hora. Mas, focaremos aqui nas substituições das cores dos arquivo, pelas cores do DS.
+São as encontradas no arquivo `Colors.ts`. Essas duas definições coexistirão, por ora. Mas, focaremos aqui nas substituições das cores dos arquivo, pelas cores do DS.
 
 Ao encontrar um token de cor que **mantém a nomenclatura**, deve-se **substituir pelo token do design system**. Exemplo:
 
@@ -198,9 +198,11 @@ Na web, em casos web-only, o valor do line-height pode ser tanto um valor absolu
 Vale ressaltar que os valores dos nossos tokens são em pixel, e, por isso, precisamos da adaptação da adição do px em casos web-only.
 
 Para esses casos, criamos a função _`toWebToken`_ - que pode ser usada no formato `line-height: toWebToken(DSA_LINE_HEIGHT_M)`.<br />
-Essa adaptação só se torna necessária, em uma tela web que usa um polyfill do RN, quando os estilos são escritos com a lib `@geekie/css`.
 
-Seguindo a mesma lógica, também é necessário usar um helper para aplciar os presets nos casos webOnly. Usando os mesmos exemplos do tópico anterior, a aplciação dos presets com o helper fica das seguintes formas:
+**Quando os estilos são escritos com o *StyleSheet* da lib `@geekie/css`, é necessário aplicar os helpers**.
+Caso forem escritos com o *StyleSheet* do `react-native` - ou com `F8StyleSheet` - **os helpers não devem ser aplicados**, mesmo que o arquivo seja somente para a web.
+
+Seguindo a mesma lógica, também é necessário usar um helper para aplicar os presets nos casos webOnly. Usando os mesmos exemplos do tópico anterior, a aplciação dos presets com o helper fica das seguintes formas:
 
 ```jsx
  import { toWebPreset, DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
