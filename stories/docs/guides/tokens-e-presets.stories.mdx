@@ -1,0 +1,238 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import SpecFigmaCompleta from '../../../public/images/spec-figma-completa.png';
+import SpecFigmaAbaDev from '../../../public/images/spec-figma-aba-dev.png';
+import SpecFigmaCor from '../../../public/images/spec-figma-cor.png';
+import SpecFigmaPreset from '../../../public/images/spec-figma-preset.png';
+import PresetH2 from '../../../public/images/preset-h2.png';
+import TokenCorNeutralXXDark from '../../../public/images/token-cor-neutral-xxdark.png';
+import SpecFigmaNovaCapa from '../../../public/images/spec-figma-nova-capa.png';
+
+<Meta title="Documentação/Guias/Tokens e Presets" />
+
+# Tokens e Presets | Guia de uso para engenharia
+
+#### Atualmente, nossos tokens englobam [Cores](/docs/design-tokens-cores--docs) e [Tipografia](/docs/design-tokens-tipografia-tokens--docs).
+
+**Para saber detalhes da implementação, consulte o [README](https://github.com/geekie/geekie-design-system/blob/master/README.md) do repositório.**
+
+## Definições
+
+> Os **tokens** são abstrações legíveis e multi-plataforma de estilos visuais, sincronizados com todas as definições de estilo num sistema.
+
+> Os **presets** agrupam um conjunto de tokens de tipografia, que definem um estilo específico de texto.
+
+## Entendendo a spec do figma
+
+Nossas interfaces serão desenvolvidas com tokens e presets padronizados entre design e engenharia.
+Ou seja, para começar a aplicação dos tokens, basta inspecionar o que foi usado no figma.
+
+Inicialmente, usando o figma em modo desenvolvedor, vemos a seguinte tela:
+
+<img src={SpecFigmaCompleta} />
+
+O **modo desenvolvedor** pode ser habilitado nesse toggle de cima, ao lado do botão "Share". Focaremos aqui na **aba "Inspect"**:
+
+<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+  <img src={SpecFigmaAbaDev} />
+  <div
+    style={{
+      marginLeft: 60,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
+    <div>
+      Aqui encontramos a **definição dos presets**, que está padronizada de
+      acordo com nossos tokens. O preset de tipografia é
+      **`$DSA_BASIC_HEADING_H2_STYLE`**:
+      <img src={SpecFigmaPreset} />
+      Que é encontrado assim, aqui na documentação:
+      <img src={PresetH2} />
+    </div>
+    <br />
+    <br />
+    <div>
+      Aqui encontramos a **definição de cores**, que está padronizada de acordo
+      com nossos tokens. O token de cor é **`$DSA_COLOR_NEUTRAL_XXDARK`**:
+      <img src={SpecFigmaCor} />
+      Que é encontrado assim, aqui na documentação:
+      <img src={TokenCorNeutralXXDark} />
+    </div>
+  </div>
+</div>
+
+## Como consumir a biblioteca no código
+
+Para consumir os tokens do design system em outro repositório, é preciso adicionar o DS como dependência no `package.json` e depois importar os tokens desejados como no seguinte exemplo:
+
+```javascript
+import { DSA_COLOR_BRAND_CEREJA } from 'geekie-design-system';
+```
+
+Também existem pré-definições de tokens de tipografia, que são objetos com estilos a serem usados conjuntamente. Um exemplo de uso:
+
+```javascript
+import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
+```
+
+&nbsp;
+
+# Casos de uso
+
+## Substituição dos tokens de cores
+
+Atualmente, já usamos no Geekie One o conceito de tokens de cores.
+São as encontradas no arquivo `Colors.ts`. Essas duas definições coexistirão, por ora. Mas, focaremos aqui nas substituições das cores dos arquivo, pelas cores do DS.
+
+Ao encontrar um token de cor que **mantém a nomenclatura**, deve-se **substituir pelo token do design system**. Exemplo:
+
+> O token **`Colors.NEUTRAL_XDARK`** deverá ser substituído por **`$DSA_COLOR_NEUTRAL_XDARK`**.
+
+Existem outros tokens que **serão substuídos ou depreciados**, e que foram separados nessa tabela:
+
+#### Antes disso, recomendamos **consultar a pessoa designer** do time, para confirmar as substituições
+
+| Nome Atual              | Hex     | Renomear para                                                 |
+| ----------------------- | ------- | ------------------------------------------------------------- |
+| LIST_BLUE_LIGHT         | #618DF2 | Substituir por BUTTON_BLUE_LIGHTEST                           |
+| KAHOOT_BACKGROUND       | #48118C | Fica fora do DS                                               |
+| BLUE                    | #2196F3 | Fica fora do DS                                               |
+| BLUE_TWO                | #0F6DFF | Substituir por BUTTON_BLUE_MEDIUM                             |
+| BLUE_ONE                | #2A47BE | Renomear para Educação Digital                                |
+| DARK_BLUE               | #0A38A1 | Substituir por BUTTON_BLUE_DARKEST                            |
+| LIGHT_BLUE              | #E7F0FF | Renomear para FEEDBACK_INFORMATION_LIGHTEST                   |
+| LIGHTEST_BLUE           | #E7F4FF | Substituir por NEUTRAL_LIGHTEST                               |
+| LIGHT_YELLOW            | #FEF5D5 | Renomear para FEEDBACK_ATTENTION_LIGHTEST                     |
+| PALE_BLUE_TWO           | #E9F5FE | FEEDBACK_INFORMATION_LIGHT                                    |
+| PRACTICE_BLUE           | #96C5FF | FEEDBACK_INFORMATION_LIGHT                                    |
+| BLUE_GREEN              | #00829C |                                                               |
+| PALE_PINK               | #FF1767 | Manter                                                        |
+| BACKGROUND_NAVY_BLUE    | #3D4753 | Substituir por NEUTRAL_XXDARK                                 |
+| BACKGROUND_DARK_PURPLE  | #353252 | Substituir por NEUTRAL_XXDARK                                 |
+| BACKGROUND_LIGHT_PURPLE | #A196EF | Manter e renomear para INTERCOM_BACKGROUND // Fica fora do DS |
+| PALE_RED                | #F9D2D7 |                                                               |
+| PALE_GREEN              | #E1F1E9 |                                                               |
+| PALE_NEW_GREEN          | #DAFAEA |                                                               |
+| PALE_YELLOW             | #F8E6C9 |                                                               |
+| DRAFT_BROWN             | #BB8C24 | Substituir para alguma neutral color                          |
+| GREEN                   | #00A863 |                                                               |
+| NEW_GREEN               | #058847 |                                                               |
+
+Sendo assim, temos os exemplos:
+
+> O token **`Colors.BLUE_TWO`** deve ser substituído por **`$DSA_COLOR_BUTTON_BLUE_MEDIUM`**.
+
+> O token **`Colors.KAHOOT_BACKGROUND`** não deve ser substituído.
+
+> Será necessário decidir, com a pessoa designer do time, se o token **`Colors.PALE_NEW_GREEN`** deverá ser substituído - e qual é a substituição correta.
+
+&nbsp;
+
+## Substituição dos estilos de tipografia por Presets
+
+**Trataremos aqui sobre casos symlinkados ou mobile-only**
+
+Os presets ainda não são aplicados no Geekie One, o que torna o proceso de substituição dos estilos um pouco diferente dos tokens de cores.<br />
+Eles são escritos como um objeto de estilos css, seguindo o formato:
+
+```javascript
+DSA_BASIC_HEADING_H1_STYLE = {
+  fontFamily: DSA_FONT_FAMILY_BASIC,
+  fontSize: DSA_FONT_SIZE_XXXL,
+  fontWeight: DSA_FONT_WEIGHT_BOLD,
+  letterSpacing: DSA_LETTER_SPACING_WIDE,
+  lineHeight: DSA_LINE_HEIGHT_XL,
+};
+```
+
+Para explicar as substituições possíveis, usaremos o exemplo da nova capa de atividades
+
+<img src={SpecFigmaNovaCapa} />
+
+O texto **"Pesquisa"**, está definido como o preset **`$DSA_LUDIC_HEADING_H1_STYLE`**.<br />
+E, no código, de forma simplificada, escrito como:
+
+```jsx
+ customHeaderText: {
+    fontWeight: 'bold',
+    fontSize: 32,
+ }
+```
+
+Isso faz com que a substituição seja simples:
+
+```jsx
+ import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
+[...]
+
+customHeaderText: DSA_LUDIC_HEADING_H1_STYLE
+```
+
+Outro exemplo, nessa mesma tela, é o **título da atividade** - aqui escrito como **"[Título que a professora deu]"**.<br />
+Esse texto está estilizado pelo preset **`$DSA_BASIC_HEADING_H2_STYLE`**.
+
+<br />E, no código, estilizado da seguinte forma:
+```jsx
+title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    color: Colors.NEUTRAL_XXDARK,
+}
+```
+Isso faz com que a substituição - aplicando também a troca do token de cor - fique:
+```jsx
+ import { DSA_BASIC_HEADING_H2_STYLE, DSA_COLOR_NEUTRAL_XXDARK } from 'geekie-design-system';
+[...]
+ 
+title: {
+    ...DSA_BASIC_HEADING_H2_STYLE,
+    marginBottom: 8,
+    color: DSA_COLOR_NEUTRAL_XXDARK,
+},
+```
+
+## Uso de tokens e presets em telas web-only
+
+Na web, em casos web-only, o valor do line-height pode ser tanto um valor absoluto, quanto um valor em pixels - `lineHeight: 26` e `lineHeight: 26px`, por exemplo - que resultam em formatações diferentes. O valor absoluto, de acordo com o mdn, na web, é multiplicado pelo tamanho da fonte.
+Vale ressaltar que os valores dos nossos tokens são em pixel, e, por isso, precisamos da adaptação da adição do px em casos web-only.
+
+Para esses casos, criamos a função _`toWebToken`_ - que pode ser usada no formato `line-height: toWebToken(DSA_LINE_HEIGHT_M)`.<br />
+
+**Quando os estilos são escritos com o _StyleSheet_ da lib `@geekie/css`, é necessário aplicar os helpers**.
+Caso forem escritos com o _StyleSheet_ do `react-native` - ou com `F8StyleSheet` - **os helpers não devem ser aplicados**, mesmo que o arquivo seja somente para a web.
+
+Seguindo a mesma lógica, também é necessário usar um helper para aplicar os presets nos casos webOnly. Usando os mesmos exemplos do tópico anterior, a aplciação dos presets com o helper fica das seguintes formas:
+
+```jsx
+ import { toWebPreset, DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
+[...]
+
+customHeaderText: toWebPreset(DSA_LUDIC_HEADING_H1_STYLE)
+```
+
+Ou:
+
+```jsx
+ import {
+    toWebPreset,
+    DSA_BASIC_HEADING_H2_STYLE,
+    DSA_COLOR_NEUTRAL_XXDARK
+ } from 'geekie-design-system';
+[...]
+
+title: {
+    ...toWebPreset(DSA_BASIC_HEADING_H2_STYLE),
+    marginBottom: 8,
+    color: DSA_COLOR_NEUTRAL_XXDARK,
+},
+```
+
+## Exemplos no codebase
+
+Para testar os casos de uso aqui descritos, criamos dois diffs - que aplicam os conceitos que descrevemos:
+
+- [[DS] Adiciona tokens e presets na nova capa de atividades](https://phabricator.geekie.com.br/D26469)
+- [[DS] Adiciona tokens e presets na tela inicial de coordenação](https://phabricator.geekie.com.br/D26515)
