@@ -68,13 +68,13 @@ O **modo desenvolvedor** pode ser habilitado nesse toggle de cima, ao lado do bo
 Para consumir os tokens do design system em outro repositório, é preciso adicionar o DS como dependência no `package.json` e depois importar os tokens desejados como no seguinte exemplo:
 
 ```javascript
-import { DSA_COLOR_BRAND_CEREJA } from 'geekie-design-system';
+import { DSA_COLOR_BRAND_CEREJA } from '@geekie/design-system';
 ```
 
 Também existem pré-definições de tokens de tipografia, que são objetos com estilos a serem usados conjuntamente. Um exemplo de uso:
 
 ```javascript
-import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
+import { DSA_BASIC_HEADING_H1_STYLE } from '@geekie/design-system';
 ```
 
 &nbsp;
@@ -164,7 +164,7 @@ E, no código, de forma simplificada, escrito como:
 Isso faz com que a substituição seja simples:
 
 ```jsx
- import { DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
+ import { DSA_BASIC_HEADING_H1_STYLE } from '@geekie/design-system';
 [...]
 
 customHeaderText: DSA_LUDIC_HEADING_H1_STYLE
@@ -184,7 +184,7 @@ title: {
 ```
 Isso faz com que a substituição - aplicando também a troca do token de cor - fique:
 ```jsx
- import { DSA_BASIC_HEADING_H2_STYLE, DSA_COLOR_NEUTRAL_XXDARK } from 'geekie-design-system';
+ import { DSA_BASIC_HEADING_H2_STYLE, DSA_COLOR_NEUTRAL_XXDARK } from '@geekie/design-system';
 [...]
  
 title: {
@@ -207,7 +207,7 @@ Caso forem escritos com o _StyleSheet_ do `react-native` - ou com `F8StyleSheet`
 Seguindo a mesma lógica, também é necessário usar um helper para aplicar os presets nos casos webOnly. Usando os mesmos exemplos do tópico anterior, a aplciação dos presets com o helper fica das seguintes formas:
 
 ```jsx
- import { toWebPreset, DSA_BASIC_HEADING_H1_STYLE } from 'geekie-design-system';
+ import { toWebPreset, DSA_BASIC_HEADING_H1_STYLE } from '@geekie/design-system';
 [...]
 
 customHeaderText: toWebPreset(DSA_LUDIC_HEADING_H1_STYLE)
@@ -220,7 +220,7 @@ Ou:
     toWebPreset,
     DSA_BASIC_HEADING_H2_STYLE,
     DSA_COLOR_NEUTRAL_XXDARK
- } from 'geekie-design-system';
+ } from '@geekie/design-system';
 [...]
 
 title: {
