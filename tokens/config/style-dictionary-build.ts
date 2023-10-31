@@ -49,26 +49,41 @@ const extractTokenCategoryPrefix = (
   ).find((prefix) => tokenName.startsWith(prefix));
 };
 
-const formatCategory = ({ dictionary }: { dictionary: Dictionary }): string[] =>
-  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(
-    ([prefix, names]) =>
-      `\n/**
+const formatSizeUnit = ({
+  dictionary,
+  addCategoryAnnotation,
+  platform,
+}: {
+  dictionary: Dictionary;
+  addCategoryAnnotation: boolean;
+  platform: string;
+}): string[] =>
+  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(([prefix, names]) =>
+    addCategoryAnnotation
+      ? `\n/**
 * @tokens ${names.categoryName}
 * @presenter ${names.presenterName}
-*/\n` +
-      dictionary.allTokens
-        .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
-        .map((token) => {
-          const tokenCategory = extractTokenCategoryPrefix(token.name);
-          const unit =
-            tokenCategory === 'DSA_FONT_SIZE' ||
-            tokenCategory === 'DSA_LINE_HEIGHT' ||
-            tokenCategory === 'DSA_LETTER_SPACING'
-              ? 'px'
-              : '';
-          return `$${token.name}: ${token.value as number}${unit};`;
-        })
-        .join('\n')
+*/\n`
+      : '' +
+        dictionary.allTokens
+          .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
+          .map((token) => {
+            const tokenCategory = extractTokenCategoryPrefix(token.name);
+            const unit =
+              tokenCategory === 'DSA_FONT_SIZE' ||
+              tokenCategory === 'DSA_LINE_HEIGHT' ||
+              tokenCategory === 'DSA_LETTER_SPACING'
+                ? 'px'
+                : '';
+
+            const asString = tokenCategory === 'DSA_FONT_FAMILY';
+            return `${
+              platform === 'scss' ? '$' : platform === 'less' ? '@' : ''
+            }${token.name}: ${asString ? '"' : ''}${token.value as number}${
+              asString ? '"' : unit
+            };`;
+          })
+          .join('\n')
   );
 
 StyleDictionary.registerFormat({
@@ -77,8 +92,27 @@ StyleDictionary.registerFormat({
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
       ':root {' +
-      formatCategory({ dictionary }).join('\n') +
+      formatSizeUnit({
+        dictionary,
+        addCategoryAnnotation: true,
+        platform: 'scss',
+      }).join('\n') +
       '\n}\n'
+    );
+  },
+});
+
+StyleDictionary.registerFormat({
+  name: `less/variables-with-size-unit`,
+  formatter: function ({ dictionary, file }) {
+    return (
+      StyleDictionary.formatHelpers.fileHeader({ file }) +
+      formatSizeUnit({
+        dictionary,
+        addCategoryAnnotation: false,
+        platform: 'less',
+      }).join('\n') +
+      '\n'
     );
   },
 });
@@ -93,6 +127,11 @@ StyleDictionary.registerTransformGroup({
 StyleDictionary.registerTransformGroup({
   name: 'custom/scss',
   transforms: StyleDictionary.transformGroup.scss.concat(['name/cti/constant']),
+});
+
+StyleDictionary.registerTransformGroup({
+  name: 'custom/less',
+  transforms: StyleDictionary.transformGroup.less.concat(['name/cti/constant']),
 });
 
 // APPLY THE CONFIGURATION

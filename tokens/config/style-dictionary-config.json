@@ -16,6 +16,17 @@
         }
       ]
     },
+    "less": {
+      "transformGroup": "custom/less",
+      "buildPath": "built-tokens/less/",
+      "prefix": "dsa",
+      "files": [
+        {
+          "destination": "_variables.less",
+          "format": "less/variables-with-size-unit"
+        }
+      ]
+    },
     "ts": {
       "transformGroup": "custom/js",
       "buildPath": "built-tokens/js/",
