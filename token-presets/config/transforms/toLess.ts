@@ -2,7 +2,7 @@ import * as presetsSource from '../..';
 import { writeFile } from '../../../utils/writeFile';
 
 export function toLessPresets(): string {
-  console.log("\nConvertendo Presets para classes LESS\n")
+  console.log('\nConvertendo Presets para classes LESS\n');
 
   let content = '';
   const presets = Object.keys(presetsSource);
@@ -40,7 +40,7 @@ export function toLessPresets(): string {
     data: content,
   });
 
-  console.log("Os arquivos compilados estão em /build/less\n")
+  console.log('Os arquivos compilados estão em /build/less\n');
 
   return content;
 }

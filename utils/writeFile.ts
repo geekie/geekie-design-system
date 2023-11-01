@@ -24,7 +24,8 @@ export function writeFile({
   }
   try {
     const contents = readFileSync(join(__dirname, fileNameWithPath), 'utf-8');
-    if (contents.length > 0) console.log(`Arquivo salvo: ${fileNameWithPath}\n`);
+    if (contents.length > 0)
+      console.log(`Arquivo salvo: ${fileNameWithPath}\n`);
   } catch (err) {
     console.log(err);
   }
