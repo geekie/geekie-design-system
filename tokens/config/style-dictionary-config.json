@@ -22,7 +22,7 @@
       "prefix": "dsa",
       "files": [
         {
-          "destination": "_variables.less",
+          "destination": "_tokens.less",
           "format": "less/variables-with-size-unit"
         }
       ]

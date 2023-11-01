@@ -4,6 +4,7 @@ node_modules/
 #Build folder
 build/
 built-tokens/
+built-presets/
 
 # TypeScript cache
 *.tsbuildinfo

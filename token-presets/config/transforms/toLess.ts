@@ -20,7 +20,7 @@ export function toLessPresets(): string {
         style === 'letterSpacing'
           ? `${value}px`
           : style === 'fontFamily'
-          ? `"${value}"`
+          ? `'${value}'`
           : value;
 
       content =
@@ -36,7 +36,7 @@ export function toLessPresets(): string {
 
   writeFile({
     fileName: '_presets.less',
-    filePath: '../token-presets/less/',
+    filePath: '../built-presets/less/',
     data: content,
   });
 
