@@ -6,14 +6,16 @@ export function toLessPresets(): string {
   console.log('\nConvertendo Presets para classes LESS\n');
 
   let content = '';
-  const presets = Object.keys(presetsSource);
+  const presets = Object.keys(presetsSource) as Array<
+    keyof typeof presetsSource
+  >;
   presets.map((preset) => {
     content = content + `\n.${preset.toLowerCase().replace(/_/g, '-')} {\n`;
-    const styles = Object.keys(
-      presetsSource[preset as keyof typeof presetsSource]
-    );
+    const _preset = presetsSource[preset];
+    const styles = Object.keys(presetsSource[preset]) as Array<
+      keyof typeof _preset
+    >;
     styles.map((style) => {
-      // @ts-expect-error TSFixMe: Preciso entender como tipar melhor isso aqui
       const value: number | string = presetsSource[preset][style];
 
       content =
