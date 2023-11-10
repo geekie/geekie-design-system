@@ -1,6 +1,7 @@
 import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
+import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
 
 // The storybook-design-token plugin expects the tokens to be split in categories separated by
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
@@ -49,7 +50,7 @@ const extractTokenCategoryPrefix = (
   ).find((prefix) => tokenName.startsWith(prefix));
 };
 
-const formatSizeUnit = ({
+const formatTokens = ({
   dictionary,
   addCategoryAnnotation,
   platform,
@@ -57,34 +58,58 @@ const formatSizeUnit = ({
   dictionary: Dictionary;
   addCategoryAnnotation: boolean;
   platform: string;
-}): string[] =>
-  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(([prefix, names]) =>
-    addCategoryAnnotation
-      ? `\n/**
+}): string => {
+  let content = '';
+  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(([prefix, names]) => {
+    content =
+      content +
+      `${
+        addCategoryAnnotation
+          ? `\n/**
 * @tokens ${names.categoryName}
 * @presenter ${names.presenterName}
 */\n`
-      : '' +
-        dictionary.allTokens
-          .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
-          .map((token) => {
-            const tokenCategory = extractTokenCategoryPrefix(token.name);
-            const unit =
-              tokenCategory === 'DSA_FONT_SIZE' ||
-              tokenCategory === 'DSA_LINE_HEIGHT' ||
-              tokenCategory === 'DSA_LETTER_SPACING'
-                ? 'px'
-                : '';
+          : ''
+      }`;
+    dictionary.allTokens
+      .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
+      .map((token) => {
+        const tokenCategory = extractTokenCategoryPrefix(token.name);
+        content =
+          content +
+          `${formatTokenToWeb({
+            styleOrCategory: tokenCategory as string,
+            useVariables: true,
+            value: `${token.value as number}`,
+            platform,
+            tokenName: token.name,
+          })}` +
+          '\n';
+        return content;
+      });
 
-            const asString = tokenCategory === 'DSA_FONT_FAMILY';
-            return `${
-              platform === 'scss' ? '$' : platform === 'less' ? '@' : ''
-            }${token.name}: ${asString ? '"' : ''}${token.value as number}${
-              asString ? '"' : unit
-            };`;
-          })
-          .join('\n')
-  );
+    return content;
+  });
+  return content;
+};
+
+const formatScssToken = ({
+  dictionary,
+  platform,
+}: {
+  dictionary: Dictionary;
+  platform: string;
+}): string =>
+  formatTokens({ dictionary, addCategoryAnnotation: true, platform });
+
+const formatLessToken = ({
+  dictionary,
+  platform,
+}: {
+  dictionary: Dictionary;
+  platform: string;
+}): string =>
+  formatTokens({ dictionary, addCategoryAnnotation: false, platform });
 
 StyleDictionary.registerFormat({
   name: `scss/variables-with-headers`,
@@ -92,11 +117,10 @@ StyleDictionary.registerFormat({
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
       ':root {' +
-      formatSizeUnit({
+      formatScssToken({
         dictionary,
-        addCategoryAnnotation: true,
         platform: 'scss',
-      }).join('\n') +
+      }) +
       '\n}\n'
     );
   },
@@ -107,11 +131,10 @@ StyleDictionary.registerFormat({
   formatter: function ({ dictionary, file }) {
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
-      formatSizeUnit({
+      formatLessToken({
         dictionary,
-        addCategoryAnnotation: false,
         platform: 'less',
-      }).join('\n') +
+      }) +
       '\n'
     );
   },
@@ -131,7 +154,9 @@ StyleDictionary.registerTransformGroup({
 
 StyleDictionary.registerTransformGroup({
   name: 'custom/less',
-  transforms: StyleDictionary.transformGroup.less.concat(['name/cti/constant']),
+  transforms: StyleDictionary.transformGroup.less
+    .filter((transform) => transform !== 'color/hex')
+    .concat(['color/css', 'name/cti/constant']),
 });
 
 // APPLY THE CONFIGURATION

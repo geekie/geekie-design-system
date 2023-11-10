@@ -1,3 +1,3 @@
-import { toLessPresets } from './transforms/toLess';
+import { toLessPresets } from './transforms/toLessPresets';
 
 toLessPresets();

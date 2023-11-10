@@ -1,4 +1,5 @@
 import * as presetsSource from '../..';
+import { formatTokenToWeb } from '../../../utils/formatTokenToWeb';
 import { writeFile } from '../../../utils/writeFile';
 
 export function toLessPresets(): string {
@@ -14,18 +15,14 @@ export function toLessPresets(): string {
     styles.map((style) => {
       // @ts-expect-error TSFixMe: Preciso entender como tipar melhor isso aqui
       const value: number | string = presetsSource[preset][style];
-      const webValue =
-        style === 'fontSize' ||
-        style === 'lineHeight' ||
-        style === 'letterSpacing'
-          ? `${value}px`
-          : style === 'fontFamily'
-          ? `'${value}'`
-          : value;
 
       content =
         content +
-        ` ${style.replace(/[A-Z]/g, '-$&').toLowerCase()}: ${webValue};\n`;
+        `  ${formatTokenToWeb({
+          styleOrCategory: style,
+          useVariables: false,
+          value: `${value}`,
+        })}\n`;
 
       return content;
     });
