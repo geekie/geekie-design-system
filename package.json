@@ -10,6 +10,7 @@
     "@storybook/addon-essentials": "^7.0.26",
     "@storybook/addon-interactions": "^7.0.26",
     "@storybook/addon-links": "^7.0.26",
+    "@storybook/addon-mdx-gfm": "^7.4.5",
     "@storybook/blocks": "^7.0.26",
     "@storybook/react": "^7.0.26",
     "@storybook/react-webpack5": "^7.0.26",
@@ -24,6 +25,8 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -38,6 +41,8 @@
   },
   "files": [
     "build/built-tokens/**",
+    "build/built-presets/**",
+    "build/less/**",
     "build/helpers/**",
     "build/index.*",
     "build/token-presets/**",
@@ -49,13 +54,12 @@
     "react-dom": "^18.1.0"
   },
   "scripts": {
-    "prepare": "yarn build-tokens && yarn tsc",
+    "prepare": "yarn build-folders && yarn build-tokens && yarn build-presets && yarn tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "yarn build-tokens && storybook build",
-    "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts",
+    "build-folders": "mkdir -p built-presets/less && mkdir -p build/less",
+    "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts && cp ./built-tokens/less/_tokens.less build/less/",
+    "build-presets": "ts-node ./token-presets/config/buildPresets.ts && cp ./built-presets/less/_presets.less build/less/",
     "chromatic": "npx chromatic"
-  },
-  "dependencies": {
-    "@storybook/addon-mdx-gfm": "^7.4.5"
   }
 }

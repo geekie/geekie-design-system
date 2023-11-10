@@ -1,6 +1,7 @@
 import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
+import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
 
 // The storybook-design-token plugin expects the tokens to be split in categories separated by
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
@@ -49,27 +50,66 @@ const extractTokenCategoryPrefix = (
   ).find((prefix) => tokenName.startsWith(prefix));
 };
 
-const formatCategory = ({ dictionary }: { dictionary: Dictionary }): string[] =>
-  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(
-    ([prefix, names]) =>
-      `\n/**
+const formatTokens = ({
+  dictionary,
+  addCategoryAnnotation,
+  platform,
+}: {
+  dictionary: Dictionary;
+  addCategoryAnnotation: boolean;
+  platform: string;
+}): string => {
+  let content = '';
+  Object.entries(DESIGN_TOKEN_CATEGORIES_BY_PREFIX).map(([prefix, names]) => {
+    content =
+      content +
+      `${
+        addCategoryAnnotation
+          ? `\n/**
 * @tokens ${names.categoryName}
 * @presenter ${names.presenterName}
-*/\n` +
-      dictionary.allTokens
-        .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
-        .map((token) => {
-          const tokenCategory = extractTokenCategoryPrefix(token.name);
-          const unit =
-            tokenCategory === 'DSA_FONT_SIZE' ||
-            tokenCategory === 'DSA_LINE_HEIGHT' ||
-            tokenCategory === 'DSA_LETTER_SPACING'
-              ? 'px'
-              : '';
-          return `$${token.name}: ${token.value as number}${unit};`;
-        })
-        .join('\n')
-  );
+*/\n`
+          : ''
+      }`;
+    dictionary.allTokens
+      .filter((token) => prefix === extractTokenCategoryPrefix(token.name))
+      .map((token) => {
+        const tokenCategory = extractTokenCategoryPrefix(token.name);
+        content =
+          content +
+          `${formatTokenToWeb({
+            styleOrCategory: tokenCategory as string,
+            useVariables: true,
+            value: `${token.value as number}`,
+            platform,
+            tokenName: token.name,
+          })}` +
+          '\n';
+        return content;
+      });
+
+    return content;
+  });
+  return content;
+};
+
+const formatScssToken = ({
+  dictionary,
+  platform,
+}: {
+  dictionary: Dictionary;
+  platform: string;
+}): string =>
+  formatTokens({ dictionary, addCategoryAnnotation: true, platform });
+
+const formatLessToken = ({
+  dictionary,
+  platform,
+}: {
+  dictionary: Dictionary;
+  platform: string;
+}): string =>
+  formatTokens({ dictionary, addCategoryAnnotation: false, platform });
 
 StyleDictionary.registerFormat({
   name: `scss/variables-with-headers`,
@@ -77,8 +117,25 @@ StyleDictionary.registerFormat({
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
       ':root {' +
-      formatCategory({ dictionary }).join('\n') +
+      formatScssToken({
+        dictionary,
+        platform: 'scss',
+      }) +
       '\n}\n'
+    );
+  },
+});
+
+StyleDictionary.registerFormat({
+  name: `less/variables-with-size-unit`,
+  formatter: function ({ dictionary, file }) {
+    return (
+      StyleDictionary.formatHelpers.fileHeader({ file }) +
+      formatLessToken({
+        dictionary,
+        platform: 'less',
+      }) +
+      '\n'
     );
   },
 });
@@ -93,6 +150,13 @@ StyleDictionary.registerTransformGroup({
 StyleDictionary.registerTransformGroup({
   name: 'custom/scss',
   transforms: StyleDictionary.transformGroup.scss.concat(['name/cti/constant']),
+});
+
+StyleDictionary.registerTransformGroup({
+  name: 'custom/less',
+  transforms: StyleDictionary.transformGroup.less
+    .filter((transform) => transform !== 'color/hex')
+    .concat(['color/css', 'name/cti/constant']),
 });
 
 // APPLY THE CONFIGURATION
