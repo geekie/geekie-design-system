@@ -1,0 +1,85 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import SpecFigmaCompleta from '../../../public/images/spec-figma-completa.png';
+import SpecFigmaAbaDev from '../../../public/images/spec-figma-aba-dev.png';
+import SpecFigmaCor from '../../../public/images/spec-figma-cor.png';
+import SpecFigmaPreset from '../../../public/images/spec-figma-preset.png';
+import PresetH2 from '../../../public/images/preset-h2.png';
+import TokenCorNeutralXXDark from '../../../public/images/token-cor-neutral-xxdark.png';
+import SpecFigmaNovaCapa from '../../../public/images/spec-figma-nova-capa.png';
+
+<Meta title="Documentação/Guias/Guia para o CMS" />
+
+# Tokens e Presets | Guia de uso para o CMS
+
+#### Esse guia usa conceitos definidos no [Tokens e Presets | Guia de uso para engenharia](/docs/documentação-guias-tokens-e-presets--docs). Recomendados que você leia esse outro guia, antes de continuar com a leitura daqui.
+
+**Para saber detalhes da implementação, consulte o [README](https://github.com/geekie/geekie-design-system/blob/master/README.md) do repositório.**
+
+---
+
+Criamos o design system para atender, além do SGLearner, outros produtos. O primeiro testado foi o CMS.
+Como existem algumas diferenças dos casos de uso que descrevemos no guia anterior, focado no SGLearner, esse guia descreve as particularidades que encontramos ao testar o DS no CMS.
+
+&nbsp;
+## Casos de uso
+
+Basicamente, temos **dois casos de uso do DS no CMS**, que são:
+
+- Uso de tokens e presets nas **classes de estilo LESS**;
+- Uso de tokens e presets nos **componentes que escrevem estilos no JS**;
+
+Para esse segundo caso, o que foi descrito no [guia de uso para engenharia](/docs/documentação-guias-tokens-e-presets--docs) ainda é a forma adequada de usar o design system no CMS - no caso de CSS-in-JS.
+
+Agora, para usar o DS em arquivos LESS, algumas coisas são distintas. É o que vamos discutir a seguir:
+
+Importamos o DS no arquivo `main.less`, da seguinte forma:
+
+```css
+/* Design System */
+@import "../../../../../../../node_modules/@geekie/design-system/build/less/_presets.less";
+@import "../../../../../../../node_modules/@geekie/design-system/build/less/_tokens.less";
+```
+
+Ou seja, os presets e tokens já estão disponíveis para uso nos demais arquivos LESS - sem ser necessário importá-los novamente.
+
+&nbsp;
+## Uso de tokens em arquivos LESSS
+
+Escolhemos usar as variáveis less para aplicar nossos tokens.
+De forma simples, para aplicar o token de cor `DSA_COLOR_BUTTON_MEDIUM`, como cor de um texto, basta fazer:
+```css
+.card {
+    color: @DSA_COLOR_BUTTON_MEDIUM;
+}
+```
+
+Esse conceito se aplica aos demais tokens, e, basicamente, é a mesma forma como usamos tokens nos casos CSS-in-JS.
+
+## Uso de presets em arquivos LESSS
+
+Para os presets, decidimos aplicar classes para agrupar e aplicar o conjunto de tokens que o formam.
+Para usar presets, temos dois casos de usos possíveis:
+  - Usar o preset diretamente no `className` do elemento;
+  - Usar o preset em outra classe LESS, que estiliza o elemento;
+
+Aqui, recomendamos e descreveremos somente o segundo caso de uso. Decidimos torná-lo uma boa prática, já que possibilita centralizar os estilos, e, nos pareceu mais fácil para entender as modificações durante o CR.
+
+Então, para aplicar presets nas classes LESS, usaremos o seletor `&:extend` - [referência aqui](https://lesscss.org/features/#extend-feature) - para importar os estilos diretamente em outra classe. Como no exemplo:
+
+```css
+.texto1 {
+    &:extend(.dsa-basic-body-m-normal-style);
+    color: @DSA_COLOR_BUTTON_MEDIUM;
+}
+
+.texto2{
+    &:extend(.dsa-basic-body-m-bold-style);
+}
+```
+
+
+## Exemplos no codebase
+
+Para testar os casos de uso aqui descritos, criamos um diff, que aplica os conceitos que descrevemos:
+
+- [[DS] Adiciona tokens e presets na edição de capítulos](https://phabricator.geekie.com.br/D26737)
