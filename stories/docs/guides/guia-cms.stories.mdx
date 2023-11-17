@@ -21,6 +21,7 @@ Criamos o design system para atender, além do SGLearner, outros produtos. O pri
 Como existem algumas diferenças dos casos de uso que descrevemos no guia anterior, focado no SGLearner, esse guia descreve as particularidades que encontramos ao testar o DS no CMS.
 
 &nbsp;
+
 ## Casos de uso
 
 Basicamente, temos **dois casos de uso do DS no CMS**, que são:
@@ -36,20 +37,22 @@ Importamos o DS no arquivo `main.less`, da seguinte forma:
 
 ```css
 /* Design System */
-@import "../../../../../../../node_modules/@geekie/design-system/build/less/_presets.less";
-@import "../../../../../../../node_modules/@geekie/design-system/build/less/_tokens.less";
+@import '../../../../../../../node_modules/@geekie/design-system/build/less/_presets.less';
+@import '../../../../../../../node_modules/@geekie/design-system/build/less/_tokens.less';
 ```
 
 Ou seja, os presets e tokens já estão disponíveis para uso nos demais arquivos LESS - sem ser necessário importá-los novamente.
 
 &nbsp;
+
 ## Uso de tokens em arquivos LESSS
 
 Escolhemos usar as variáveis less para aplicar nossos tokens.
 De forma simples, para aplicar o token de cor `DSA_COLOR_BUTTON_MEDIUM`, como cor de um texto, basta fazer:
+
 ```css
 .card {
-    color: @DSA_COLOR_BUTTON_MEDIUM;
+  color: @DSA_COLOR_BUTTON_MEDIUM;
 }
 ```
 
@@ -59,8 +62,9 @@ Esse conceito se aplica aos demais tokens, e, basicamente, é a mesma forma como
 
 Para os presets, decidimos aplicar classes para agrupar e aplicar o conjunto de tokens que o formam.
 Para usar presets, temos dois casos de usos possíveis:
-  - Usar o preset diretamente no `className` do elemento;
-  - Usar o preset em outra classe LESS, que estiliza o elemento;
+
+- Usar o preset diretamente no `className` do elemento;
+- Usar o preset em outra classe LESS, que estiliza o elemento;
 
 Aqui, recomendamos e descreveremos somente o segundo caso de uso. Decidimos torná-lo uma boa prática, já que possibilita centralizar os estilos, e, nos pareceu mais fácil para entender as modificações durante o CR.
 
@@ -68,15 +72,14 @@ Então, para aplicar presets nas classes LESS, usaremos o seletor `&:extend` - [
 
 ```css
 .texto1 {
-    &:extend(.dsa-basic-body-m-normal-style);
-    color: @DSA_COLOR_BUTTON_MEDIUM;
+  &:extend(.dsa-basic-body-m-normal-style);
+  color: @DSA_COLOR_BUTTON_MEDIUM;
 }
 
-.texto2{
-    &:extend(.dsa-basic-body-m-bold-style);
+.texto2 {
+  &:extend(.dsa-basic-body-m-bold-style);
 }
 ```
-
 
 ## Exemplos no codebase
 
