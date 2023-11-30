@@ -1,7 +1,10 @@
-import path from 'path';
+//import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
 import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
+import config from './style-dictionary-config.json';
+
+const modes = [`light`, `dark`];
 
 // The storybook-design-token plugin expects the tokens to be split in categories separated by
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
@@ -162,12 +165,75 @@ StyleDictionary.registerTransformGroup({
 // APPLY THE CONFIGURATION
 // IMPORTANT: the registration of custom transforms
 // needs to be done _before_ applying the configuration
-const StyleDictionaryExtended = StyleDictionary.extend(
-  path.join(__dirname, '/style-dictionary-config.json')
-);
+/* const StyleDictionaryExtended = StyleDictionary.extend(config);
 
 // FINALLY, BUILD ALL THE PLATFORMS
-StyleDictionaryExtended.buildAllPlatforms();
+StyleDictionaryExtended.buildAllPlatforms(); */
+
+// light/default mode
+StyleDictionary.extend({
+  ...config,
+  source: [
+    // this is saying find any files in the tokens folder
+    // that does not have .dark or .light, but ends in .json5
+    `tokens/**/**/!(*.${modes.join(`|*.`)}).json`,
+  ],
+  platforms: {
+    ...config.platforms,
+    ts: {
+      transformGroup: `custom/js`,
+      prefix: "dsa",
+      buildPath: 'built-tokens/js/',
+      files: [
+        {
+          format: "javascript/es6",
+          destination: "tokens.ts",
+          options: {
+            // this will keep token references intact so that we don't need
+            // to generate *all* color resources for dark mode, only
+            // the specific ones that change
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+  },
+}).buildAllPlatforms();
+
+// dark mode
+StyleDictionary.extend({
+  ...config,
+  include: [
+    // this is the same as the source in light/default above
+    `tokens/**/**/!(*.${modes.join(`|*.`)}).json`,
+  ],
+  source: [
+    // Kind of the opposite of above, this will find any files
+    // that have the file extension .dark.json5
+    `tokens/**/**/*.dark.json`,
+  ],
+  platforms: {
+    ...config.platforms,
+    ts: {
+      transformGroup: `custom/js`,
+      prefix: "dsa",
+      buildPath: 'built-tokens/js/',
+      files: [
+        {
+          format: "javascript/es6",
+          destination: "dark-tokens.ts",
+          filter: (token) => token.filePath.includes(`.dark`),
+          options: {
+            // this will keep token references intact so that we don't need
+            // to generate *all* color resources for dark mode, only
+            // the specific ones that change
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+  },
+}).buildAllPlatforms();
 
 console.log('\n==============================================');
 console.log('\nBuild completed!');

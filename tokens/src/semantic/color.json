@@ -1,0 +1,10 @@
+{
+  "color": {
+    "background": {
+      "value": "{color.neutral.xxlight}"
+    },
+    "text": {
+      "value": "{color.neutral.xxdark}"
+    }
+  }
+}
