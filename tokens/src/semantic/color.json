@@ -1,10 +1,27 @@
 {
   "color": {
     "background": {
-      "value": "{color.neutral.xxlight}"
+      "contrast1":{
+        "value": "{color.neutral.lightest}"
+
+      },
+      "contrast2":{
+        "value": "{color.neutral.xxlight}"
+
+      }
     },
     "text": {
-      "value": "{color.neutral.xxdark}"
+      "contrast1":{
+        "value": "{color.neutral.darkest}"
+
+      },
+      "contrast2":{
+        "value": "{color.neutral.xxdark}"
+
+      },
+      "contrast3":{
+        "value": "{color.neutral.xdark}"
+      }
     }
   }
 }
