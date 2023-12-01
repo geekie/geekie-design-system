@@ -1,4 +1,3 @@
-//import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
 import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
@@ -165,10 +164,6 @@ StyleDictionary.registerTransformGroup({
 // APPLY THE CONFIGURATION
 // IMPORTANT: the registration of custom transforms
 // needs to be done _before_ applying the configuration
-/* const StyleDictionaryExtended = StyleDictionary.extend(config);
-
-// FINALLY, BUILD ALL THE PLATFORMS
-StyleDictionaryExtended.buildAllPlatforms(); */
 
 // light/default mode
 StyleDictionary.extend({
@@ -189,9 +184,6 @@ StyleDictionary.extend({
           format: "javascript/es6",
           destination: "tokens.ts",
           options: {
-            // this will keep token references intact so that we don't need
-            // to generate *all* color resources for dark mode, only
-            // the specific ones that change
             outputReferences: true,
           },
         },
@@ -204,12 +196,9 @@ StyleDictionary.extend({
 StyleDictionary.extend({
   ...config,
   include: [
-    // this is the same as the source in light/default above
     `tokens/**/**/!(*.${modes.join(`|*.`)}).json`,
   ],
   source: [
-    // Kind of the opposite of above, this will find any files
-    // that have the file extension .dark.json5
     `tokens/**/**/*.dark.json`,
   ],
   platforms: {
@@ -224,9 +213,6 @@ StyleDictionary.extend({
           destination: "dark-tokens.ts",
           filter: (token) => token.filePath.includes(`.dark`),
           options: {
-            // this will keep token references intact so that we don't need
-            // to generate *all* color resources for dark mode, only
-            // the specific ones that change
             outputReferences: true,
           },
         },

@@ -26,17 +26,6 @@
           "format": "less/variables-with-size-unit"
         }
       ]
-    },
-    "ts": {
-      "transformGroup": "custom/js",
-      "buildPath": "built-tokens/js/",
-      "prefix": "dsa",
-      "files": [
-        {
-          "format": "javascript/es6",
-          "destination": "tokens.ts"
-        }
-      ]
     }
   }
 }
