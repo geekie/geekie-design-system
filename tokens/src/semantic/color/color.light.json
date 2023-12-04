@@ -1,5 +1,5 @@
 {
-  "color": {
+  "theme": {
     "background": {
       "contrast1":{
         "value": "{color.neutral.lightest}"

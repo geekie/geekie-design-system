@@ -170,7 +170,7 @@ StyleDictionary.extend({
   ...config,
   source: [
     // this is saying find any files in the tokens folder
-    // that does not have .dark or .light, but ends in .json5
+    // that does not have .dark or .light, but ends in .json
     `tokens/**/**/!(*.${modes.join(`|*.`)}).json`,
   ],
   platforms: {
@@ -212,6 +212,35 @@ StyleDictionary.extend({
           format: "javascript/es6",
           destination: "dark-tokens.ts",
           filter: (token) => token.filePath.includes(`.dark`),
+          options: {
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+  },
+}).buildAllPlatforms();
+
+// light mode
+StyleDictionary.extend({
+  ...config,
+  include: [
+    `tokens/**/**/!(*.${modes.join(`|*.`)}).json`,
+  ],
+  source: [
+    `tokens/**/**/*.light.json`,
+  ],
+  platforms: {
+    ...config.platforms,
+    ts: {
+      transformGroup: `custom/js`,
+      prefix: "dsa",
+      buildPath: 'built-tokens/js/',
+      files: [
+        {
+          format: "javascript/es6",
+          destination: "light-tokens.ts",
+          filter: (token) => token.filePath.includes(`.light`),
           options: {
             outputReferences: true,
           },

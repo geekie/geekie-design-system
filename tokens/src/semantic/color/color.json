@@ -1,0 +1,23 @@
+{
+  "theme": {
+    "background": {
+      "contrast1": {
+        "value": "DSA_THEME_BACKGROUND_CONTRAST1"
+      },
+      "contrast2": {
+        "value": "DSA_THEME_BACKGROUND_CONTRAST2"
+      }
+    },
+    "text": {
+      "contrast1": {
+        "value": "DSA_THEME_TEXT_CONTRAST1"
+      },
+      "contrast2": {
+        "value": "DSA_THEME_TEXT_CONTRAST2"
+      },
+      "contrast3": {
+        "value": "DSA_THEME_TEXT_CONTRAST3"
+      }
+    }
+  }
+}
