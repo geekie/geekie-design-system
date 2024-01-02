@@ -1,7 +1,7 @@
-import path from 'path';
 import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
 import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
+import { themes } from '../../themes';
 
 // The storybook-design-token plugin expects the tokens to be split in categories separated by
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
@@ -159,15 +159,107 @@ StyleDictionary.registerTransformGroup({
     .concat(['color/css', 'name/cti/constant']),
 });
 
-// APPLY THE CONFIGURATION
-// IMPORTANT: the registration of custom transforms
-// needs to be done _before_ applying the configuration
-const StyleDictionaryExtended = StyleDictionary.extend(
-  path.join(__dirname, '/style-dictionary-config.json')
-);
+// not themed tokens
+// These are all the tokens that are not changed by themes
+StyleDictionary.extend({
+  source: [`tokens/src/core/**/!(*.${themes.join(`|*.`)}).json`],
+  platforms: {
+    ts: {
+      transformGroup: `custom/js`,
+      prefix: 'dsa',
+      buildPath: 'built-tokens/js/',
+      files: [
+        {
+          format: 'javascript/es6',
+          destination: 'tokens.ts',
+          options: {
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+    scss: {
+      transformGroup: `custom/scss`,
+      prefix: 'dsa',
+      buildPath: 'built-tokens/scss/',
+      files: [
+        {
+          destination: '_variables.scss',
+          format: 'scss/variables',
+          options: {
+            outputReferences: true,
+          },
+        },
+        {
+          destination: '_variables_with_headers.scss',
+          format: 'scss/variables-with-headers',
+          options: {
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+    less: {
+      transformGroup: `custom/less`,
+      prefix: 'dsa',
+      buildPath: 'built-tokens/less/',
+      files: [
+        {
+          destination: '_tokens.less',
+          format: 'less/variables-with-size-unit',
+          options: {
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+  },
+}).buildAllPlatforms();
 
-// FINALLY, BUILD ALL THE PLATFORMS
-StyleDictionaryExtended.buildAllPlatforms();
+// default mode | semantic tokens
+// These are the tokens exported with the token name as value
+StyleDictionary.extend({
+  source: [`tokens/src/semantic/**/!(*.${themes.join(`|*.`)}).json`],
+  platforms: {
+    ts: {
+      transformGroup: `custom/js`,
+      buildPath: 'built-tokens/js/',
+      files: [
+        {
+          format: 'javascript/es6',
+          destination: 'semantic-tokens.ts',
+          options: {
+            outputReferences: true,
+          },
+        },
+      ],
+    },
+  },
+}).buildAllPlatforms();
+
+themes.forEach((theme) => {
+  StyleDictionary.extend({
+    include: [`tokens/**/**/!(*.${themes.join(`|*.`)}).json`],
+    source: [`tokens/**/**/*.${theme}.json`],
+    platforms: {
+      ts: {
+        transformGroup: `custom/js`,
+        prefix: 'dsa',
+        buildPath: 'built-tokens/js/',
+        files: [
+          {
+            format: 'javascript/es6',
+            destination: `${theme}-tokens.ts`,
+            filter: (token) => token.filePath.includes(`.${theme}`),
+            options: {
+              outputReferences: true,
+            },
+          },
+        ],
+      },
+    },
+  }).buildAllPlatforms();
+});
 
 console.log('\n==============================================');
 console.log('\nBuild completed!');
