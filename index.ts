@@ -1,3 +1,3 @@
 export * from './tokens';
 export * from './token-presets';
-export * from './themes'
+export * from './themes';
