@@ -1,7 +1,7 @@
 import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
 import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
-import { themes } from '../../themes';
+import { themes } from '../../themes/themes';
 
 // The storybook-design-token plugin expects the tokens to be split in categories separated by
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from

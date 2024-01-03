@@ -1,10 +1,7 @@
-import * as defaultTokens from './built-tokens/js/semantic-tokens';
-import * as darkTokens from './built-tokens/js/dark-tokens';
-import * as lightTokens from './built-tokens/js/light-tokens';
-
-type ThemeType = 'dark' | 'light';
-
-export const themes: ThemeType[] = ['dark', 'light'];
+import * as defaultTokens from '../built-tokens/js/semantic-tokens';
+import * as darkTokens from '../built-tokens/js/dark-tokens';
+import * as lightTokens from '../built-tokens/js/light-tokens';
+import type { ThemeType } from './themes';
 
 type OpaqueColorValue = symbol & { __TYPE__: 'Color' };
 export type ColorValue = string | OpaqueColorValue;
