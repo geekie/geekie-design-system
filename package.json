@@ -58,7 +58,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "yarn build-tokens && storybook build",
     "build-folders": "mkdir -p built-presets/less && mkdir -p build/less",
-    "build-tokens": "ts-node ./tokens/config/style-dictionary-build.ts && cp ./built-tokens/less/_tokens.less build/less/",
+    "build-tokens": "ts-node ./tokens/config/semantic-tokens-build.ts && ts-node ./tokens/config/core-tokens-build.ts && cp ./built-tokens/less/_tokens.less build/less/",
     "build-presets": "ts-node ./token-presets/config/buildPresets.ts && cp ./built-presets/less/_presets.less build/less/",
     "chromatic": "npx chromatic"
   }
