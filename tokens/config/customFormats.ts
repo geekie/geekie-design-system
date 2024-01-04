@@ -1,5 +1,3 @@
-import path from 'path';
-import StyleDictionary from 'style-dictionary';
 import type { Dictionary } from 'style-dictionary/types/Dictionary';
 import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
 
@@ -66,9 +64,9 @@ const formatTokens = ({
       `${
         addCategoryAnnotation
           ? `\n/**
-* @tokens ${names.categoryName}
-* @presenter ${names.presenterName}
-*/\n`
+  * @tokens ${names.categoryName}
+  * @presenter ${names.presenterName}
+  */\n`
           : ''
       }`;
     dictionary.allTokens
@@ -111,63 +109,4 @@ const formatLessToken = ({
 }): string =>
   formatTokens({ dictionary, addCategoryAnnotation: false, platform });
 
-StyleDictionary.registerFormat({
-  name: `scss/variables-with-headers`,
-  formatter: function ({ dictionary, file }) {
-    return (
-      StyleDictionary.formatHelpers.fileHeader({ file }) +
-      ':root {' +
-      formatScssToken({
-        dictionary,
-        platform: 'scss',
-      }) +
-      '\n}\n'
-    );
-  },
-});
-
-StyleDictionary.registerFormat({
-  name: `less/variables-with-size-unit`,
-  formatter: function ({ dictionary, file }) {
-    return (
-      StyleDictionary.formatHelpers.fileHeader({ file }) +
-      formatLessToken({
-        dictionary,
-        platform: 'less',
-      }) +
-      '\n'
-    );
-  },
-});
-
-StyleDictionary.registerTransformGroup({
-  name: 'custom/js',
-  transforms: StyleDictionary.transformGroup.js
-    .filter((transform) => transform !== 'color/hex')
-    .concat(['color/css', 'name/cti/constant']),
-});
-
-StyleDictionary.registerTransformGroup({
-  name: 'custom/scss',
-  transforms: StyleDictionary.transformGroup.scss.concat(['name/cti/constant']),
-});
-
-StyleDictionary.registerTransformGroup({
-  name: 'custom/less',
-  transforms: StyleDictionary.transformGroup.less
-    .filter((transform) => transform !== 'color/hex')
-    .concat(['color/css', 'name/cti/constant']),
-});
-
-// APPLY THE CONFIGURATION
-// IMPORTANT: the registration of custom transforms
-// needs to be done _before_ applying the configuration
-const StyleDictionaryExtended = StyleDictionary.extend(
-  path.join(__dirname, '/style-dictionary-config.json')
-);
-
-// FINALLY, BUILD ALL THE PLATFORMS
-StyleDictionaryExtended.buildAllPlatforms();
-
-console.log('\n==============================================');
-console.log('\nBuild completed!');
+export { formatScssToken, formatLessToken };

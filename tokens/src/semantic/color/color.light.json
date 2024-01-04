@@ -1,0 +1,31 @@
+{
+  "color": {
+    "bg": {
+      "1": {
+        "value": "{color.neutral.lightest}"
+      },
+      "2": {
+        "value": "{color.neutral.xxlight}"
+      }
+    },
+    "text": {
+      "1": {
+        "value": "{color.neutral.darkest}"
+      },
+      "2": {
+        "value": "{color.neutral.xxdark}"
+      },
+      "3": {
+        "value": "{color.neutral.xdark}"
+      }
+    },
+    "border": {
+      "1": {
+        "value": "{color.neutral.medium}"
+      },
+      "2": {
+        "value": "{color.neutral.light}"
+      }
+    }
+  }
+}

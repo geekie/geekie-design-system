@@ -1,0 +1,33 @@
+{
+  "dsa": {
+    "color": {
+      "bg": {
+        "1": {
+          "value": "DSA_COLOR_BG_1"
+        },
+        "2": {
+          "value": "DSA_COLOR_BG_2"
+        }
+      },
+      "text": {
+        "1": {
+          "value": "DSA_COLOR_TEXT_1"
+        },
+        "2": {
+          "value": "DSA_COLOR_TEXT_2"
+        },
+        "3": {
+          "value": "DSA_COLOR_TEXT_3"
+        }
+      },
+      "border": {
+        "1": {
+          "value": "DSA_COLOR_BORDER_1"
+        },
+        "2": {
+          "value": "DSA_COLOR_BORDER_2"
+        }
+      }
+    }
+  }
+}
