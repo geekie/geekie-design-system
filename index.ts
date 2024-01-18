@@ -1,6 +1,7 @@
 export {
   DarkModeEnabledProvider,
   useDarkMode,
+  defaultTheme,
 } from './themes/DarkModeEnabledContext';
 
 export * from './tokens';
