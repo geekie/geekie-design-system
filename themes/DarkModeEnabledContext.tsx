@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from 'react';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -22,7 +28,7 @@ const toggleStoredTheme = async (
     const newTheme = await AsyncStorage.getItem('theme');
     return newTheme;
   } catch (e) {
-    // saving error
+    console.log(e);
   }
 };
 
@@ -33,8 +39,7 @@ interface DarkModeEnabledContextProps {
 
 const DarkModeEnabledContext = createContext<DarkModeEnabledContextProps>({
   theme: defaultTheme,
-  // eslint-disable-next-line no-void
-  toggleDarkMode: () => void {},
+  toggleDarkMode: () => {},
 });
 
 const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
@@ -42,31 +47,31 @@ const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [theme, setTheme] = useState<ThemeType>(defaultTheme);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const setDefaultTheme = async (): Promise<void> => {
       try {
         const storedTheme = await AsyncStorage.getItem('theme');
         const newTheme =
-          theme === null && storedTheme === null
-            ? defaultTheme
-            : storedTheme === null && (theme === 'light' || theme === 'dark')
+          storedTheme === null && (theme === 'light' || theme === 'dark')
             ? theme
             : (storedTheme as ThemeType);
         setTheme(newTheme);
         await AsyncStorage.setItem('theme', newTheme);
       } catch (e) {
-        // saving error
+        console.log(e);
       }
     };
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    setDefaultTheme();
+    setDefaultTheme().catch((e) => {
+      console.log(e);
+    });
   }, []);
 
   const toggleDarkMode = (): void => {
     setTheme((prevTheme) => {
       const currentTheme = prevTheme === 'light' ? 'dark' : 'light';
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      toggleStoredTheme(currentTheme);
+      toggleStoredTheme(currentTheme).catch((e) => {
+        console.log(e);
+      });
       return currentTheme;
     });
   };
