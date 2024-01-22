@@ -11,22 +11,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { type ThemeType, defaultTheme } from './themes';
 
-const toggleStoredTheme = async (
+const setStoredTheme = async (
   currentTheme: ThemeType
-): Promise<string | null | undefined> => {
+): Promise<string | undefined> => {
   try {
-    const theme = await AsyncStorage.getItem('theme');
-    if (theme !== null) {
-      if (theme === 'light') {
-        await AsyncStorage.setItem('theme', 'dark');
-      } else if (theme === 'dark') {
-        await AsyncStorage.setItem('theme', 'light');
-      }
-    } else {
-      await AsyncStorage.setItem('theme', currentTheme);
-    }
-    const newTheme = await AsyncStorage.getItem('theme');
-    return newTheme;
+    await AsyncStorage.setItem('dsa_theme', currentTheme);
+    return currentTheme;
   } catch (e) {
     console.log(e);
   }
@@ -48,20 +38,17 @@ const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
   const [theme, setTheme] = useState<ThemeType>(defaultTheme);
 
   useEffect(() => {
-    const setDefaultTheme = async (): Promise<void> => {
+    const setStoredTheme = async (): Promise<void> => {
       try {
-        const storedTheme = await AsyncStorage.getItem('theme');
+        const storedTheme = await AsyncStorage.getItem('dsa_theme');
         const newTheme =
-          storedTheme === null && (theme === 'light' || theme === 'dark')
-            ? theme
-            : (storedTheme as ThemeType);
+          storedTheme === null ? theme : (storedTheme as ThemeType);
         setTheme(newTheme);
-        await AsyncStorage.setItem('theme', newTheme);
       } catch (e) {
         console.log(e);
       }
     };
-    setDefaultTheme().catch((e) => {
+    setStoredTheme().catch((e) => {
       console.log(e);
     });
   }, []);
@@ -69,7 +56,7 @@ const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
   const toggleDarkMode = (): void => {
     setTheme((prevTheme) => {
       const currentTheme = prevTheme === 'light' ? 'dark' : 'light';
-      toggleStoredTheme(currentTheme).catch((e) => {
+      setStoredTheme(currentTheme).catch((e) => {
         console.log(e);
       });
       return currentTheme;
