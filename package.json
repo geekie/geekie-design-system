@@ -61,5 +61,8 @@
     "build-tokens": "ts-node ./tokens/config/semantic-tokens-build.ts && ts-node ./tokens/config/core-tokens-build.ts && cp ./built-tokens/less/_tokens.less build/less/",
     "build-presets": "ts-node ./token-presets/config/buildPresets.ts && cp ./built-presets/less/_presets.less build/less/",
     "chromatic": "npx chromatic"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1"
   }
 }
