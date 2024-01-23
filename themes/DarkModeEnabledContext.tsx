@@ -35,8 +35,9 @@ const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
       const storedTheme = (await AsyncStorage.getItem(
         'dsa_theme'
       )) as ThemeType | null;
-      const newTheme = storedTheme === null ? theme : storedTheme;
-      setTheme(newTheme);
+      if (storedTheme !== null) {
+        setTheme(storedTheme);
+      }
     };
     setStoredThemeAsDefault().catch((e) => {
       console.log(e);
