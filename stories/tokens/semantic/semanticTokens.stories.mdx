@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { DesignTokenDocBlock } from 'storybook-design-token';
+import CustomDesignTokenDocBlock from '../../../utils/CustomDesignTokenDocBlock';
+
+import * as semanticTokens from '../../../built-tokens/js/semantic-tokens';
+
+<Meta title="Design Tokens/Tokens/Semantic/Cores" />
+
+# Tokens Semânticos
+
+## Color
+
+<CustomDesignTokenDocBlock
+  blockType="table"
+  previewType="semantic-color"
+  presenter="color"
+  tokens={Object.keys(semanticTokens).map((semanticToken) => {
+    return { name: semanticToken, value: semanticToken };
+  })}
+/>

@@ -1,23 +1,49 @@
 import React from 'react';
 import './styles.css';
+import { getThemeTokenValue } from '../../tokens';
+import {
+  DarkModeEnabledProvider,
+  useDarkMode,
+} from '../../themes/DarkModeEnabledContext';
+import { type ThemeType } from '../../themes/themes';
 
 type FontStyle = 'normal' | 'italic' | 'oblique';
 
 interface Token {
   name: string;
-  value: FontStyle;
+  value: FontStyle | ThemeType | string;
 }
 interface CustomDesignTokenDocBlockProps {
   blockType: 'table';
-  presenter: 'font-style';
-  previewType: 'text';
+  presenter: 'font-style' | 'color';
+  previewType: 'text' | 'semantic-color';
   tokens: Token[];
 }
 
-const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
-  props
-) => {
+const ThemeSwitch: React.FC = () => {
+  const { theme, toggleDarkMode } = useDarkMode();
+
+  return (
+    <div className="theme-switch">
+      <h3>Tema Atual | {theme}</h3>
+      <div className="switch">
+        <b>Ativar dark mode </b>
+        <input
+          type="checkbox"
+          id="switch"
+          checked={theme === 'dark'}
+          onChange={toggleDarkMode}
+        />
+        <label htmlFor="switch">Toggle dark mode</label>
+      </div>
+    </div>
+  );
+};
+
+const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
   const { blockType, presenter, previewType, tokens } = props;
+
+  const { theme } = useDarkMode();
 
   return (
     <div className="design-token-container">
@@ -34,9 +60,18 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
               </thead>
               <tbody>
                 {tokens.map((token) => {
+                  const tokenValue =
+                    previewType === 'semantic-color'
+                      ? getThemeTokenValue(token.value, theme)
+                      : token.value;
+
                   const previewStyle =
                     presenter === 'font-style'
-                      ? { fontStyle: token.value }
+                      ? { fontStyle: tokenValue }
+                      : presenter === 'color'
+                      ? {
+                          backgroundColor: tokenValue,
+                        }
                       : {};
 
                   return (
@@ -73,13 +108,22 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
                       <td>
                         <div className="css-79elbk">
                           <span title="32px" className="css-16nf6wl">
-                            {token.value}
+                            {tokenValue}
                           </span>
                         </div>
                       </td>
                       <td>
-                        <div style={previewStyle}>
-                          {previewType === 'text' ? 'Lorem ipsum' : null}
+                        <div style={previewType === 'text' ? previewStyle : {}}>
+                          {previewType === 'text' ? (
+                            'Lorem ipsum'
+                          ) : previewType === 'semantic-color' ? (
+                            <div className="color-block-container">
+                              <div
+                                className="color-block"
+                                style={previewStyle}
+                              />
+                            </div>
+                          ) : null}
                         </div>
                       </td>
                     </tr>
@@ -91,6 +135,21 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
         </div>
       </div>
     </div>
+  );
+};
+
+const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
+  props
+) => {
+  const { previewType } = props;
+
+  return previewType === 'semantic-color' ? (
+    <DarkModeEnabledProvider>
+      <ThemeSwitch />
+      <Block {...props} />
+    </DarkModeEnabledProvider>
+  ) : (
+    <Block {...props} />
   );
 };
 
