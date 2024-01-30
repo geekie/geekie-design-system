@@ -26,16 +26,16 @@ const ThemeSwitch: React.FC = () => {
 
   return (
     <div className="theme-switch">
-      <h3>Tema Atual | {theme}</h3>
+      <h3>Tema Atual | {theme === 'light' ? 'modo claro' : 'modo escuro'}</h3>
       <div className="switch">
-        <b>Ativar dark mode </b>
+        <b>{theme === 'light' ? 'Ativar' : 'Desativar'} modo escuro </b>
         <input
           type="checkbox"
           id="switch"
           checked={theme === 'dark'}
           onChange={toggleDarkMode}
         />
-        <label htmlFor="switch">Toggle dark mode</label>
+        <label htmlFor="switch">Ativar modo escuro</label>
       </div>
     </div>
   );
