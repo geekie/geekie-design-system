@@ -109,20 +109,20 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                       <td>
                         <div className="css-79elbk">
                           <span title="32px" className="css-16nf6wl">
-                            <div className="tokenName">
-                              {previewType === 'semantic-color'
-                                ? (
-                                    Object.keys(allTokens) as Array<
-                                      keyof typeof allTokens
-                                    >
-                                  ).map((tokenName) => {
-                                    if (allTokens[tokenName] === tokenValue) {
-                                      return `$${tokenName}`;
-                                    }
-                                    return null;
-                                  })
-                                : null}
-                            </div>
+                            {previewType === 'semantic-color' ? (
+                              <div className="tokenName">
+                                {(
+                                  Object.keys(allTokens) as Array<
+                                    keyof typeof allTokens
+                                  >
+                                ).map((tokenName) => {
+                                  if (allTokens[tokenName] === tokenValue) {
+                                    return `$${tokenName}`;
+                                  }
+                                  return null;
+                                })}
+                              </div>
+                            ) : null}
                             {tokenValue}
                           </span>
                         </div>
