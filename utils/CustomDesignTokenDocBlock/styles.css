@@ -19,7 +19,7 @@
 
 .block-type-container {
   max-height: 630px;
-  overflow: auto;
+  overflow: hidden;
   padding: 15px;
 }
 
@@ -66,6 +66,11 @@
   padding-right: 15px;
 }
 
+.docblock-argstable-head th.isSemantic {
+  flex-basis: 20%;
+  padding-right: 15px;
+}
+
 .docblock-argstable-head th:last-of-type {
   padding-left: 0;
 }
@@ -102,6 +107,11 @@
   flex-basis: 47%;
 }
 
+.block-type-table tr td.isSemantic {
+  padding-right: 15px;
+  flex-basis: 23%;
+}
+
 .block-type-table tr td:first-of-type span {
   color: #2e3438;
   margin: 0;
@@ -132,6 +142,17 @@
   margin-bottom: 0;
 }
 
+.tokenName {
+  padding-top: 12px;
+  color: #f0f;
+  font-family: 'Lato' !important;
+  font-size: 12px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 43.2px */
+  letter-spacing: 0.432px;
+}
+
 .copy-icon {
   border-collapse: collapse;
   border-spacing: 0;
@@ -153,4 +174,84 @@
   width: 12px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.color-block-container {
+  border-radius: 2px;
+  height: 42px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0px 1px 2px #cecece inset;
+}
+
+.color-block {
+  border-radius: 2px;
+  height: 28px;
+  width: 90%;
+}
+
+.theme-switch {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type='checkbox'] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 60px;
+  height: 30px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 2.5px;
+  left: 2.5px;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  background: #1fad73;
+}
+
+input:checked + label:after {
+  left: calc(100% - 2.5px);
+  transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 30px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

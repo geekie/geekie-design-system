@@ -200,3 +200,78 @@ Se precisar, extenda o suporte desse bloco para adicionar novos presenters e seu
 ## Uso como biblioteca externa
 
 Escrevemos um guia de uso, que pode ser encontrado ao rodar o storybook, ou no acessando esse [link](https://master--64c2ae277bc565bc4c2176de.chromatic.com/?path=/docs/documentação-guias-tokens-e-presets--docs).
+
+# Modo escuro e tokens semânticos
+
+Recomendo começar pelos materiais:
+
+- Jenga | [Como o design system pode apoiar a implementação de um modo escuro](https://www.notion.so/geekie/Como-o-design-system-pode-apoiar-a-implementa-o-de-um-modo-escuro-54e44c4b27dd427aa9012c517b1e780e)
+- Spike | [Dark mode com DS](https://www.notion.so/geekie/Spike-Dark-Mode-com-DS-b8f589e7939e4692a4b264e2ecb95738)
+
+Atualmente, temos no DS três pontos para a implementação de um modo escuro:
+
+## 1. Os tokens semânticos
+
+Eles são definidos em `tokens/src/semantic`, e seguem uma lógica diferentes dos demais tokens. Criamos um arquivo "principal", que define o valor do token como seu próprio nome, e arquivos secundários, definidos para cada tema, que contém o valor do token usado pela aplicação.
+
+Um arquivo principal dos tokens semânticos é o `tokens/src/semantic/color/color.json`:
+
+```json
+{
+  "dsa": {
+    "color": {
+      "bg": {
+        "1": {
+          "value": "DSA_COLOR_BG_1"
+        },
+        "2": {
+          "value": "DSA_COLOR_BG_2"
+        }
+      },
+    ...
+    }
+  }
+}
+```
+
+E, um arquivo secundário, para o tema escuro, por exemplo, é o `tokens/src/semantic/color/color.dark.json`:
+
+```json
+{
+  "dsa": {
+    "color": {
+      "bg": {
+        "1": {
+          "value": "{color.neutral.darkest}"
+        },
+        "2": {
+          "value": "{color.neutral.xxdark}"
+        }
+      },
+    ...
+    }
+  }
+}
+```
+
+Esses arquivos consomem os tokens "core", criados anteriormente.
+
+## 2. Obter o valor do token semântico de acordo com o tema
+
+Para que a aplicação consiga obter o valor correto para cada tema, criamos a função `getThemeTokenValue`, definida em `themes/getThemeToken.ts`.
+Essa função recebe o token do arquivo principal e retorna o valor dos arquivos secundários, de acordo com o tema - que é o segundo parâmetro da função. Um exemplo de uso seria:
+
+```javascript
+getThemeTokenValue(DSA_COLOR_BG_1, theme);
+```
+
+## 3. O controle de estado para o dark mode e o tema padrão
+
+Primeiro, sobre o tema padrão, definimos o tema `light` como `defaultTheme` no arquivo `themes/themes.ts`.
+
+Agora, para o controle de estado dos temas, usamos o `Context` do react, aplicado no `DarkModeEnabledProvider`, em `themes/DarkModeEnabledContext.tsx`.
+Além do caso de uso simples, do `ReactContext`, esse provider também gerencia a persistência dessa informação, usando `@react-native-community/async-storage`, guardada em storages locais na variável `dsa_theme`.
+
+---
+
+A aplicação desses três pontos está exemplificada no componente customizado de bloco de documentação, em `utils/CustomDesignTokenDocBlock/index.tsx`, e seu funcionamento pode ser consultado no storybook do projeto - na aba de tokens semânticos.
