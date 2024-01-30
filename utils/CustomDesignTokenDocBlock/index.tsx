@@ -46,6 +46,8 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
 
   const { theme } = useDarkMode();
 
+  const isSemantic = previewType === 'semantic-color';
+
   return (
     <div className="design-token-container">
       <div className="design-token-card">
@@ -54,17 +56,17 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
             <table className="block-type-table">
               <thead className="docblock-argstable-head">
                 <tr>
-                  <th>Name</th>
+                  <th className={isSemantic ? 'isSemantic' : ''}>Name</th>
+                  {isSemantic ? <th>Core Token</th> : null}
                   <th>Value</th>
                   <th>Preview</th>
                 </tr>
               </thead>
               <tbody>
                 {tokens.map((token) => {
-                  const tokenValue =
-                    previewType === 'semantic-color'
-                      ? getThemeTokenValue(token.value, theme)
-                      : token.value;
+                  const tokenValue = isSemantic
+                    ? getThemeTokenValue(token.value, theme)
+                    : token.value;
 
                   const previewStyle =
                     presenter === 'font-style'
@@ -77,7 +79,7 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
 
                   return (
                     <tr key={token.name}>
-                      <td>
+                      <td className={isSemantic ? 'isSemantic' : ''}>
                         <span>
                           <span className="">{token.name}</span>
                           <div className="copy-icon-container">
@@ -106,10 +108,10 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                           </div>
                         </span>
                       </td>
-                      <td>
-                        <div className="css-79elbk">
-                          <span title="32px" className="css-16nf6wl">
-                            {previewType === 'semantic-color' ? (
+                      {isSemantic ? (
+                        <td>
+                          <div className="css-79elbk">
+                            <span className="css-16nf6wl">
                               <div className="tokenName">
                                 {(
                                   Object.keys(allTokens) as Array<
@@ -122,9 +124,14 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                                   return null;
                                 })}
                               </div>
-                            ) : (
-                              tokenValue
-                            )}
+                            </span>
+                          </div>
+                        </td>
+                      ) : null}
+                      <td>
+                        <div className="css-79elbk">
+                          <span title="32px" className="css-16nf6wl">
+                            {tokenValue}
                           </span>
                         </div>
                       </td>
