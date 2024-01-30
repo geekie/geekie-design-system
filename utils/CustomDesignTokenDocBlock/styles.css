@@ -132,6 +132,17 @@
   margin-bottom: 0;
 }
 
+.tokenName {
+  padding-top: 12px;
+  color: #f0f;
+  font-family: 'Lato' !important;
+  font-size: 12px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 43.2px */
+  letter-spacing: 0.432px;
+}
+
 .copy-icon {
   border-collapse: collapse;
   border-spacing: 0;

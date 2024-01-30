@@ -6,6 +6,7 @@ import {
   useDarkMode,
 } from '../../themes/DarkModeEnabledContext';
 import { type ThemeType } from '../../themes/themes';
+import * as allTokens from '../../built-tokens/js/tokens';
 
 type FontStyle = 'normal' | 'italic' | 'oblique';
 
@@ -108,6 +109,20 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                       <td>
                         <div className="css-79elbk">
                           <span title="32px" className="css-16nf6wl">
+                            <div className="tokenName">
+                              {previewType === 'semantic-color'
+                                ? (
+                                    Object.keys(allTokens) as Array<
+                                      keyof typeof allTokens
+                                    >
+                                  ).map((tokenName) => {
+                                    if (allTokens[tokenName] === tokenValue) {
+                                      return `$${tokenName}`;
+                                    }
+                                    return null;
+                                  })
+                                : null}
+                            </div>
                             {tokenValue}
                           </span>
                         </div>
