@@ -122,8 +122,9 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                                   return null;
                                 })}
                               </div>
-                            ) : null}
-                            {tokenValue}
+                            ) : (
+                              tokenValue
+                            )}
                           </span>
                         </div>
                       </td>
