@@ -4,8 +4,8 @@
   "description": "Geekie's design system",
   "author": "Geekie",
   "devDependencies": {
-    "@babel/preset-env": "^7.22.7",
-    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.22.5",
     "@storybook/addon-essentials": "^7.0.26",
     "@storybook/addon-interactions": "^7.0.26",
@@ -15,8 +15,11 @@
     "@storybook/react": "^7.0.26",
     "@storybook/react-webpack5": "^7.0.26",
     "@storybook/testing-library": "^0.0.14-next.2",
-    "@types/react": "^18.2.14",
+    "@testing-library/react": "^14.2.0",
+    "@types/jest": "^29.5.11",
+    "@types/react": "^18.0.33",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "babel-jest": "^29.7.0",
     "chromatic": "^6.20.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
@@ -26,10 +29,12 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.0",
     "fs": "^0.0.1-security",
+    "jest": "^29.7.0",
     "path": "^0.12.7",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-test-renderer": "^18.2.0",
     "storybook": "^7.0.26",
     "storybook-design-token": "^3.0.0-beta.3",
     "style-dictionary": "^3.8.0",
@@ -60,9 +65,13 @@
     "build-folders": "mkdir -p built-presets/less && mkdir -p build/less",
     "build-tokens": "ts-node ./tokens/config/semantic-tokens-build.ts && ts-node ./tokens/config/core-tokens-build.ts && cp ./built-tokens/less/_tokens.less build/less/",
     "build-presets": "ts-node ./token-presets/config/buildPresets.ts && cp ./built-presets/less/_presets.less build/less/",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic",
+    "test": "jest"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1"
+  },
+  "overrides": {
+    "@types/react": "^18.0.33"
   }
 }
