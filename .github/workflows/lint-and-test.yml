@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    name: Run all front-end linters and tests
+    name: Run all linters and tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
