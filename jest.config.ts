@@ -9,6 +9,7 @@ const config: Config = {
   clearMocks: true,
   modulePathIgnorePatterns: ['/node_modules/', '/build/'],
   testRegex: '(__tests__/.*\\.)?test\\.(js|ts|tsx)$',
+  testEnvironment: 'jsdom',
 };
 
 export default config;
