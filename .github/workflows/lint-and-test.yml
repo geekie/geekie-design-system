@@ -1,4 +1,4 @@
-name: Linter
+name: Linter and Tests
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    name: Run all front-end linters
+    name: Run all linters and tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,3 +27,6 @@ jobs:
 
       - name: Run linters
         run: make lint-no-fix
+
+      - name: Run tests
+        run: make test
