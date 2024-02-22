@@ -18,7 +18,7 @@ function getThemeToken(
 
 export const getThemeTokenValue = (token: string, theme: ThemeType): string => {
   if (typeof token === 'string' && token.includes('DSA_COLOR')) {
-    const regexpSize = /(DSA_COLOR_TEXT_|DSA_COLOR_BG_|DSA_COLOR_BORDER_)\w+/;
+    const regexpSize = /(DSA_COLOR_TEXT_|DSA_COLOR_BG_|DSA_COLOR_BORDER_|DSA_COLOR_SUBJECT_)\w+/;
     const match = token.match(regexpSize);
     if (match !== null && match?.length > 0) {
       const value = getThemeToken(theme, match[0] as keyof typeof darkTokens);

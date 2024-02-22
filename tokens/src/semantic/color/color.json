@@ -27,6 +27,16 @@
         "2": {
           "value": "DSA_COLOR_BORDER_2"
         }
+      },
+      "subject": {
+        "artes": {
+          "efaf": {
+            "value": "DSA_COLOR_SUBJECT_ARTES_EFAF"
+          },
+          "efai": {
+            "value": "DSA_COLOR_SUBJECT_ARTES_EFAI"
+          }
+        }
       }
     }
   }

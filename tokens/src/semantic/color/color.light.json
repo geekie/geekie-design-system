@@ -26,6 +26,16 @@
       "2": {
         "value": "{color.neutral.light}"
       }
+    },
+    "subject": {
+      "artes": {
+        "efaf": {
+          "value": "#6A1B9A"
+        },
+        "efai": {
+          "value": "#FF5E72"
+        }
+      }
     }
   }
 }

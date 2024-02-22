@@ -53,7 +53,8 @@
     "build/helpers/**",
     "build/index.*",
     "build/token-presets/**",
-    "build/tokens.*"
+    "build/tokens.*",
+    "build/themes/**"
   ],
   "main": "build/index.js",
   "peerDependencies": {
