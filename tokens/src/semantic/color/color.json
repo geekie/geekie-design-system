@@ -1,31 +1,305 @@
 {
   "dsa": {
     "color": {
-      "bg": {
-        "1": {
-          "value": "DSA_COLOR_BG_1"
+      "background": {
+        "primary": {
+          "value": "DSA_COLOR_BACKGROUND_PRIMARY"
         },
-        "2": {
-          "value": "DSA_COLOR_BG_2"
+        "secondary": {
+          "value": "DSA_COLOR_BACKGROUND_SECONDARY"
         }
       },
       "text": {
-        "1": {
-          "value": "DSA_COLOR_TEXT_1"
+        "primary": {
+          "value": "DSA_COLOR_TEXT_PRIMARY"
         },
-        "2": {
-          "value": "DSA_COLOR_TEXT_2"
+        "secondary": {
+          "value": "DSA_COLOR_TEXT_SECONDARY"
         },
-        "3": {
-          "value": "DSA_COLOR_TEXT_3"
+        "tertiary": {
+          "value": "DSA_COLOR_TEXT_TERTIARY"
+        },
+        "inverted": {
+          "value": "DSA_COLOR_TEXT_INVERTED"
         }
       },
       "border": {
-        "1": {
-          "value": "DSA_COLOR_BORDER_1"
+        "primary": {
+          "value": "DSA_COLOR_BORDER_PRIMARY"
         },
-        "2": {
-          "value": "DSA_COLOR_BORDER_2"
+        "secondary": {
+          "value": "DSA_COLOR_BORDER_SECONDARY"
+        }
+      },
+      "specialpages": {
+        "spark": {
+          "value": "DSA_COLOR_SPECIALPAGES_SPARK"
+        },
+        "inquiry": {
+          "value": "DSA_COLOR_SPECIALPAGES_INQUIRY"
+        },
+        "clarity": {
+          "value": "DSA_COLOR_SPECIALPAGES_CLARITY"
+        },
+        "nexus": {
+          "value": "DSA_COLOR_SPECIALPAGES_NEXUS"
+        }
+      },
+      "subjects": {
+        "anosfinais": {
+          "historia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_HISTORIA"
+          },
+          "artes": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_ARTES"
+          },
+          "matematica": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_MATEMATICA"
+          },
+          "fisica": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_FISICA"
+          },
+          "sociologia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_SOCIOLOGIA"
+          },
+          "gramatica": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_GRAMATICA"
+          },
+          "biologia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_BIOLOGIA"
+          },
+          "quimica": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_QUIMICA"
+          },
+          "filosofia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_FILOSOFIA"
+          },
+          "ingleseespanhol": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_INGLESEESPANHOL"
+          },
+          "geografia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSFINAIS_GRAMATICA"
+          }
+        },
+        "anosiniciais": {
+          "linguaportuguesa": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_LINGUAPORTUGUESA"
+          },
+          "linguainglesa": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_LINGUAINGLESA"
+          },
+          "geografia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_GEOGRAFIA"
+          },
+          "matematica": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_MATEMATICA"
+          },
+          "ciencias": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_CIENCIAS"
+          },
+          "historia": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_HISTORIA"
+          },
+          "artes": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_ARTES"
+          },
+          "educacaofisica": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_EDUCACAOFISICA"
+          },
+          "estacaoone": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_ESTACAOONE"
+          },
+          "multimateria": {
+            "value": "DSA_COLOR_SUBJECTS_ANOSINICIAIS_MULTIMATERIA"
+          }
+        },
+        "eletivas": {
+          "empreendedorismo": {
+            "value": "DSA_COLOR_SUBJECTS_ELETIVAS_EMPREENDEDORISMO"
+          },
+          "smart": {
+            "value": "DSA_COLOR_SUBJECTS_ELETIVAS_SMART"
+          },
+          "projetodevida": {
+            "value": "DSA_COLOR_SUBJECTS_ELETIVAS_PROJETODEVIDA"
+          },
+          "criatividadeeinovacao": {
+            "value": "DSA_COLOR_SUBJECTS_ELETIVAS_CRIATIVIDADEEINOVACAO"
+          },
+          "educacaodigital": {
+            "value": "DSA_COLOR_SUBJECTS_ELETIVAS_EDUCACAODIGITAL"
+          },
+          "cidadaniadigital": {
+            "value": "DSA_COLOR_SUBJECTS_ELETIVAS_CIDADANIADIGITAL"
+          }
+        }
+      },
+      "contentbox": {
+        "praticaativa": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_PRATICAATIVA_PRIMARY"
+          },
+          "border": {
+            "value": "DSA_COLOR_CONTENTBOX_PRATICAATIVA_BORDER"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_PRATICAATIVA_BACKGROUND"
+          }
+        },
+        "exercicio": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_EXERCICIO_PRIMARY"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_EXERCICIO_BACKGROUND"
+          }
+        },
+        "principal": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_PRINCIPAL_PRIMARY"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_PRINCIPAL_BACKGROUND"
+          }
+        },
+        "rotinadepensamento": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_ROTINADEPENSAMENTO_PRIMARY"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_ROTINADEPENSAMENTO_BACKGROUND"
+          }
+        },
+        "complementar": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_COMPLEMENTAR_PRIMARY"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_COMPLEMENTAR_BACKGROUND"
+          }
+        },
+        "recursosdigitais": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_RECURSOSDIGITAIS_PRIMARY"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_RECURSOSDIGITAIS_BACKGROUND"
+          },
+          "title": {
+            "value": "DSA_COLOR_CONTENTBOX_RECURSOSDIGITAIS_TITLE"
+          }
+        },
+        "sugestaocultural": {
+          "value": "DSA_COLOR_CONTENTBOX_SUGESTAOCULTURAL"
+        },
+        "dicaparaoprofessor": {
+          "primary": {
+            "value": "DSA_COLOR_CONTENTBOX_DICAPARAOPROFESSOR_PRIMARY"
+          },
+          "background": {
+            "value": "DSA_COLOR_CONTENTBOX_DICAPARAOPROFESSOR_BACKGROUND"
+          }
+        }
+      },
+      "highlight": {
+        "orange": {
+          "value": "DSA_COLOR_HIGHLIGHT_ORANGE"
+        },
+        "yellow": {
+          "value": "DSA_COLOR_HIGHLIGHT_YELLOW"
+        },
+        "green": {
+          "value": "DSA_COLOR_HIGHLIGHT_GREEN"
+        },
+        "blue": {
+          "value": "DSA_COLOR_HIGHLIGHT_BLUE"
+        }
+      },
+      "button": {
+        "primary": {
+          "value": "DSA_COLOR_BUTTON_PRIMARY"
+        },
+        "secondary": {
+          "value": "DSA_COLOR_BUTTON_SECONDARY"
+        },
+        "tertiary": {
+          "value": "DSA_COLOR_BUTTON_TERTIARY"
+        },
+        "quaternary": {
+          "value": "DSA_COLOR_BUTTON_QUATERNARY"
+        },
+        "quinary": {
+          "value": "DSA_COLOR_BUTTON_QUINARY"
+        }
+      },
+      "feedback": {
+        "positive": {
+          "primary": {
+            "value": "DSA_COLOR_FEEDBACK_POSITIVE_PRIMARY"
+          },
+          "secondary": {
+            "value": "DSA_COLOR_FEEDBACK_POSITIVE_SECONDARY"
+          },
+          "tertiary": {
+            "value": "DSA_COLOR_FEEDBACK_POSITIVE_TERTIARY"
+          },
+          "quaternary": {
+            "value": "DSA_COLOR_FEEDBACK_POSITIVE_QUATERNARY"
+          },
+          "quinary": {
+            "value": "DSA_COLOR_FEEDBACK_POSITIVE_QUINARY"
+          }
+        },
+        "attention": {
+          "primary": {
+            "value": "DSA_COLOR_FEEDBACK_ATTENTION_PRIMARY"
+          },
+          "secondary": {
+            "value": "DSA_COLOR_FEEDBACK_ATTENTION_SECONDARY"
+          },
+          "tertiary": {
+            "value": "DSA_COLOR_FEEDBACK_ATTENTION_TERTIARY"
+          },
+          "quaternary": {
+            "value": "DSA_COLOR_FEEDBACK_ATTENTION_QUATERNARY"
+          },
+          "quinary": {
+            "value": "DSA_COLOR_FEEDBACK_ATTENTION_QUINARY"
+          }
+        },
+        "negative": {
+          "primary": {
+            "value": "DSA_COLOR_FEEDBACK_NEGATIVE_PRIMARY"
+          },
+          "secondary": {
+            "value": "DSA_COLOR_FEEDBACK_NEGATIVE_SECONDARY"
+          },
+          "tertiary": {
+            "value": "DSA_COLOR_FEEDBACK_NEGATIVE_TERTIARY"
+          },
+          "quaternary": {
+            "value": "DSA_COLOR_FEEDBACK_NEGATIVE_QUATERNARY"
+          },
+          "quinary": {
+            "value": "DSA_COLOR_FEEDBACK_NEGATIVE_QUINARY"
+          }
+        },
+        "information": {
+          "primary": {
+            "value": "DSA_COLOR_FEEDBACK_INFORMATION_PRIMARY"
+          },
+          "secondary": {
+            "value": "DSA_COLOR_FEEDBACK_INFORMATION_SECONDARY"
+          },
+          "tertiary": {
+            "value": "DSA_COLOR_FEEDBACK_INFORMATION_TERTIARY"
+          },
+          "quaternary": {
+            "value": "DSA_COLOR_FEEDBACK_INFORMATION_QUATERNARY"
+          },
+          "quinary": {
+            "value": "DSA_COLOR_FEEDBACK_INFORMATION_QUINARY"
+          }
         }
       }
     }

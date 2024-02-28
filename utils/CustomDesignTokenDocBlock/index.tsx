@@ -19,14 +19,28 @@ interface CustomDesignTokenDocBlockProps {
   presenter: 'font-style' | 'color';
   previewType: 'text' | 'semantic-color';
   tokens: Token[];
+  categories?: string[];
+  useLeftCopyIcon: boolean;
+}
+interface CopyIconProps {
+  token: Token;
 }
 
-const ThemeSwitch: React.FC = () => {
+interface ThemeSwitchProps {
+  hideTitle: boolean;
+}
+
+const ThemeSwitch: React.FC<ThemeSwitchProps> = (props) => {
+  const { hideTitle } = props;
   const { theme, toggleDarkMode } = useDarkMode();
 
   return (
     <div className="theme-switch">
-      <h3>Tema Atual | {theme === 'light' ? 'modo claro' : 'modo escuro'}</h3>
+      {!hideTitle ? (
+        <h3>Tema Atual | {theme === 'light' ? 'modo claro' : 'modo escuro'}</h3>
+      ) : (
+        <div />
+      )}
       <div className="switch">
         <b>{theme === 'light' ? 'Ativar' : 'Desativar'} modo escuro </b>
         <input
@@ -41,8 +55,37 @@ const ThemeSwitch: React.FC = () => {
   );
 };
 
+const CopyIcon: React.FC<CopyIconProps> = (props) => {
+  const { token } = props;
+
+  return (
+    <div className="copy-icon-container">
+      <span>
+        <button
+          className="copy-icon"
+          onClick={() => {
+            void navigator.clipboard.writeText(token.name);
+          }}
+        >
+          <svg
+            viewBox="0 0 14 14"
+            width="14px"
+            height="14px"
+            className="css-149xqrd"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.75.07A.5.5 0 0 0 11.5 0h-6a.5.5 0 0 0-.5.5V3H.5a.5.5 0 0 0-.5.5v10c0 .28.22.5.5.5h8a.5.5 0 0 0 .5-.5V11h4.5a.5.5 0 0 0 .5-.5V2.51a.5.5 0 0 0-.15-.36l-2-2a.5.5 0 0 0-.1-.08ZM9 10h4V3h-1.5a.5.5 0 0 1-.5-.5V1H6v2h.5a.5.5 0 0 1 .36.15l1.99 2c.1.09.15.21.15.35v4.51ZM1 4v9h7V6H6.5a.5.5 0 0 1-.5-.5V4H1Z"
+            ></path>
+          </svg>
+        </button>
+      </span>
+    </div>
+  );
+};
+
 const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
-  const { blockType, presenter, previewType, tokens } = props;
+  const { blockType, presenter, previewType, tokens, useLeftCopyIcon } = props;
 
   const { theme } = useDarkMode();
 
@@ -57,9 +100,13 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
               <thead className="docblock-argstable-head">
                 <tr>
                   <th className={isSemantic ? 'isSemantic' : ''}>Name</th>
-                  {isSemantic ? <th>Core Token</th> : null}
-                  <th>Value</th>
-                  <th>Preview</th>
+                  {isSemantic ? (
+                    <th className={isSemantic ? 'isSemantic' : ''}>
+                      Core Token
+                    </th>
+                  ) : null}
+                  <th className={isSemantic ? 'isSemantic' : ''}>Value</th>
+                  <th className={isSemantic ? 'isSemantic' : ''}>Preview</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,35 +128,13 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                     <tr key={token.name}>
                       <td className={isSemantic ? 'isSemantic' : ''}>
                         <span>
+                          {useLeftCopyIcon ? <CopyIcon token={token} /> : null}
                           <span className="">{token.name}</span>
-                          <div className="copy-icon-container">
-                            <span>
-                              <button
-                                className="copy-icon"
-                                onClick={() => {
-                                  void navigator.clipboard.writeText(
-                                    token.name
-                                  );
-                                }}
-                              >
-                                <svg
-                                  viewBox="0 0 14 14"
-                                  width="14px"
-                                  height="14px"
-                                  className="css-149xqrd"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M11.75.07A.5.5 0 0 0 11.5 0h-6a.5.5 0 0 0-.5.5V3H.5a.5.5 0 0 0-.5.5v10c0 .28.22.5.5.5h8a.5.5 0 0 0 .5-.5V11h4.5a.5.5 0 0 0 .5-.5V2.51a.5.5 0 0 0-.15-.36l-2-2a.5.5 0 0 0-.1-.08ZM9 10h4V3h-1.5a.5.5 0 0 1-.5-.5V1H6v2h.5a.5.5 0 0 1 .36.15l1.99 2c.1.09.15.21.15.35v4.51ZM1 4v9h7V6H6.5a.5.5 0 0 1-.5-.5V4H1Z"
-                                  ></path>
-                                </svg>
-                              </button>
-                            </span>
-                          </div>
+                          {!useLeftCopyIcon ? <CopyIcon token={token} /> : null}
                         </span>
                       </td>
                       {isSemantic ? (
-                        <td>
+                        <td className={isSemantic ? 'isSemantic' : ''}>
                           <div className="css-79elbk">
                             <span className="css-16nf6wl">
                               <div className="tokenName">
@@ -128,14 +153,14 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                           </div>
                         </td>
                       ) : null}
-                      <td>
+                      <td className={isSemantic ? 'isSemantic' : ''}>
                         <div className="css-79elbk">
                           <span title="32px" className="css-16nf6wl">
                             {tokenValue}
                           </span>
                         </div>
                       </td>
-                      <td>
+                      <td className={isSemantic ? 'isSemantic' : ''}>
                         <div style={previewType === 'text' ? previewStyle : {}}>
                           {previewType === 'text' ? (
                             'Lorem ipsum'
@@ -161,6 +186,52 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
   );
 };
 
+const BlockWithCategory: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
+  const { categories, tokens } = props;
+
+  if (
+    categories !== null &&
+    categories !== undefined &&
+    categories.length > 0
+  ) {
+    return categories.map((category) => {
+      const formattedCategory = [
+        ...category
+          .replaceAll('DSA_COLOR_', '')
+          .replaceAll('_', '')
+          .toLowerCase(),
+      ];
+      formattedCategory[0] = formattedCategory[0].toUpperCase();
+      let categoryName = formattedCategory.join('');
+      if (category === 'DSA_COLOR_SPECIALPAGES_') {
+        categoryName = 'Special Pages';
+      } else if (category === 'DSA_COLOR_CONTENTBOX_') {
+        categoryName = 'Content Box';
+      }
+      return (
+        <div key={category} style={{ marginTop: 20 }}>
+          <h3
+            style={
+              categories.indexOf(category) > 0
+                ? { marginBottom: -60, marginTop: 40 }
+                : {}
+            }
+          >
+            {categoryName} Color
+          </h3>
+          {categories.indexOf(category) > 0 ? <ThemeSwitch hideTitle /> : null}
+          <Block
+            {...props}
+            tokens={tokens.filter((token) => token.name.startsWith(category))}
+          />
+        </div>
+      );
+    });
+  } else {
+    return <Block {...props} />;
+  }
+};
+
 const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
   props
 ) => {
@@ -168,8 +239,9 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
 
   return previewType === 'semantic-color' ? (
     <DarkModeEnabledProvider>
-      <ThemeSwitch />
-      <Block {...props} />
+      <ThemeSwitch hideTitle={false} />
+
+      <BlockWithCategory {...props} />
     </DarkModeEnabledProvider>
   ) : (
     <Block {...props} />
