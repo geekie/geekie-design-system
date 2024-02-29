@@ -1,5 +1,25 @@
 {
   "color": {
+    "brand": {
+      "cereja": {
+        "value": "#F03246"
+      },
+      "laranja": {
+        "value": "#FF8219"
+      },
+      "amarelo": {
+        "value": "#FFC300"
+      },
+      "verde": {
+        "value": "#32CD91"
+      },
+      "azul": {
+        "value": "#0FC3E6"
+      },
+      "roxo": {
+        "value": "#6146F1"
+      }
+    },
     "neutral": {
       "090": {
         "value": "#FFFFFF"
