@@ -1,13 +1,12 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
   DarkModeEnabledProvider,
-  defaultTheme,
   useDarkMode,
 } from '../DarkModeEnabledContext';
-import { type ThemeType } from '../themes';
+import { type Theme, defaultTheme } from '../themes';
 
 const ThemeDisplay = (): React.JSX.Element => {
   const { theme } = useDarkMode();
@@ -15,15 +14,23 @@ const ThemeDisplay = (): React.JSX.Element => {
 };
 
 const ThemeToggle = (): React.JSX.Element => {
-  const { toggleDarkMode } = useDarkMode();
-  return <button onClick={toggleDarkMode}>Trocar de tema</button>;
+  const { theme, setTheme } = useDarkMode();
+  return (
+    <button
+      onClick={() => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+      }}
+    >
+      Trocar de tema
+    </button>
+  );
 };
 
-const getPersistedTheme = async (): Promise<ThemeType | null> => {
-  return (await AsyncStorage.getItem('dsa_theme')) as ThemeType | null;
+const getPersistedTheme = async (): Promise<Theme | null> => {
+  return (await AsyncStorage.getItem('dsa_theme')) as Theme | null;
 };
 
-const setPersistedTheme = async (value: ThemeType): Promise<void> => {
+const setPersistedTheme = async (value: Theme): Promise<void> => {
   await AsyncStorage.setItem('dsa_theme', value);
 };
 
@@ -72,27 +79,19 @@ test('DarkModeEnabledProvider theme is stored at toggle', async () => {
 });
 
 test('DarkModeEnabledProvider uses stored theme as current', async () => {
-  await AsyncStorage.setItem('dsa_theme', 'dark').then(async () => {
-    await AsyncStorage.getItem('dsa_theme').then(async (theme) => {
-      await act(async () => customRender()).then(() => {
-        expect(theme).toBe('dark');
+  await AsyncStorage.setItem('dsa_theme', 'dark');
 
-        setTimeout(() => {
-          expect(screen.getByText(/^Tema atual:/)).toHaveTextContent(
-            `Tema atual: dark`
-          );
-        }, 500);
-      });
-    });
+  const component = customRender();
+  await waitFor(() => {
+    expect(component.container).toHaveTextContent('Tema atual: dark');
   });
 
-  fireEvent.click(screen.getByText(/^Trocar de tema/));
-  expect(screen.getByText(/^Tema atual:/)).toHaveTextContent(
-    `Tema atual: light`
+  fireEvent.click(component.getByText(/^Trocar de tema/));
+  expect(component.getByText(/^Tema atual:/)).toHaveTextContent(
+    'Tema atual: light'
   );
-  await AsyncStorage.getItem('dsa_theme').then((theme) => {
-    expect(theme).toBe('light');
-  });
+
+  expect(await AsyncStorage.getItem('dsa_theme')).toBe('light');
 });
 
 test('DarkModeEnabledProvider toggle back theme to light and persist correctly', async () => {
