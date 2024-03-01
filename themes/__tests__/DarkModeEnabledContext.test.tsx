@@ -20,7 +20,7 @@ const ThemeToggle = (): React.JSX.Element => {
 
 const customRender = (): any => {
   return render(
-    <DarkModeEnabledProvider>
+    <DarkModeEnabledProvider AsyncStorage={AsyncStorage}>
       <ThemeDisplay />
       <ThemeToggle />
     </DarkModeEnabledProvider>,
