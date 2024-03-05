@@ -18,9 +18,20 @@ const ThemeToggle = (): React.JSX.Element => {
   return <button onClick={toggleDarkMode}>Trocar de tema</button>;
 };
 
+const getPersistedTheme = async (key: string): Promise<string | null> => {
+  return await AsyncStorage.getItem(key);
+};
+
+const setPersistedTheme = async (key: string, value: any): Promise<void> => {
+  await AsyncStorage.setItem(key, value);
+};
+
 const customRender = (): any => {
   return render(
-    <DarkModeEnabledProvider AsyncStorage={AsyncStorage}>
+    <DarkModeEnabledProvider
+      getPersistedTheme={getPersistedTheme}
+      setPersistedTheme={setPersistedTheme}
+    >
       <ThemeDisplay />
       <ThemeToggle />
     </DarkModeEnabledProvider>,
