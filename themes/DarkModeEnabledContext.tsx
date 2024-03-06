@@ -11,9 +11,9 @@ import { type ThemeType, defaultTheme } from './themes';
 
 const storeToggledTheme = async (
   currentTheme: ThemeType,
-  setPersistedTheme: (key: string, value: ThemeType) => Promise<void>
+  setPersistedTheme: (value: ThemeType) => Promise<void>
 ): Promise<void> => {
-  await setPersistedTheme('dsa_theme', currentTheme);
+  await setPersistedTheme(currentTheme);
 };
 
 interface DarkModeEnabledContextProps {
@@ -28,16 +28,16 @@ const DarkModeEnabledContext = createContext<DarkModeEnabledContextProps>({
 
 const DarkModeEnabledProvider: React.FC<{
   children: ReactNode;
-  setPersistedTheme: (key: string, value: ThemeType) => Promise<void>;
-  getPersistedTheme: (key: string) => Promise<string | null>;
+  setPersistedTheme: (value: ThemeType) => Promise<void>;
+  getPersistedTheme: () => Promise<ThemeType | null>;
 }> = ({ children, setPersistedTheme, getPersistedTheme }) => {
   const [theme, setTheme] = useState<ThemeType>(defaultTheme);
 
   useEffect(() => {
     const setStoredThemeAsDefault = async (): Promise<void> => {
-      const storedTheme = await getPersistedTheme('dsa_theme');
+      const storedTheme = await getPersistedTheme();
       if (storedTheme !== null) {
-        setTheme(storedTheme as ThemeType);
+        setTheme(storedTheme);
       }
     };
     setStoredThemeAsDefault().catch((e) => {

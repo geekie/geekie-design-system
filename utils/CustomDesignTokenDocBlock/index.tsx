@@ -238,12 +238,12 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
 ) => {
   const { previewType } = props;
 
-  const getPersistedTheme = async (key: string): Promise<string | null> => {
-    return await AsyncStorage.getItem(key);
+  const getPersistedTheme = async (): Promise<ThemeType | null> => {
+    return (await AsyncStorage.getItem('dsa_theme')) as ThemeType | null;
   };
 
-  const setPersistedTheme = async (key: string, value: any): Promise<void> => {
-    await AsyncStorage.setItem(key, value);
+  const setPersistedTheme = async (value: ThemeType): Promise<void> => {
+    await AsyncStorage.setItem('dsa_theme', value);
   };
 
   return previewType === 'semantic-color' ? (

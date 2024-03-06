@@ -7,6 +7,7 @@ import {
   defaultTheme,
   useDarkMode,
 } from '../DarkModeEnabledContext';
+import { type ThemeType } from '../themes';
 
 const ThemeDisplay = (): React.JSX.Element => {
   const { theme } = useDarkMode();
@@ -18,12 +19,12 @@ const ThemeToggle = (): React.JSX.Element => {
   return <button onClick={toggleDarkMode}>Trocar de tema</button>;
 };
 
-const getPersistedTheme = async (key: string): Promise<string | null> => {
-  return await AsyncStorage.getItem(key);
+const getPersistedTheme = async (): Promise<ThemeType | null> => {
+  return (await AsyncStorage.getItem('dsa_theme')) as ThemeType | null;
 };
 
-const setPersistedTheme = async (key: string, value: any): Promise<void> => {
-  await AsyncStorage.setItem(key, value);
+const setPersistedTheme = async (value: ThemeType): Promise<void> => {
+  await AsyncStorage.setItem('dsa_theme', value);
 };
 
 const customRender = (): any => {
