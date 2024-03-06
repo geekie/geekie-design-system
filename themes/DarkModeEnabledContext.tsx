@@ -7,31 +7,31 @@ import {
   type ReactNode,
 } from 'react';
 
-import { type ThemeType, defaultTheme } from './themes';
+import { type Theme, defaultTheme } from './themes';
 
 const storeToggledTheme = async (
-  currentTheme: ThemeType,
-  setPersistedTheme: (value: ThemeType) => Promise<void>
+  currentTheme: Theme,
+  setPersistedTheme: (value: Theme) => Promise<void>
 ): Promise<void> => {
   await setPersistedTheme(currentTheme);
 };
 
 interface DarkModeEnabledContextProps {
-  theme: ThemeType;
-  toggleDarkMode: () => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
 const DarkModeEnabledContext = createContext<DarkModeEnabledContextProps>({
   theme: defaultTheme,
-  toggleDarkMode: () => {},
+  setTheme: () => {},
 });
 
 const DarkModeEnabledProvider: React.FC<{
   children: ReactNode;
-  setPersistedTheme: (value: ThemeType) => Promise<void>;
-  getPersistedTheme: () => Promise<ThemeType | null>;
+  setPersistedTheme: (value: Theme) => Promise<void>;
+  getPersistedTheme: () => Promise<Theme | null>;
 }> = ({ children, setPersistedTheme, getPersistedTheme }) => {
-  const [theme, setTheme] = useState<ThemeType>(defaultTheme);
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   useEffect(() => {
     const setStoredThemeAsDefault = async (): Promise<void> => {
@@ -45,18 +45,17 @@ const DarkModeEnabledProvider: React.FC<{
     });
   }, []);
 
-  const toggleDarkMode = (): void => {
-    setTheme((prevTheme) => {
-      const currentTheme = prevTheme === 'light' ? 'dark' : 'light';
-      storeToggledTheme(currentTheme, setPersistedTheme).catch((e) => {
-        console.log(e);
-      });
-      return currentTheme;
+  const setAndStoreTheme = (theme: Theme): void => {
+    setTheme(theme);
+    storeToggledTheme(theme, setPersistedTheme).catch((e) => {
+      console.log(e);
     });
   };
 
   return (
-    <DarkModeEnabledContext.Provider value={{ theme, toggleDarkMode }}>
+    <DarkModeEnabledContext.Provider
+      value={{ theme, setTheme: setAndStoreTheme }}
+    >
       {children}
     </DarkModeEnabledContext.Provider>
   );
@@ -65,4 +64,4 @@ const DarkModeEnabledProvider: React.FC<{
 const useDarkMode = (): DarkModeEnabledContextProps =>
   useContext(DarkModeEnabledContext);
 
-export { DarkModeEnabledProvider, useDarkMode, defaultTheme };
+export { DarkModeEnabledContext, DarkModeEnabledProvider, useDarkMode };

@@ -1,5 +1,7 @@
-export type ThemeType = 'dark' | 'light';
+export type Theme = 'dark' | 'light';
 
-export const themes: ThemeType[] = ['dark', 'light'];
+export const themes: Theme[] = ['dark', 'light'];
 
-export const defaultTheme: ThemeType = 'light';
+export const labelsByTheme = { dark: 'Escuro', light: 'Claro' };
+
+export const defaultTheme: Theme = 'light';

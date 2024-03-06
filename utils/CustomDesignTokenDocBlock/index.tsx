@@ -5,7 +5,7 @@ import {
   DarkModeEnabledProvider,
   useDarkMode,
 } from '../../themes/DarkModeEnabledContext';
-import { type ThemeType } from '../../themes/themes';
+import { type Theme } from '../../themes/themes';
 import * as allTokens from '../../built-tokens/js/tokens';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -13,7 +13,7 @@ type FontStyle = 'normal' | 'italic' | 'oblique';
 
 interface Token {
   name: string;
-  value: FontStyle | ThemeType | string;
+  value: FontStyle | Theme | string;
 }
 interface CustomDesignTokenDocBlockProps {
   blockType: 'table';
@@ -33,7 +33,7 @@ interface ThemeSwitchProps {
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = (props) => {
   const { hideTitle } = props;
-  const { theme, toggleDarkMode } = useDarkMode();
+  const { theme, setTheme } = useDarkMode();
 
   return (
     <div className="theme-switch">
@@ -48,7 +48,9 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = (props) => {
           type="checkbox"
           id="switch"
           checked={theme === 'dark'}
-          onChange={toggleDarkMode}
+          onChange={() => {
+            setTheme(theme === 'light' ? 'dark' : 'light');
+          }}
         />
         <label htmlFor="switch">Ativar modo escuro</label>
       </div>
@@ -238,11 +240,11 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
 ) => {
   const { previewType } = props;
 
-  const getPersistedTheme = async (): Promise<ThemeType | null> => {
-    return (await AsyncStorage.getItem('dsa_theme')) as ThemeType | null;
+  const getPersistedTheme = async (): Promise<Theme | null> => {
+    return (await AsyncStorage.getItem('dsa_theme')) as Theme | null;
   };
 
-  const setPersistedTheme = async (value: ThemeType): Promise<void> => {
+  const setPersistedTheme = async (value: Theme): Promise<void> => {
     await AsyncStorage.setItem('dsa_theme', value);
   };
 
