@@ -41,7 +41,8 @@
     "storybook-design-token": "^3.0.0-beta.3",
     "style-dictionary": "^3.8.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "@react-native-community/async-storage": "^1.12.1"
   },
   "engines": {
     "node": ">=16.17.1"
@@ -71,9 +72,7 @@
     "chromatic": "npx chromatic",
     "test": "jest"
   },
-  "dependencies": {
-    "@react-native-community/async-storage": "^1.12.1"
-  },
+  "dependencies": {},
   "overrides": {
     "@types/react": "^18.0.33"
   }

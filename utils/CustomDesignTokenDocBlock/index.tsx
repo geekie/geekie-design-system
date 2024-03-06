@@ -7,6 +7,7 @@ import {
 } from '../../themes/DarkModeEnabledContext';
 import { type ThemeType } from '../../themes/themes';
 import * as allTokens from '../../built-tokens/js/tokens';
+import AsyncStorage from '@react-native-community/async-storage';
 
 type FontStyle = 'normal' | 'italic' | 'oblique';
 
@@ -237,8 +238,19 @@ const CustomDesignTokenDocBlock: React.FC<CustomDesignTokenDocBlockProps> = (
 ) => {
   const { previewType } = props;
 
+  const getPersistedTheme = async (): Promise<ThemeType | null> => {
+    return (await AsyncStorage.getItem('dsa_theme')) as ThemeType | null;
+  };
+
+  const setPersistedTheme = async (value: ThemeType): Promise<void> => {
+    await AsyncStorage.setItem('dsa_theme', value);
+  };
+
   return previewType === 'semantic-color' ? (
-    <DarkModeEnabledProvider>
+    <DarkModeEnabledProvider
+      getPersistedTheme={getPersistedTheme}
+      setPersistedTheme={setPersistedTheme}
+    >
       <ThemeSwitch hideTitle={false} />
 
       <BlockWithCategory {...props} />

@@ -7,12 +7,13 @@ import {
   type ReactNode,
 } from 'react';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
 import { type ThemeType, defaultTheme } from './themes';
 
-const storeToggledTheme = async (currentTheme: ThemeType): Promise<void> => {
-  await AsyncStorage.setItem('dsa_theme', currentTheme);
+const storeToggledTheme = async (
+  currentTheme: ThemeType,
+  setPersistedTheme: (value: ThemeType) => Promise<void>
+): Promise<void> => {
+  await setPersistedTheme(currentTheme);
 };
 
 interface DarkModeEnabledContextProps {
@@ -25,16 +26,16 @@ const DarkModeEnabledContext = createContext<DarkModeEnabledContextProps>({
   toggleDarkMode: () => {},
 });
 
-const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+const DarkModeEnabledProvider: React.FC<{
+  children: ReactNode;
+  setPersistedTheme: (value: ThemeType) => Promise<void>;
+  getPersistedTheme: () => Promise<ThemeType | null>;
+}> = ({ children, setPersistedTheme, getPersistedTheme }) => {
   const [theme, setTheme] = useState<ThemeType>(defaultTheme);
 
   useEffect(() => {
     const setStoredThemeAsDefault = async (): Promise<void> => {
-      const storedTheme = (await AsyncStorage.getItem(
-        'dsa_theme'
-      )) as ThemeType | null;
+      const storedTheme = await getPersistedTheme();
       if (storedTheme !== null) {
         setTheme(storedTheme);
       }
@@ -47,7 +48,7 @@ const DarkModeEnabledProvider: React.FC<{ children: ReactNode }> = ({
   const toggleDarkMode = (): void => {
     setTheme((prevTheme) => {
       const currentTheme = prevTheme === 'light' ? 'dark' : 'light';
-      storeToggledTheme(currentTheme).catch((e) => {
+      storeToggledTheme(currentTheme, setPersistedTheme).catch((e) => {
         console.log(e);
       });
       return currentTheme;
