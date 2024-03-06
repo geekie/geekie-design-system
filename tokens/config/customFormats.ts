@@ -5,7 +5,6 @@ import { formatTokenToWeb } from '../../utils/formatTokenToWeb';
 // headers on the SCSS file, so we generate it accordingly. The code based on the suggestion from
 // https://github.com/amzn/style-dictionary/issues/344#issuecomment-1200826141.
 const DESIGN_TOKEN_CATEGORIES_BY_PREFIX = {
-  DSA_COLOR_BRAND: { categoryName: 'Brand Colors', presenterName: 'Color' },
   DSA_COLOR_NEUTRAL: { categoryName: 'Neutral Colors', presenterName: 'Color' },
   DSA_COLOR_SPECIALPAGE: {
     categoryName: 'Special Page Colors',
