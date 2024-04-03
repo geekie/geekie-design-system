@@ -1,4 +1,5 @@
-import React, { type ReactNode, createContext, useContext } from 'react';
+import * as React from 'react';
+import { type ReactNode, createContext, useContext } from 'react';
 
 interface DarkModeReadyContextValue {
   isScreenReadyForDarkMode: boolean;
