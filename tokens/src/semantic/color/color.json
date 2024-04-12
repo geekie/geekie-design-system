@@ -131,6 +131,24 @@
           },
           "cidadaniadigital": {
             "value": "DSA_COLOR_SUBJECTS_ELETIVAS_CIDADANIADIGITAL"
+          },
+          "unidadesgerais": {
+            "value": "$DSA_COLOR_SUBJECTS_ELETIVAS_UNIDADESGERAIS"
+          },
+          "cienciasdanatureza": {
+            "value": "$DSA_COLOR_SUBJECTS_ELETIVAS_CIENCIASDANATUREZA"
+          },
+          "linguagensecodigos": {
+            "value": "$DSA_COLOR_SUBJECTS_ELETIVAS_LINGUAGENSECODIGOS"
+          },
+          "exerciciosvestibular": {
+            "value": "$DSA_COLOR_SUBJECTS_ELETIVAS_EXERCICIOSVESTIBULAR"
+          },
+          "matematica": {
+            "value": "$DSA_COLOR_SUBJECTS_ELETIVAS_MATEMATICA"
+          },
+          "projetos": {
+            "value": "$DSA_COLOR_SUBJECTS_ELETIVAS_PROJETOS"
           }
         }
       },

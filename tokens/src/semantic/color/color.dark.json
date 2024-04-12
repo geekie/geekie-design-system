@@ -130,6 +130,24 @@
         },
         "cidadaniadigital": {
           "value": "{color.subject.710}"
+        },
+        "unidadesgerais": {
+          "value": "{color.subject.730}"
+        },
+        "cienciasdanatureza": {
+          "value": "{color.subject.750}"
+        },
+        "linguagensecodigos": {
+          "value": "{color.subject.770}"
+        },
+        "exerciciosvestibular": {
+          "value": "{color.subject.790}"
+        },
+        "matematica": {
+          "value": "{color.subject.630}"
+        },
+        "projetos": {
+          "value": "{color.subject.830}"
         }
       }
     },
