@@ -18,6 +18,9 @@
       "tertiary": {
         "value": "{color.neutral.030}"
       },
+      "quaternary": {
+        "value": "{color.neutral.040}"
+      },
       "inverted": {
         "value": "{color.neutral.090}"
       }

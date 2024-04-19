@@ -19,6 +19,9 @@
         "tertiary": {
           "value": "DSA_COLOR_TEXT_TERTIARY"
         },
+        "quaternary": {
+          "value": "DSA_COLOR_TEXT_QUATERNARY"
+        },
         "inverted": {
           "value": "DSA_COLOR_TEXT_INVERTED"
         }
