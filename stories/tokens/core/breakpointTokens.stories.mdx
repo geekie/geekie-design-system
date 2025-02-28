@@ -1,0 +1,17 @@
+import { Meta } from '@storybook/addon-docs';
+import CustomDesignTokenDocBlock from '../../../utils/CustomDesignTokenDocBlock';
+
+import breakpointTokens from '../../../tokens/src/core/breakpoint.json';
+
+<Meta title="Design Tokens/Tokens/Core/Breakpoints" />
+
+# Breakpoints
+
+<CustomDesignTokenDocBlock
+  blockType="table"
+  presenter="breakpoint"
+  tokens={['small', 'medium', 'large', 'x_large'].map((size) => ({
+    name: `$DSA_BREAKPOINT_${size.toUpperCase()}`,
+    value: `${breakpointTokens.breakpoint[size].value}px`,
+  }))}
+/>

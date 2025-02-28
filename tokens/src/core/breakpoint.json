@@ -1,0 +1,8 @@
+{
+  "breakpoint": {
+    "small": { "value": 576 },
+    "medium": { "value": 992 },
+    "large": { "value": 1200 },
+    "x_large": { "value": 1400 }
+  }
+}
