@@ -1,4 +1,4 @@
-export const getMaxWidthMediaQuery = (breakpoint: number) : string =>
+export const getMaxWidthMediaQuery = (breakpoint: number): string =>
   `@media (max-width: ${breakpoint}px)`;
 
 export const getMinWidthMediaQuery = (breakpoint: number): string =>
