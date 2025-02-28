@@ -17,8 +17,8 @@ interface Token {
 }
 interface CustomDesignTokenDocBlockProps {
   blockType: 'table';
-  presenter: 'font-style' | 'color';
-  previewType: 'text' | 'semantic-color';
+  presenter: 'font-style' | 'color' | 'breakpoint';
+  previewType: 'text' | 'semantic-color' | undefined;
   tokens: Token[];
   categories?: string[];
   useLeftCopyIcon: boolean;
@@ -93,6 +93,7 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
   const { theme } = useDarkMode();
 
   const isSemantic = previewType === 'semantic-color';
+  const hasPreview = previewType !== undefined;
 
   return (
     <div className="design-token-container">
@@ -109,7 +110,9 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                     </th>
                   ) : null}
                   <th className={isSemantic ? 'isSemantic' : ''}>Value</th>
-                  <th className={isSemantic ? 'isSemantic' : ''}>Preview</th>
+                  {hasPreview && (
+                    <th className={isSemantic ? 'isSemantic' : ''}>Preview</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -163,20 +166,24 @@ const Block: React.FC<CustomDesignTokenDocBlockProps> = (props) => {
                           </span>
                         </div>
                       </td>
-                      <td className={isSemantic ? 'isSemantic' : ''}>
-                        <div style={previewType === 'text' ? previewStyle : {}}>
-                          {previewType === 'text' ? (
-                            'Lorem ipsum'
-                          ) : previewType === 'semantic-color' ? (
-                            <div className="color-block-container">
-                              <div
-                                className="color-block"
-                                style={previewStyle}
-                              />
-                            </div>
-                          ) : null}
-                        </div>
-                      </td>
+                      {hasPreview && (
+                        <td className={isSemantic ? 'isSemantic' : ''}>
+                          <div
+                            style={previewType === 'text' ? previewStyle : {}}
+                          >
+                            {previewType === 'text' ? (
+                              'Lorem ipsum'
+                            ) : previewType === 'semantic-color' ? (
+                              <div className="color-block-container">
+                                <div
+                                  className="color-block"
+                                  style={previewStyle}
+                                />
+                              </div>
+                            ) : null}
+                          </div>
+                        </td>
+                      )}
                     </tr>
                   );
                 })}
