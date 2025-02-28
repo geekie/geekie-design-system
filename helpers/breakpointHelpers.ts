@@ -6,7 +6,7 @@ export const getMinWidthMediaQuery = (breakpoint: number): string =>
   // the min and max queries are consistent for a screen with width equal to the breakpoint.
   `@media (min-width: ${breakpoint + 1}px)`;
 
-export const getInBetweenWidthMediaQuery = (
+export const getInBetweenWidthsMediaQuery = (
   minBreakpoint: number,
   maxBreakpoint: number
 ): string =>
