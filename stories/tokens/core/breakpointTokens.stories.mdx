@@ -10,8 +10,8 @@ import breakpointTokens from '../../../tokens/src/core/breakpoint.json';
 <CustomDesignTokenDocBlock
   blockType="table"
   presenter="breakpoint"
-  tokens={['small', 'medium', 'large', 'x_large'].map(size => ({
-      name: `$DSA_BREAKPOINT_${size.toUpperCase()}`,
-      value: `${breakpointTokens.breakpoint[size].value}px`,
+  tokens={['small', 'medium', 'large', 'x_large'].map((size) => ({
+    name: `$DSA_BREAKPOINT_${size.toUpperCase()}`,
+    value: `${breakpointTokens.breakpoint[size].value}px`,
   }))}
 />
