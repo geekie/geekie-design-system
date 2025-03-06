@@ -15,3 +15,31 @@ import breakpointTokens from '../../../tokens/src/core/breakpoint.json';
     value: `${breakpointTokens.breakpoint[size].value}px`,
   }))}
 />
+
+Os breakpoints são pontos de corte para alterar o layout da tela de acordo com sua largura. Eles são inclusivos na extremidade superior mas não na inferior: por exemplo, uma tela com largura de 1200 px (igual ao DSA_BREAKPOINT_LARGE) teria a mesma aparência de uma tela com largura de 1199 px, e a diferença passaria a acontecer a partir de 1201 px.
+
+Para facilitar o uso e seguir a regra de inclusividade, existem 3 helpers que criam media queries a partir dos breakpoints:
+
+- `getMaxWidthMediaQuery(breakpoint)`: para estilos destinados a telas com `largura <= breakpoint`
+- `getMinWidthMediaQuery(breakpoint)`: para estilos destinados a telas com `largura > breakpoint`
+- `getInBetweenWidthsMediaQuery(minBreakpoint, maxBreakpoint)`: para estilos destinados a telas com `minBreakpoint < largura <= maxBreakpoint`
+
+Segue um exemplo de uso, na stylesheet do SGLearner:
+
+```
+weekDropdownMenu: {
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  top: 18,
+  right: 48,
+
+  [getMaxWidthMediaQuery(DSA_BREAKPOINT_LARGE)]: {
+    position: 'static',
+    marginTop: 16,
+  },
+},
+```
+
+Dessa forma, o estilo com `{ position: 'static', marginTop: 16 }` vai ser aplicado apenas em telas que tenham largura de no máximo `DSA_BREAKPOINT_LARGE` (1200 px, inclusive).
